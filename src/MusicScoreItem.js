@@ -8,11 +8,11 @@ class MusicScoreItem extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/v1/scores/${this.props.scoreId}`)
+    fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScoreId}`)
       .then(res => res.json())
       .then(score => this.setState({
         scoreURL: `http://localhost:3000/${score.url}`
-      }, () => console.log('state', this.state)))
+      }))
   }
 
   displayScore = () => {
@@ -40,4 +40,10 @@ class MusicScoreItem extends Component {
   }
 }
 
-export default connect()(MusicScoreItem);
+function mapStateToProps(state) {
+  return {
+    viewOn: state.viewOn,
+    selectedScoreId: state.selectedScoreId,
+  }
+}
+export default connect(mapStateToProps)(MusicScoreItem);

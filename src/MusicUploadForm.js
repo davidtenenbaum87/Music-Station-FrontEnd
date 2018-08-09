@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleTitleChange, handleComposerChange, handleMusicScoreUpload, updateCurrentUserScores } from './actions.js';
 
-
 class MusicUploadForm extends Component {
 
   componentDidMount() {

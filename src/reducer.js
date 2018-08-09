@@ -3,12 +3,18 @@ import { CHANGE_COMPOSER_FIELD } from './types.js';
 import { UPLOAD_MUSIC_SCORE } from './types.js';
 import { UPDATE_CURRENT_USER_SCORES } from './types.js';
 import { REMOVE_SCORE_FROM_USER_SCORES } from './types.js';
+import { VIEW_SCORE_TOGGLE } from './types.js';
+import { CLICKED_SCORE_ID } from './types.js';
+
+
 
 const initialState = {
   title: "",
   composer: "",
   music_score: null,
   current_user_scores: [],
+  viewOn: false,
+  selectedScoreId: null,
 }
 
 export default function reducer(state = initialState, action) {
@@ -26,6 +32,10 @@ export default function reducer(state = initialState, action) {
         return score.id !== action.payload
       })
       return { ...state, current_user_scores: updated_scores }
+    case VIEW_SCORE_TOGGLE:
+      return { ...state, viewOn: !state.viewOn }
+    case CLICKED_SCORE_ID:
+      return { ...state, selectedScoreId: action.payload };
     default:
       return state;
   }
