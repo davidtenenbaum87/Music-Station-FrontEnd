@@ -23,7 +23,7 @@ class MusicUploadForm extends Component {
 
   render () {
     return (
-      <div className="music-upload-form-div">
+
         <form className="music-upload-form" onSubmit={this.handleSubmit}>
           <label htmlFor="title">Title:</label>
           <input
@@ -31,19 +31,19 @@ class MusicUploadForm extends Component {
             name="title"
             value={this.props.title}
             onChange={this.props.handleTitleChange}
-          />
-        <label htmlFor="composer">Composer:</label>
-          <input
-            type="text"
-            name="composer"
-            value={this.props.composer}
-            onChange={this.props.handleComposerChange}
-          />
-        <label htmlFor="file">File:</label>
-        <input type="file" name="music_score" onChange={this.props.handleFileUpload}/>
-        <input type="submit" value="upload"/>
+          /><br/>
+          <label htmlFor="composer">Composer:</label>
+            <input
+              type="text"
+              name="composer"
+              value={this.props.composer}
+              onChange={this.props.handleComposerChange}
+            /><br/>
+          <label htmlFor="file">File:</label>
+          <input type="file" name="music_score" onChange={this.props.handleFileUpload}/><br/>
+          <input type="submit" value="upload"/>
         </form>
-      </div>
+
     )
   }
 }

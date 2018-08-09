@@ -19,7 +19,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="music-score-item">
         <p key={this.props.score.id} id={this.props.score.id}>
           {this.props.score.title} | {this.props.score.composer} | <button id={this.props.score.id} onClick={this.handleClick}>VIEW</button>
         </p>

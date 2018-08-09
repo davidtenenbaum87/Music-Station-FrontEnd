@@ -33,7 +33,7 @@ class MusicScoreItem extends Component {
 
   render() {
     return (
-      <div className="music-score-item">
+      <div className="music-score-display">
         {this.displayScore()}
       </div>
     );
