@@ -6,7 +6,7 @@ import { handleTitleChange, handleComposerChange, handleMusicScoreUpload } from 
 class MusicUploadForm extends Component {
 
   handleSubmit = (event) => {
-    event.preventDefault()
+    // event.preventDefault()
 
     let formData = new FormData();
     formData.append('title', `${this.props.title}`)
