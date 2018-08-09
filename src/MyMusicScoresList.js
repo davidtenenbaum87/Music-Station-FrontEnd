@@ -20,7 +20,6 @@ class MyMusicScoresList extends Component {
     })
   }
 
-
   render() {
     return (
       <div className="my-music-scores-list">

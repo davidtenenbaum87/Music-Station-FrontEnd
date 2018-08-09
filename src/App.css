@@ -27,5 +27,12 @@
 }
 
 .music-score-item {
+  border: 1px solid black;
+  margin: 5px;
+}
 
+.music-score-display {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import MusicUploadForm from './MusicUploadForm.js';
 import MyMusicScoresList from './MyMusicScoresList.js';
-import NavBar from './NavBar.js';
+// import NavBar from './NavBar.js';
 
 
 

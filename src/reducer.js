@@ -2,6 +2,8 @@ import { CHANGE_TITLE_FIELD } from './types.js';
 import { CHANGE_COMPOSER_FIELD } from './types.js';
 import { UPLOAD_MUSIC_SCORE } from './types.js';
 import { UPDATE_CURRENT_USER_SCORES } from './types.js';
+import { REMOVE_SCORE_FROM_USER_SCORES } from './types.js';
+
 
 
 const initialState = {
@@ -21,6 +23,11 @@ export default function reducer(state = initialState, action) {
       return { ...state, music_score: action.payload };
     case UPDATE_CURRENT_USER_SCORES:
       return { ...state, current_user_scores: action.payload }
+    case REMOVE_SCORE_FROM_USER_SCORES:
+      const updated_scores = state.current_user_scores.filter(score => {
+        return score.id !== action.payload
+      })
+      return { ...state, current_user_scores: updated_scores }
     default:
       return state;
   }
