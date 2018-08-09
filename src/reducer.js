@@ -4,8 +4,6 @@ import { UPLOAD_MUSIC_SCORE } from './types.js';
 import { UPDATE_CURRENT_USER_SCORES } from './types.js';
 import { REMOVE_SCORE_FROM_USER_SCORES } from './types.js';
 
-
-
 const initialState = {
   title: "",
   composer: "",

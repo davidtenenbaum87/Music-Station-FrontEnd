@@ -4,7 +4,6 @@ import './App.css';
 import MusicScoreItem from './MusicScoreItem.js';
 import { removeScoreFromUserScores } from './actions.js';
 
-
 class App extends Component {
   state = {
     isClicked: false,
@@ -24,7 +23,6 @@ class App extends Component {
     })
     this.props.removeScoreFromScores(parseInt(event.target.id))
   }
-
 
   render() {
     console.log('listitem', this.props);

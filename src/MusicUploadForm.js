@@ -26,7 +26,6 @@ class MusicUploadForm extends Component {
     })
   }
 
-
   render () {
     return (
       <form className="music-upload-form" onSubmit={this.handleSubmit}>
@@ -36,7 +35,7 @@ class MusicUploadForm extends Component {
           name="title"
           value={this.props.title}
           onChange={this.props.handleTitleChange}
-        /><br/>
+        />
         <label htmlFor="composer">Composer:</label>
           <input
             type="text"

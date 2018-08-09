@@ -1,27 +1,22 @@
 .App {
-
+  display: flex;
+  justify-content: flex-end;
   border: 1px solid black;
 }
 
 .form-and-list {
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   flex-direction: column;
 }
 
 .my-music-scores-list {
-  display: flex;
-  justify-content: flex-end;
-  /* flex-direction: column; */
-
-
   border: 1px solid black;
   margin: 5px;
 }
 
 .music-upload-form {
-  display: flex;
-  justify-content: flex-end;
+  /* text-align: center; */
   border: 1px solid black;
   margin: 5px;
 }
@@ -35,4 +30,14 @@
   border: 1px solid black;
   margin: 5px;
   padding: 5px;
+}
+
+input {
+  float: right;
+  clear: both;
+}
+
+label {
+  float: left;
+  clear: both;
 }
