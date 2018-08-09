@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleTitleChange, handleComposerChange, handleMusicScoreUpload } from './actions.js';
+import { handleTitleChange, handleComposerChange, handleMusicScoreUpload, updateCurrentUserScores } from './actions.js';
 
 
 class MusicUploadForm extends Component {
+
+  componentDidMount() {
+    fetch("http://localhost:3000/api/v1/users/1")
+    .then(res => res.json())
+    .then(data => this.props.getCurrentUserScores(data.scores))
+  }
 
   handleSubmit = (event) => {
     // event.preventDefault()
@@ -18,32 +24,30 @@ class MusicUploadForm extends Component {
       method: 'POST',
       body: formData
     })
-
   }
+
 
   render () {
     return (
-
-        <form className="music-upload-form" onSubmit={this.handleSubmit}>
-          <label htmlFor="title">Title:</label>
+      <form className="music-upload-form" onSubmit={this.handleSubmit}>
+        <label htmlFor="title">Title:</label>
+        <input
+          type="text"
+          name="title"
+          value={this.props.title}
+          onChange={this.props.handleTitleChange}
+        /><br/>
+        <label htmlFor="composer">Composer:</label>
           <input
             type="text"
-            name="title"
-            value={this.props.title}
-            onChange={this.props.handleTitleChange}
+            name="composer"
+            value={this.props.composer}
+            onChange={this.props.handleComposerChange}
           /><br/>
-          <label htmlFor="composer">Composer:</label>
-            <input
-              type="text"
-              name="composer"
-              value={this.props.composer}
-              onChange={this.props.handleComposerChange}
-            /><br/>
-          <label htmlFor="file">File:</label>
-          <input type="file" name="music_score" onChange={this.props.handleFileUpload}/><br/>
-          <input type="submit" value="upload"/>
-        </form>
-
+        <label htmlFor="file">File:</label>
+        <input type="file" name="music_score" onChange={this.props.handleFileUpload}/><br/>
+        <input type="submit" value="upload"/>
+      </form>
     )
   }
 }
@@ -60,7 +64,8 @@ function mapDispatchToProps(dispatch) {
   return {
     handleTitleChange: (event) => dispatch(handleTitleChange(event.target.value)),
     handleComposerChange: (event) => dispatch(handleComposerChange(event.target.value)),
-    handleFileUpload: (event) => dispatch(handleMusicScoreUpload( event.target.files[0]))
+    handleFileUpload: (event) => dispatch(handleMusicScoreUpload( event.target.files[0])),
+    getCurrentUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
   }
 }
 
