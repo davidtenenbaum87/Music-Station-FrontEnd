@@ -17,18 +17,13 @@ class MusicUploadForm extends Component {
     event.preventDefault()
     let newMusicScore = event.target.music_score.files[0];
     this.setState({
-      music_score: newMusicScore,
+      music_score: [...this.state.music_score, newMusicScore],
     }, () => console.log(this.state))
-    debugger;
-    // let formData = new FormData()
-    // formData.append('title': `${this.state.title}`)
-    // formData.append('composer': this.state.composer)
-    // formData.append('title': this.state.title)
 
     let formData = new FormData();
     formData.append('title', `${this.state.title}`)
     formData.append('composer', `${this.state.composer}`)
-    formData.append('user_id', "1")
+    formData.append('user_id', 1)
     formData.append('music_score', newMusicScore);
 
     fetch("http://localhost:3000/api/v1/scores", {
