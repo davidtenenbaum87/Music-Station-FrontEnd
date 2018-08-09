@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { updateCurrentUserScores } from './actions.js';
-
-// import MusicUploadForm from './MusicUploadForm.js';
+import MyMusicScoresListItem from './MyMusicScoresListItem.js';
 
 class MyMusicScoresList extends Component {
 
@@ -16,10 +15,11 @@ class MyMusicScoresList extends Component {
   renderScores = () => {
     return this.props.current_user_scores.map(score => {
       return (
-        <p key={score.id}>{score.title} | {score.composer} | <a href="">view music</a></p> 
+        <MyMusicScoresListItem key={score.id} score={score}/>
       )
     })
   }
+
 
   render() {
     return (

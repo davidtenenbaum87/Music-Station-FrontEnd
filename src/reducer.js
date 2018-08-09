@@ -16,11 +16,11 @@ export default function reducer(state = initialState, action) {
     case CHANGE_TITLE_FIELD:
       return { ...state, title: action.payload };
     case CHANGE_COMPOSER_FIELD:
-      return { ... state, composer: action.payload };
+      return { ...state, composer: action.payload };
     case UPLOAD_MUSIC_SCORE:
-      return { ... state, music_score: action.payload };
+      return { ...state, music_score: action.payload };
     case UPDATE_CURRENT_USER_SCORES:
-      return { ... state, current_user_scores: action.payload }
+      return { ...state, current_user_scores: action.payload }
     default:
       return state;
   }
