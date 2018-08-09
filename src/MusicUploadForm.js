@@ -1,38 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleTitleChange, handleComposerChange } from './actions.js';
+import { handleTitleChange, handleComposerChange, handleMusicScoreUpload } from './actions.js';
 
 
 class MusicUploadForm extends Component {
-  state = {
-    // title: "",
-    // composer: "",
-    music_score: [],
-  }
-
-  // handleChange = (event) => {
-  //   this.setState({
-  //     [event.target.name]: event.target.value,
-  //   }, () => console.log(this.state))
-  // }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    let newMusicScore = event.target.music_score.files[0];
-    this.setState({
-      music_score: [...this.state.music_score, newMusicScore],
-    }, () => console.log(this.state))
 
     let formData = new FormData();
     formData.append('title', `${this.props.title}`)
     formData.append('composer', `${this.props.composer}`)
     formData.append('user_id', 1)
-    formData.append('music_score', newMusicScore);
+    formData.append('music_score', this.props.music_score);
 
     fetch("http://localhost:3000/api/v1/scores", {
       method: 'POST',
       body: formData
     })
+
   }
 
   render () {
@@ -53,7 +39,8 @@ class MusicUploadForm extends Component {
             value={this.props.composer}
             onChange={this.props.handleComposerChange}
           />
-        <input type="file" name="music_score" />
+        <label htmlFor="file">File:</label>
+        <input type="file" name="music_score" onChange={this.props.handleFileUpload}/>
         <input type="submit" value="upload"/>
         </form>
       </div>
@@ -64,14 +51,16 @@ class MusicUploadForm extends Component {
 function mapStateToProps(state) {
   return {
     title: state.title,
-    composer: state.composer
+    composer: state.composer,
+    music_score: state.music_score,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     handleTitleChange: (event) => dispatch(handleTitleChange(event.target.value)),
-    handleComposerChange: (event) => dispatch(handleComposerChange(event.target.value))
+    handleComposerChange: (event) => dispatch(handleComposerChange(event.target.value)),
+    handleFileUpload: (event) => dispatch(handleMusicScoreUpload( event.target.files[0]))
   }
 }
 

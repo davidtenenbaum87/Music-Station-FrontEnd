@@ -1,5 +1,7 @@
 import {CHANGE_TITLE_FIELD} from './types.js';
 import {CHANGE_COMPOSER_FIELD} from './types.js';
+import {UPLOAD_MUSIC_SCORE} from './types.js';
+
 
 
 export function handleTitleChange(text) {
@@ -8,4 +10,8 @@ export function handleTitleChange(text) {
 
 export function handleComposerChange(text) {
   return { type: CHANGE_COMPOSER_FIELD, payload: text }
+}
+
+export function handleMusicScoreUpload(file) {
+  return { type: UPLOAD_MUSIC_SCORE, payload: file }
 }
