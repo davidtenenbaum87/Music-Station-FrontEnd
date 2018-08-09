@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import MusicUploadForm from './MusicUploadForm.js';
 
+
 class App extends Component {
-  state = {
-    userId: 1,
-    userScores: [],
+  constructor(props) {
+    super(props)
+    this.state = {
+      userId: 1,
+      userScores: [],
+    }
   }
 
+  componentDidMount() {
+  }
   // componentDidMount() {
   //   fetch(`http://localhost:3000/api/v1/users/${this.state.userId}`)
   //     .then(res => res.json())
@@ -32,6 +39,9 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
-export default App;
+
+
+export default connect()(App);

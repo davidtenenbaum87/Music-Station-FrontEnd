@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { handleTitleChange, handleComposerChange } from './actions.js';
+
 
 class MusicUploadForm extends Component {
   state = {
-    title: "",
-    composer: "",
+    // title: "",
+    // composer: "",
     music_score: [],
   }
 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    }, () => console.log(this.state))
-  }
+  // handleChange = (event) => {
+  //   this.setState({
+  //     [event.target.name]: event.target.value,
+  //   }, () => console.log(this.state))
+  // }
 
   handleSubmit = (event) => {
     event.preventDefault()
@@ -21,8 +24,8 @@ class MusicUploadForm extends Component {
     }, () => console.log(this.state))
 
     let formData = new FormData();
-    formData.append('title', `${this.state.title}`)
-    formData.append('composer', `${this.state.composer}`)
+    formData.append('title', `${this.props.title}`)
+    formData.append('composer', `${this.props.composer}`)
     formData.append('user_id', 1)
     formData.append('music_score', newMusicScore);
 
@@ -40,23 +43,36 @@ class MusicUploadForm extends Component {
           <input
             type="text"
             name="title"
-            value={this.state.title}
-            onChange={this.handleChange}
+            value={this.props.title}
+            onChange={this.props.handleTitleChange}
           />
         <label htmlFor="composer">Composer:</label>
           <input
             type="text"
             name="composer"
-            value={this.state.composer}
-            onChange={this.handleChange}
+            value={this.props.composer}
+            onChange={this.props.handleComposerChange}
           />
         <input type="file" name="music_score" />
         <input type="submit" value="upload"/>
-
         </form>
       </div>
     )
   }
 }
 
-export default MusicUploadForm;
+function mapStateToProps(state) {
+  return {
+    title: state.title,
+    composer: state.composer
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    handleTitleChange: (event) => dispatch(handleTitleChange(event.target.value)),
+    handleComposerChange: (event) => dispatch(handleComposerChange(event.target.value))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MusicUploadForm);
