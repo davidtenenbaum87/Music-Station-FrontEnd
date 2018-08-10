@@ -7,7 +7,7 @@
 .form-and-list {
   display: flex;
   /* justify-content: flex-end; */
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 
 .my-music-scores-list {

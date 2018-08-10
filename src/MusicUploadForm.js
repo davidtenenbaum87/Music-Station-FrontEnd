@@ -4,11 +4,11 @@ import { handleTitleChange, handleComposerChange, handleMusicScoreUpload, update
 
 class MusicUploadForm extends Component {
 
-  componentDidMount() {
-    fetch("http://localhost:3000/api/v1/users/1")
-    .then(res => res.json())
-    .then(data => this.props.getCurrentUserScores(data.scores))
-  }
+  // componentDidMount() {
+  //   fetch("http://localhost:3000/api/v1/users/1")
+  //   .then(res => res.json())
+  //   .then(data => this.props.getCurrentUserScores(data.scores))
+  // }
 
   handleSubmit = (event) => {
     // event.preventDefault()
@@ -62,7 +62,7 @@ function mapDispatchToProps(dispatch) {
   return {
     handleTitleChange: (event) => dispatch(handleTitleChange(event.target.value)),
     handleComposerChange: (event) => dispatch(handleComposerChange(event.target.value)),
-    handleFileUpload: (event) => dispatch(handleMusicScoreUpload( event.target.files[0])),
+    handleFileUpload: (event) => dispatch(handleMusicScoreUpload(event.target.files[0])),
     getCurrentUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
   }
 }

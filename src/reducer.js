@@ -6,8 +6,6 @@ import { REMOVE_SCORE_FROM_USER_SCORES } from './types.js';
 import { VIEW_SCORE_TOGGLE } from './types.js';
 import { CLICKED_SCORE_ID } from './types.js';
 
-
-
 const initialState = {
   title: "",
   composer: "",
@@ -15,6 +13,9 @@ const initialState = {
   current_user_scores: [],
   viewOn: false,
   selectedScoreId: null,
+  userId: "",
+  username: "",
+
 }
 
 export default function reducer(state = initialState, action) {

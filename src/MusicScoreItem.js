@@ -4,7 +4,8 @@ import './App.css';
 
 class MusicScoreItem extends Component {
   state = {
-    scoreURL: null
+    scoreURL: null,
+    videos: [],
   }
 
   componentDidMount() {
@@ -21,7 +22,7 @@ class MusicScoreItem extends Component {
       let arr = url.split(".")
       if (arr[arr.length - 1] === 'pdf') {
         return (
-          <object data={this.state.scoreURL} width="400" height="400"/>
+          <iframe src={this.state.scoreURL} width="400" height="400"></iframe>
         )
       } else {
         return (

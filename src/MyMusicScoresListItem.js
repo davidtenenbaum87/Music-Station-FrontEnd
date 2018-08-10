@@ -19,6 +19,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('list item', this.props.score);
     return (
       <div className="music-score-item">
         <p key={this.props.score.id} id={this.props.score.id}>

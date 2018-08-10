@@ -1,24 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import MusicUploadForm from './MusicUploadForm.js';
 import MyMusicScoresList from './MyMusicScoresList.js';
 import MusicScoreItem from './MusicScoreItem.js';
-// import NavBar from './NavBar.js';
+import YouTubeVideosList from './YouTubeVideosList.js';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <div className="form-and-list">
-          <MusicUploadForm />
-          <MyMusicScoresList />
           {
             this.props.viewOn ?
-            <MusicScoreItem />
+            <Fragment>
+              <MusicScoreItem />
+              <YouTubeVideosList />
+            </Fragment>
             :
             null
           }
+          <MusicUploadForm />
+          <MyMusicScoresList />
         </div>
       </div>
     );
