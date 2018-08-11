@@ -5,6 +5,10 @@ import { UPDATE_CURRENT_USER_SCORES } from './types.js';
 import { REMOVE_SCORE_FROM_USER_SCORES } from './types.js';
 import { VIEW_SCORE_TOGGLE } from './types.js';
 import { CLICKED_SCORE } from './types.js';
+import { SET_CURRENT_USER } from './types.js';
+import { LOGOUT_CURRENT_USER } from './types.js';
+
+
 
 const initialState = {
   title: "",
@@ -15,7 +19,6 @@ const initialState = {
   selectedScore: null,
   userId: "",
   username: "",
-
 }
 
 export default function reducer(state = initialState, action) {
@@ -37,6 +40,10 @@ export default function reducer(state = initialState, action) {
       return { ...state, viewOn: !state.viewOn }
     case CLICKED_SCORE:
       return { ...state, selectedScore: action.payload };
+    case SET_CURRENT_USER:
+      return { ...state, userId: action.payload.userId, username: action.payload.username };
+    case LOGOUT_CURRENT_USER:
+      return { ...state, userId: "", username: "" };
     default:
       return state;
   }

@@ -5,6 +5,9 @@ import {UPDATE_CURRENT_USER_SCORES} from './types.js';
 import {REMOVE_SCORE_FROM_USER_SCORES} from './types.js';
 import {VIEW_SCORE_TOGGLE} from './types.js';
 import {CLICKED_SCORE} from './types.js';
+import {SET_CURRENT_USER} from './types.js';
+import {LOGOUT_CURRENT_USER} from './types.js';
+
 
 
 
@@ -34,4 +37,12 @@ export function toggleScoreDisplay(status) {
 
 export function selectedClickedScore(score) {
   return { type: CLICKED_SCORE, payload: score }
+}
+
+export function setCurrentUser(userId, username) {
+  return { type: SET_CURRENT_USER, payload: {userId, username} }
+}
+
+export function logoutCurrentUser() {
+  return { type: SET_CURRENT_USER }
 }

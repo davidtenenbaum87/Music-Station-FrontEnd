@@ -8,6 +8,7 @@ class MusicScoreItem extends Component {
   }
 
   componentDidMount() {
+    console.log("david");
     fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScore.id}`)
       .then(res => res.json())
       .then(score => this.setState({
@@ -21,18 +22,28 @@ class MusicScoreItem extends Component {
       let arr = url.split(".")
       if (arr[arr.length - 1] === 'pdf') {
         return (
-          <iframe src={this.state.scoreURL} width="400" height="400"></iframe>
+          <iframe
+            src={this.state.scoreURL}
+            title={this.props.selectedScore.title}
+            width="400"
+            height="400">
+          </iframe>
         )
       } else {
         return (
-          <img src={this.state.scoreURL} width="400" height="400"/>
+          <img
+            src={this.state.scoreURL}
+            alt={this.props.selectedScore.title}
+            width="400"
+            height="400"
+            />
         )
       }
     }
   }
 
   render() {
-    console.log('music score', this.props);
+    console.log('display', this.props);
     return (
       <div className="music-score-display">
         {this.displayScore()}

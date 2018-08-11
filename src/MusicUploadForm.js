@@ -4,19 +4,12 @@ import { handleTitleChange, handleComposerChange, handleMusicScoreUpload, update
 
 class MusicUploadForm extends Component {
 
-  // componentDidMount() {
-  //   fetch("http://localhost:3000/api/v1/users/1")
-  //   .then(res => res.json())
-  //   .then(data => this.props.getCurrentUserScores(data.scores))
-  // }
-
   handleSubmit = (event) => {
-    // event.preventDefault()
 
     let formData = new FormData();
     formData.append('title', `${this.props.title}`)
     formData.append('composer', `${this.props.composer}`)
-    formData.append('user_id', 1)
+    formData.append('user_id', `${this.props.userId}`)
     formData.append('music_score', this.props.music_score);
 
     fetch("http://localhost:3000/api/v1/scores", {
@@ -52,6 +45,8 @@ class MusicUploadForm extends Component {
 
 function mapStateToProps(state) {
   return {
+    userId: state.userId,
+    username: state.username,
     title: state.title,
     composer: state.composer,
     music_score: state.music_score,

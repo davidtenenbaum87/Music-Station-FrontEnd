@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import MusicScoreItem from './MusicScoreItem.js';
+// import MusicScoreItem from './MusicScoreItem.js';
 import { removeScoreFromUserScores, toggleScoreDisplay, selectedClickedScore } from './actions.js';
 
-class App extends Component {
+class MyMusicScoresListItem extends Component {
 
   handleClick = (event) => {
     this.props.viewScoreToggle()
@@ -19,7 +19,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('list item', this.props.score);
     return (
       <div className="music-score-item">
         <p key={this.props.score.id} id={this.props.score.id}>
@@ -46,4 +45,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(MyMusicScoresListItem);

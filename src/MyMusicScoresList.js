@@ -4,21 +4,15 @@ import './App.css';
 import { updateCurrentUserScores } from './actions.js';
 import MyMusicScoresListItem from './MyMusicScoresListItem.js';
 
-class MyMusicScoresList extends Component {
 
-  componentDidMount() {
-    fetch("http://localhost:3000/api/v1/users/1")
-      .then(res => res.json())
-      .then(data => this.props.getCurrentUserScores(data.scores))
-  }
+class MyMusicScoresList extends Component {
 
   renderScores = () => {
     return this.props.current_user_scores.map(score => {
-      return (
-        <MyMusicScoresListItem key={score.id} score={score}/>
-      )
+      return <MyMusicScoresListItem key={score.id} score={score}/>
     })
   }
+
 
   render() {
     return (
@@ -35,6 +29,8 @@ function mapStateToProps(state) {
     composer: state.composer,
     music_score: state.music_score,
     current_user_scores: state.current_user_scores,
+    userId: state.userId,
+    username: state.username,
   }
 }
 
