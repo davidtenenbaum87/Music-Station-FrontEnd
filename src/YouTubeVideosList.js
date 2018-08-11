@@ -10,12 +10,11 @@ import YouTube from 'react-youtube';
 class YouTubeVideosList extends Component {
   state = {
     videos: [],
-    
   }
 
   componentDidMount() {
     console.log(this.props);
-    fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScoreId}`)
+    fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScore.id}`)
       .then(res => res.json())
       .then(data => this.setState({
         clickedTitle: data.score.title,
@@ -29,7 +28,7 @@ class YouTubeVideosList extends Component {
       key: "AIzaSyC6LK03UaFIQ4YAn8pwt1tWTevHzQbo0Ak"
     };
 
-    youtubeSearch('brahms violin concerto', opts, (err, results) => {
+    youtubeSearch(`${this.props.selectedScore.composer}`, opts, (err, results) => {
       this.setState({
         videos: results,
       })
@@ -77,7 +76,7 @@ function mapStateToProps(state) {
     title: state.title,
     composer: state.composer,
     viewOn: state.viewOn,
-    selectedScoreId: state.selectedScoreId,
+    selectedScore: state.selectedScore,
   }
 }
 

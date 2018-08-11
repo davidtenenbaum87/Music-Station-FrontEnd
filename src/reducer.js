@@ -4,7 +4,7 @@ import { UPLOAD_MUSIC_SCORE } from './types.js';
 import { UPDATE_CURRENT_USER_SCORES } from './types.js';
 import { REMOVE_SCORE_FROM_USER_SCORES } from './types.js';
 import { VIEW_SCORE_TOGGLE } from './types.js';
-import { CLICKED_SCORE_ID } from './types.js';
+import { CLICKED_SCORE } from './types.js';
 
 const initialState = {
   title: "",
@@ -12,7 +12,7 @@ const initialState = {
   music_score: null,
   current_user_scores: [],
   viewOn: false,
-  selectedScoreId: null,
+  selectedScore: null,
   userId: "",
   username: "",
 
@@ -35,8 +35,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, current_user_scores: updated_scores }
     case VIEW_SCORE_TOGGLE:
       return { ...state, viewOn: !state.viewOn }
-    case CLICKED_SCORE_ID:
-      return { ...state, selectedScoreId: action.payload };
+    case CLICKED_SCORE:
+      return { ...state, selectedScore: action.payload };
     default:
       return state;
   }

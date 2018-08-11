@@ -5,11 +5,10 @@ import './App.css';
 class MusicScoreItem extends Component {
   state = {
     scoreURL: null,
-    videos: [],
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScoreId}`)
+    fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScore.id}`)
       .then(res => res.json())
       .then(score => this.setState({
         scoreURL: `http://localhost:3000/${score.url}`
@@ -33,6 +32,7 @@ class MusicScoreItem extends Component {
   }
 
   render() {
+    console.log('music score', this.props);
     return (
       <div className="music-score-display">
         {this.displayScore()}
@@ -44,7 +44,7 @@ class MusicScoreItem extends Component {
 function mapStateToProps(state) {
   return {
     viewOn: state.viewOn,
-    selectedScoreId: state.selectedScoreId,
+    selectedScore: state.selectedScore,
   }
 }
 export default connect(mapStateToProps)(MusicScoreItem);
