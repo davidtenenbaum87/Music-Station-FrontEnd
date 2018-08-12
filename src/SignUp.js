@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 class SignUp extends Component {
   state = {
@@ -21,6 +22,7 @@ class SignUp extends Component {
       },
       body: JSON.stringify(this.state)
     })
+      .then(this.props.history.push('/login'))
   }
 
   render() {
@@ -50,4 +52,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

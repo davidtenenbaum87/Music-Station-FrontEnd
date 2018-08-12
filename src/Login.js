@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { setCurrentUser, updateCurrentUserScores } from './actions.js';
 
 class Login extends Component {
@@ -28,6 +29,7 @@ class Login extends Component {
         localStorage.setItem('token', json.token),
         this.props.setUserIdandName(json.id, json.username),
         this.props.setUserScores(json.scores)
+        this.props.history.push('/mymusic')
       })
   }
 
@@ -74,4 +76,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

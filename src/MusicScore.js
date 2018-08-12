@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
+import YouTubeVideosList from './YouTubeVideosList.js';
 
-class MusicScoreItem extends Component {
+class MusicScore extends Component {
   state = {
     scoreURL: null,
+    displayVideos: false,
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScore.id}`)
+    if (this.props.selectedScore) {
+      fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScore.id}`)
       .then(res => res.json())
       .then(score => this.setState({
         scoreURL: `http://localhost:3000/${score.url}`
       }))
+    }
   }
 
   displayScore = () => {
@@ -41,11 +45,22 @@ class MusicScoreItem extends Component {
     }
   }
 
+  displayYouTubeVids = () => {
+    this.setState({
+      displayVideos: !this.state.displayVideos,
+    })
+  }
+
   render() {
-    console.log('item', this.props);
     return (
       <div className="music-score-display">
         {this.displayScore()}
+        <a onClick={this.displayYouTubeVids}><i class="material-icons">music_video</i></a>
+        { this.state.displayVideos ?
+          <YouTubeVideosList />
+          :
+          null
+        }
       </div>
     );
   }
@@ -57,4 +72,4 @@ function mapStateToProps(state) {
     selectedScore: state.selectedScore,
   }
 }
-export default connect(mapStateToProps)(MusicScoreItem);
+export default connect(mapStateToProps)(MusicScore);

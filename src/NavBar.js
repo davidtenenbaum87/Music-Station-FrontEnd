@@ -13,10 +13,13 @@ class Navbar extends Component {
   render(){
     return (
       <div className="navbar">
-        <h4>Welcome {this.props.username}</h4>
         {
           this.props.userId ?
-          <NavLink to="/login" onClick={this.handleLogout}>Logout</NavLink>
+          <Fragment>
+            <h4>Welcome {this.props.username}</h4>
+            <NavLink to="/login" onClick={this.handleLogout}>Logout</NavLink>
+          </Fragment>
+
           :
           <Fragment>
             <NavLink to="/login">Login</NavLink>

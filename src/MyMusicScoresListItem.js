@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import './App.css';
-import MusicScoreItem from './MusicScoreItem.js';
+import MusicScore from './MusicScore.js';
 import { removeScoreFromUserScores, toggleScoreDisplay, selectedClickedScore } from './actions.js';
 
 class MyMusicScoresListItem extends Component {
 
-  handleClick = (event) => {
+  handleViewClick = (event) => {
     this.props.viewScoreToggle()
     this.props.currentScore(this.props.score)
+    this.props.history.push(`/score/${this.props.selectedScoreId}`);
   }
 
   removeScoreFromUserScores = (event) => {
@@ -19,13 +21,12 @@ class MyMusicScoresListItem extends Component {
   }
 
   render() {
-    console.log('listitem', this.props.selectedScore);
     return (
-      <div className="music-score-item">
-        <p key={this.props.score.id} id={this.props.score.id}>
-          {this.props.score.title} | {this.props.score.composer} | <button id={this.props.score.id} value="view" onClick={this.handleClick}>view</button> | <button id={this.props.score.id} data-score={this.props.score} value="delete" onClick={this.removeScoreFromUserScores}>delete</button>
-        </p>
-      </div>
+      <ul className="music-score-item">
+        <li key={this.props.score.id} id={this.props.score.id}>
+          {this.props.score.title} | {this.props.score.composer} | <button id={this.props.score.id} value="view" onClick={this.handleViewClick}>view</button> | <button id={this.props.score.id} value="delete" onClick={this.removeScoreFromUserScores}>delete</button>
+        </li>
+      </ul>
     );
   }
 }
@@ -46,4 +47,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyMusicScoresListItem);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyMusicScoresListItem));

@@ -40,6 +40,11 @@
   align-items: center;
 }
 
+ul {
+  list-style: none;
+}
+
+
 /* input {
   float: right;
   clear: both;

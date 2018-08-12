@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { handleTitleChange, handleComposerChange, handleMusicScoreUpload, updateCurrentUserScores } from './actions.js';
 
 class MusicUploadForm extends Component {
@@ -62,4 +63,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MusicUploadForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MusicUploadForm));

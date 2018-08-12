@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import MusicUploadForm from './MusicUploadForm.js';
 import MyMusicScoresList from './MyMusicScoresList.js';
-// import MusicScoreItem from './MusicScoreItem.js';
+import MusicScore from './MusicScore.js';
 // import YouTubeVideosList from './YouTubeVideosList.js';
 import NavBar from './NavBar.js';
 import Login from './Login.js';
@@ -38,6 +38,7 @@ class App extends Component {
             <Route exact path='/signup' render={() => <SignUp />} />
             <Route exact path='/uploadmusic' render={() => <MusicUploadForm />} />
             <Route exact path='/mymusic' render={() => <MyMusicScoresList />} />
+            <Route exact path={`/score/${this.props.selectedScoreId}`} render={() => <MusicScore />} />
           </Fragment>
       </div>
     );

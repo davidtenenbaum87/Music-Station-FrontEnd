@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import MusicUploadForm from './MusicUploadForm.js';
 import MyMusicScoresList from './MyMusicScoresList.js';
-import MusicScoreItem from './MusicScoreItem.js';
+import MusicScore from './MusicScore.js';
 import * as youtubeSearch from "youtube-search";
 import YouTube from 'react-youtube';
 
@@ -13,7 +13,7 @@ class YouTubeVideosList extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    console.log('YT', this.props);
     fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScore.id}`)
       .then(res => res.json())
       .then(data => this.setState({
