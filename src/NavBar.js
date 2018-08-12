@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutCurrentUser } from './actions.js';
@@ -18,7 +18,10 @@ class Navbar extends Component {
           this.props.userId ?
           <NavLink to="/login" onClick={this.handleLogout}>Logout</NavLink>
           :
-          <NavLink to="/login">Login</NavLink>
+          <Fragment>
+            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/signup">SignUp</NavLink>
+          </Fragment>
         }
         <NavLink to="/uploadmusic">Upload music</NavLink>
         <NavLink to="/mymusic">mymusic</NavLink>

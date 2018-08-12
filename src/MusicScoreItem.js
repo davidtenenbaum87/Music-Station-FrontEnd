@@ -8,7 +8,6 @@ class MusicScoreItem extends Component {
   }
 
   componentDidMount() {
-    console.log("david");
     fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScore.id}`)
       .then(res => res.json())
       .then(score => this.setState({
@@ -43,7 +42,7 @@ class MusicScoreItem extends Component {
   }
 
   render() {
-    console.log('display', this.props);
+    console.log('item', this.props);
     return (
       <div className="music-score-display">
         {this.displayScore()}

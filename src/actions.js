@@ -44,5 +44,5 @@ export function setCurrentUser(userId, username) {
 }
 
 export function logoutCurrentUser() {
-  return { type: SET_CURRENT_USER }
+  return { type: LOGOUT_CURRENT_USER }
 }

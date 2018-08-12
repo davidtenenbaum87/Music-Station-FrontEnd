@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setCurrentUser } from './actions.js';
+import { setCurrentUser, updateCurrentUserScores } from './actions.js';
 
 class Login extends Component {
   state = {
@@ -26,7 +26,8 @@ class Login extends Component {
       .then(res => res.json())
       .then(json => {
         localStorage.setItem('token', json.token),
-        this.props.setUserIdandName(json.id, json.username)
+        this.props.setUserIdandName(json.id, json.username),
+        this.props.setUserScores(json.scores)
       })
   }
 
@@ -68,6 +69,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     setUserIdandName: (userId, username) => dispatch(setCurrentUser(userId, username)),
+    setUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
+
   }
 }
 

@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import './App.css';
 import MusicUploadForm from './MusicUploadForm.js';
 import MyMusicScoresList from './MyMusicScoresList.js';
-import MusicScoreItem from './MusicScoreItem.js';
-import YouTubeVideosList from './YouTubeVideosList.js';
+// import MusicScoreItem from './MusicScoreItem.js';
+// import YouTubeVideosList from './YouTubeVideosList.js';
 import NavBar from './NavBar.js';
 import Login from './Login.js';
+import SignUp from './SignUp.js';
 import { setCurrentUser, updateCurrentUserScores } from './actions.js';
 
 class App extends Component {
@@ -22,7 +23,7 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        this.props.setUserIdandName(json.id, json.username),
+        this.props.setUserIdandName(json.id, json.username)
         this.props.getCurrentUserScores(json.scores)
       })
   }
@@ -34,6 +35,7 @@ class App extends Component {
         <NavBar />
           <Fragment>
             <Route exact path='/login' render={() => <Login />} />
+            <Route exact path='/signup' render={() => <SignUp />} />
             <Route exact path='/uploadmusic' render={() => <MusicUploadForm />} />
             <Route exact path='/mymusic' render={() => <MyMusicScoresList />} />
           </Fragment>

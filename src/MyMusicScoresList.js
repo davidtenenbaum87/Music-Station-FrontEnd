@@ -15,6 +15,7 @@ class MyMusicScoresList extends Component {
 
 
   render() {
+    console.log('mymusicscoreslist', this.props);
     return (
       <div className="my-music-scores-list">
         {this.renderScores()}
@@ -31,6 +32,7 @@ function mapStateToProps(state) {
     current_user_scores: state.current_user_scores,
     userId: state.userId,
     username: state.username,
+    viewOn: state.viewOn,
   }
 }
 

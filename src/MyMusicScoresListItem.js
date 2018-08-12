@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-// import MusicScoreItem from './MusicScoreItem.js';
+import MusicScoreItem from './MusicScoreItem.js';
 import { removeScoreFromUserScores, toggleScoreDisplay, selectedClickedScore } from './actions.js';
 
 class MyMusicScoresListItem extends Component {
@@ -19,6 +19,7 @@ class MyMusicScoresListItem extends Component {
   }
 
   render() {
+    console.log('listitem', this.props.selectedScore);
     return (
       <div className="music-score-item">
         <p key={this.props.score.id} id={this.props.score.id}>
