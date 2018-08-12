@@ -15,9 +15,16 @@ class Navbar extends Component {
       <div className="navbar">
         {
           this.props.userId ?
-          <Fragment>
             <h4>Welcome {this.props.username}</h4>
+          :
+          null
+        }
+        {
+          this.props.userId ?
+          <Fragment>
             <NavLink to="/login" onClick={this.handleLogout}>Logout</NavLink>
+            <NavLink to="/uploadmusic">Upload music</NavLink>
+            <NavLink to="/mymusic">mymusic</NavLink>
           </Fragment>
 
           :
@@ -26,8 +33,6 @@ class Navbar extends Component {
             <NavLink to="/signup">SignUp</NavLink>
           </Fragment>
         }
-        <NavLink to="/uploadmusic">Upload music</NavLink>
-        <NavLink to="/mymusic">mymusic</NavLink>
       </div>
     )
   }

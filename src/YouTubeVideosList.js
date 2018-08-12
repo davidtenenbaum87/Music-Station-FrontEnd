@@ -28,7 +28,11 @@ class YouTubeVideosList extends Component {
       key: "AIzaSyC6LK03UaFIQ4YAn8pwt1tWTevHzQbo0Ak"
     };
 
-    youtubeSearch(`${this.props.selectedScore.composer}`, opts, (err, results) => {
+    youtubeSearch(
+      `${this.props.selectedScore.title},
+      ${this.props.selectedScore.composer},
+      ${this.props.selectedScore.instrumentation}`,
+      opts, (err, results) => {
       this.setState({
         videos: results,
       })
@@ -36,24 +40,23 @@ class YouTubeVideosList extends Component {
   }
 
   displayVideos = () => {
-  const opts = {
-    height: '250',
-    width: '250',
-    playerVars: {
-      autoplay: 0
+    const opts = {
+      height: '250',
+      width: '250',
+      playerVars: {
+        autoplay: 0
+      }
     }
+    return this.state.videos.map(video => {
+      return (
+        <YouTube
+          key={video.id}
+          videoId={video.id}
+          opts={opts}
+          />
+      )
+    })
   }
-  return this.state.videos.map(video => {
-    return (
-      <YouTube
-        key={video.id}
-        videoId={video.id}
-        opts={opts}
-        />
-    )
-  })
-  }
-
 
   render() {
     console.log('vids', this.props);
@@ -75,6 +78,7 @@ function mapStateToProps(state) {
   return {
     title: state.title,
     composer: state.composer,
+    instrumentation: state.instrumentation,
     viewOn: state.viewOn,
     selectedScore: state.selectedScore,
   }

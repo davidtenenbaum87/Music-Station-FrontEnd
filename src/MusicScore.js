@@ -28,8 +28,8 @@ class MusicScore extends Component {
           <iframe
             src={this.state.scoreURL}
             title={this.props.selectedScore.title}
-            width="400"
-            height="400">
+            width="700"
+            height="700">
           </iframe>
         )
       } else {
@@ -54,8 +54,10 @@ class MusicScore extends Component {
   render() {
     return (
       <div className="music-score-display">
-        {this.displayScore()}
-        <a onClick={this.displayYouTubeVids}><i class="material-icons">music_video</i></a>
+        <div className="music-score">
+          {this.displayScore()}
+        </div>
+        <a onClick={this.displayYouTubeVids}><i class="material-icons">music_video</i>watch videos</a>
         { this.state.displayVideos ?
           <YouTubeVideosList />
           :

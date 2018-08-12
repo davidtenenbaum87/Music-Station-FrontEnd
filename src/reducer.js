@@ -1,5 +1,7 @@
 import { CHANGE_TITLE_FIELD } from './types.js';
 import { CHANGE_COMPOSER_FIELD } from './types.js';
+import { CHANGE_INSTRUMENTATION_FIELD } from './types.js';
+
 import { UPLOAD_MUSIC_SCORE } from './types.js';
 import { UPDATE_CURRENT_USER_SCORES } from './types.js';
 import { REMOVE_SCORE_FROM_USER_SCORES } from './types.js';
@@ -13,6 +15,7 @@ import { LOGOUT_CURRENT_USER } from './types.js';
 const initialState = {
   title: "",
   composer: "",
+  instrumentation: "",
   music_score: null,
   current_user_scores: [],
   viewOn: false,
@@ -27,6 +30,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, title: action.payload };
     case CHANGE_COMPOSER_FIELD:
       return { ...state, composer: action.payload };
+    case CHANGE_INSTRUMENTATION_FIELD:
+      return { ...state, instrumentation: action.payload };
     case UPLOAD_MUSIC_SCORE:
       return { ...state, music_score: action.payload };
     case UPDATE_CURRENT_USER_SCORES:

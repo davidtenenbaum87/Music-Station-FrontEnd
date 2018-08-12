@@ -40,6 +40,33 @@
   align-items: center;
 }
 
+.music-score {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.youtube-videos-list {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+a {
+  display: flex;
+  justify-content: center;
+}
+
+a:hover
+{
+ cursor: pointer;
+}
+
 ul {
   list-style: none;
 }

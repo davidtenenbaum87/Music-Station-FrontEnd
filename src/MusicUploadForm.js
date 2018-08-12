@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { handleTitleChange, handleComposerChange, handleMusicScoreUpload, updateCurrentUserScores } from './actions.js';
+import { handleTitleChange, handleComposerChange, handleInstrumentationChange, handleMusicScoreUpload, updateCurrentUserScores } from './actions.js';
 
 class MusicUploadForm extends Component {
 
@@ -10,6 +10,7 @@ class MusicUploadForm extends Component {
     let formData = new FormData();
     formData.append('title', `${this.props.title}`)
     formData.append('composer', `${this.props.composer}`)
+    formData.append('instrumentation', `${this.props.instrumentation}`)
     formData.append('user_id', `${this.props.userId}`)
     formData.append('music_score', this.props.music_score);
 
@@ -28,13 +29,20 @@ class MusicUploadForm extends Component {
           name="title"
           value={this.props.title}
           onChange={this.props.handleTitleChange}
-        />
+        /><br/>
         <label htmlFor="composer">Composer:</label>
           <input
             type="text"
             name="composer"
             value={this.props.composer}
             onChange={this.props.handleComposerChange}
+          /><br/>
+        <label htmlFor="title">instrumentation:</label>
+          <input
+            type="text"
+            name="title"
+            value={this.props.instrumentation}
+            onChange={this.props.handleInstrumentationChange}
           /><br/>
         <label htmlFor="file">File:</label>
         <input type="file" name="music_score" onChange={this.props.handleFileUpload}/><br/>
@@ -50,6 +58,7 @@ function mapStateToProps(state) {
     username: state.username,
     title: state.title,
     composer: state.composer,
+    instrumentation: state.instrumentation,
     music_score: state.music_score,
   }
 }
@@ -58,6 +67,7 @@ function mapDispatchToProps(dispatch) {
   return {
     handleTitleChange: (event) => dispatch(handleTitleChange(event.target.value)),
     handleComposerChange: (event) => dispatch(handleComposerChange(event.target.value)),
+    handleInstrumentationChange: (event) => dispatch(handleInstrumentationChange(event.target.value)),
     handleFileUpload: (event) => dispatch(handleMusicScoreUpload(event.target.files[0])),
     getCurrentUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
   }
