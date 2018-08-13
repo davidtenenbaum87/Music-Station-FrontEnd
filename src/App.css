@@ -1,6 +1,6 @@
 .App {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   flex-direction: column;
   border: 1px solid black;
 }
@@ -55,6 +55,20 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.react-calendar {
+  background-color: pink;
+  border: 1px solid black;
+
+}
+
+.calendar {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
 }
 
 a {

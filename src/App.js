@@ -9,6 +9,8 @@ import MusicScore from './MusicScore.js';
 import NavBar from './NavBar.js';
 import Login from './Login.js';
 import SignUp from './SignUp.js';
+import MyCalendar from './MyCalendar.js';
+
 import { setCurrentUser, updateCurrentUserScores } from './actions.js';
 
 class App extends Component {
@@ -38,6 +40,7 @@ class App extends Component {
             <Route exact path='/signup' render={() => <SignUp />} />
             <Route exact path='/uploadmusic' render={() => <MusicUploadForm />} />
             <Route exact path='/mymusic' render={() => <MyMusicScoresList />} />
+            <Route exact path='/myschedule' render={() => <MyCalendar />} />
             <Route exact path={`/score/${this.props.selectedScoreId}`} render={() => <MusicScore />} />
           </Fragment>
       </div>

@@ -23,6 +23,7 @@ class Navbar extends Component {
           this.props.userId ?
           <Fragment>
             <NavLink to="/login" onClick={this.handleLogout}>Logout</NavLink>
+            <NavLink to="/myschedule">schedule</NavLink>
             <NavLink to="/uploadmusic">Upload music</NavLink>
             <NavLink to="/mymusic">mymusic</NavLink>
           </Fragment>
