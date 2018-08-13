@@ -9,7 +9,7 @@ class MyMusicScoresListItem extends Component {
   handleViewClick = (event) => {
     this.props.viewScoreToggle()
     this.props.currentScore(this.props.score)
-    this.props.history.push(`/score/${this.props.selectedScoreId}`);
+    this.props.history.push('/score');
   }
 
   removeScoreFromUserScores = (event) => {

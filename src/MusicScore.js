@@ -20,6 +20,7 @@ class MusicScore extends Component {
   }
 
   displayScore = () => {
+    console.log(this.props.selectedScore.id);
     let url = this.state.scoreURL
     if (url) {
       let arr = url.split(".")
@@ -57,7 +58,7 @@ class MusicScore extends Component {
         <div className="music-score">
           {this.displayScore()}
         </div>
-        <a onClick={this.displayYouTubeVids}><i class="material-icons">music_video</i>watch videos</a>
+        <a onClick={this.displayYouTubeVids}><i className="material-icons">music_video</i>watch videos</a>
         { this.state.displayVideos ?
           <YouTubeVideosList />
           :

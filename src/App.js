@@ -42,7 +42,7 @@ class App extends Component {
             <Route exact path='/uploadmusic' render={() => <MusicUploadForm />} />
             <Route exact path='/mymusic' render={() => <MyMusicScoresList />} />
             <Route exact path='/myschedule' render={() => <MyCalendar />} />
-            <Route exact path={`/score/${this.props.selectedScoreId}`} render={() => <MusicScore />} />
+            <Route exact path='/score' render={() => <MusicScore />} />
           </Fragment>
       </div>
     );
@@ -54,7 +54,7 @@ function mapStateToProps(state) {
     userId: state.userId,
     username: state.username,
     viewOn: state.viewOn,
-    selectedScoreId: state.selectedScoreId,
+    selectedScore: state.selectedScore,
     current_user_scores: state.current_user_scores,
     current_user_events: state.current_user_events,
   }
