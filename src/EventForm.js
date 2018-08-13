@@ -5,7 +5,7 @@ import { handleEventTitleChange, handleEventDescriptionChange, handleEventDateCh
 class EventForm extends Component {
 
   handleSubmit = (event) => {
-    event.preventDefault()
+    // event.preventDefault()
     this.props.handleEventDateChange(this.props.selectedDate)
     fetch("http://localhost:3000/api/v1/events", {
       method: "POST",
