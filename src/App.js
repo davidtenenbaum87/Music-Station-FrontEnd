@@ -11,7 +11,7 @@ import Login from './Login.js';
 import SignUp from './SignUp.js';
 import MyCalendar from './MyCalendar.js';
 
-import { setCurrentUser, updateCurrentUserScores } from './actions.js';
+import { setCurrentUser, updateCurrentUserScores, getCurrentUserEvents } from './actions.js';
 
 class App extends Component {
 
@@ -27,6 +27,7 @@ class App extends Component {
       .then(json => {
         this.props.setUserIdandName(json.id, json.username)
         this.props.getCurrentUserScores(json.scores)
+        this.props.getCurrentUserEvents(json.events)
       })
   }
 
@@ -55,6 +56,7 @@ function mapStateToProps(state) {
     viewOn: state.viewOn,
     selectedScoreId: state.selectedScoreId,
     current_user_scores: state.current_user_scores,
+    current_user_events: state.current_user_events,
   }
 }
 
@@ -62,6 +64,7 @@ function mapDispatchToProps(dispatch) {
   return {
     setUserIdandName: (userId, username) => dispatch(setCurrentUser(userId, username)),
     getCurrentUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
+    getCurrentUserEvents: (events) => dispatch(getCurrentUserEvents(events)),
   }
 }
 

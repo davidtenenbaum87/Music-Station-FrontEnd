@@ -60,7 +60,6 @@
 .react-calendar {
   background-color: pink;
   border: 1px solid black;
-
 }
 
 .calendar {
@@ -69,6 +68,18 @@
   padding: 5px;
   display: flex;
   justify-content: center;
+}
+
+.events-list {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+}
+
+.event-item {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
 }
 
 a {

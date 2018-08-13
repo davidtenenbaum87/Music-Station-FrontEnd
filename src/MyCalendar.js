@@ -1,8 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Calendar from 'react-calendar';
 import { selectedClickedDate, displayEventForm } from './actions.js';
 import EventForm from './EventForm.js';
+import EventsList from './EventsList.js';
+import moment from 'moment'
 
 class MyCalendar extends Component {
 
@@ -22,6 +24,7 @@ class MyCalendar extends Component {
           :
             null
         }
+        <EventsList />
       </div>
     );
   }

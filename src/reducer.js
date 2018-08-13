@@ -15,6 +15,7 @@ import { HANDLE_EVENT_DESCRIPTION_CHANGE } from './types.js';
 import { HANDLE_EVENT_DATE_CHANGE } from './types.js';
 import { HANDLE_EVENT_START_TIME_CHANGE } from './types.js';
 import { HANDLE_EVENT_END_TIME_CHANGE } from './types.js';
+import { GET_CURRENT_USER_EVENTS } from './types.js';
 
 const initialState = {
   title: "",
@@ -26,13 +27,14 @@ const initialState = {
   current_user_scores: [],
   viewOn: false,
   selectedScore: null,
-  selectedDate: new Date(),
+  selectedDate: null,
   eventFormOn: false,
   event_title: "",
   event_description: "",
   event_date: null,
   event_start_time: "",
   event_end_time: "",
+  current_user_events: null,
 }
 
 export default function reducer(state = initialState, action) {
@@ -59,7 +61,26 @@ export default function reducer(state = initialState, action) {
     case SET_CURRENT_USER:
       return { ...state, userId: action.payload.userId, username: action.payload.username };
     case LOGOUT_CURRENT_USER:
-      return { ...state, userId: "", username: "" };
+      return {
+        ...state,
+        title: "",
+        composer: "",
+        instrumentation: "",
+        music_score: null,
+        userId: "",
+        username: "",
+        current_user_scores: [],
+        viewOn: false,
+        selectedScore: null,
+        selectedDate: null,
+        eventFormOn: false,
+        event_title: "",
+        event_description: "",
+        event_date: null,
+        event_start_time: "",
+        event_end_time: "",
+        current_user_events: null,
+      };
     case SELECTED_DATE:
       return { ...state, selectedDate: action.payload };
     case DISPLAY_EVENT_FORM:
@@ -74,6 +95,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, event_start_time: action.payload };
     case HANDLE_EVENT_END_TIME_CHANGE:
       return { ...state, event_end_time: action.payload };
+    case GET_CURRENT_USER_EVENTS:
+      return { ...state, current_user_events: action.payload };
     default:
       return state;
   }

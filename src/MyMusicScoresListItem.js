@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './App.css';
-import MusicScore from './MusicScore.js';
 import { removeScoreFromUserScores, toggleScoreDisplay, selectedClickedScore } from './actions.js';
 
 class MyMusicScoresListItem extends Component {

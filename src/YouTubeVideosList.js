@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './App.css';
-import MusicUploadForm from './MusicUploadForm.js';
-import MyMusicScoresList from './MyMusicScoresList.js';
-import MusicScore from './MusicScore.js';
 import * as youtubeSearch from "youtube-search";
 import YouTube from 'react-youtube';
 
@@ -21,7 +17,7 @@ class YouTubeVideosList extends Component {
         clickedComposer: data.score.composer,
       }))
 
-    const API_KEY = 'AIzaSyC6LK03UaFIQ4YAn8pwt1tWTevHzQbo0Ak';
+    // const API_KEY = 'AIzaSyC6LK03UaFIQ4YAn8pwt1tWTevHzQbo0Ak';
 
     var opts: youtubeSearch.YouTubeSearchOptions = {
       maxResults: 10,

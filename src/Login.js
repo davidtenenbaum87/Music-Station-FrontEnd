@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setCurrentUser, updateCurrentUserScores } from './actions.js';
+import { setCurrentUser, updateCurrentUserScores, getCurrentUserEvents } from './actions.js';
 
 class Login extends Component {
   state = {
@@ -26,10 +26,11 @@ class Login extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        console.log(json)
+        console.log(json),
         localStorage.setItem('token', json.token),
         this.props.setUserIdandName(json.id, json.username),
-        this.props.setUserScores(json.scores)
+        this.props.setUserScores(json.scores),
+        this.props.getCurrentUserEvents(json.events),
         this.props.history.push('/mymusic')
       })
   }
@@ -73,7 +74,7 @@ function mapDispatchToProps(dispatch) {
   return {
     setUserIdandName: (userId, username) => dispatch(setCurrentUser(userId, username)),
     setUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
-
+    getCurrentUserEvents: (events) => dispatch(getCurrentUserEvents(events)),
   }
 }
 
