@@ -16,6 +16,8 @@ import { HANDLE_EVENT_DATE_CHANGE } from './types.js';
 import { HANDLE_EVENT_START_TIME_CHANGE } from './types.js';
 import { HANDLE_EVENT_END_TIME_CHANGE } from './types.js';
 import { GET_CURRENT_USER_EVENTS } from './types.js';
+import { REMOVE_EVENT_FROM_USER_EVENTS } from './types.js';
+
 
 const initialState = {
   title: "",
@@ -27,14 +29,14 @@ const initialState = {
   current_user_scores: [],
   viewOn: false,
   selectedScore: null,
-  selectedDate: null,
+  selectedDate: new Date(),
   eventFormOn: false,
   event_title: "",
   event_description: "",
   event_date: null,
   event_start_time: "",
   event_end_time: "",
-  current_user_events: null,
+  current_user_events: [],
 }
 
 export default function reducer(state = initialState, action) {
@@ -76,7 +78,7 @@ export default function reducer(state = initialState, action) {
         eventFormOn: false,
         event_title: "",
         event_description: "",
-        event_date: null,
+        event_date: "",
         event_start_time: "",
         event_end_time: "",
         current_user_events: null,
@@ -97,6 +99,11 @@ export default function reducer(state = initialState, action) {
       return { ...state, event_end_time: action.payload };
     case GET_CURRENT_USER_EVENTS:
       return { ...state, current_user_events: action.payload };
+    case REMOVE_EVENT_FROM_USER_EVENTS:
+      const updated_events = state.current_user_events.filter(user_event => {
+        return user_event.id !== action.payload
+      })
+      return { ...state, current_user_events: updated_events };
     default:
       return state;
   }

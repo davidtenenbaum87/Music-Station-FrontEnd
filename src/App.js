@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
-import MusicUploadForm from './MusicUploadForm.js';
+// import MusicUploadForm from './MusicUploadForm.js';
 import MyMusicScoresList from './MyMusicScoresList.js';
 import MusicScore from './MusicScore.js';
 // import YouTubeVideosList from './YouTubeVideosList.js';
@@ -10,6 +10,8 @@ import NavBar from './NavBar.js';
 import Login from './Login.js';
 import SignUp from './SignUp.js';
 import MyCalendar from './MyCalendar.js';
+import EventForm from './EventForm.js';
+
 
 import { setCurrentUser, updateCurrentUserScores, getCurrentUserEvents } from './actions.js';
 
@@ -39,10 +41,19 @@ class App extends Component {
           <Fragment>
             <Route exact path='/login' render={() => <Login />} />
             <Route exact path='/signup' render={() => <SignUp />} />
-            <Route exact path='/uploadmusic' render={() => <MusicUploadForm />} />
             <Route exact path='/mymusic' render={() => <MyMusicScoresList />} />
             <Route exact path='/myschedule' render={() => <MyCalendar />} />
             <Route exact path='/score' render={() => <MusicScore />} />
+              <Route path="/events/:id/edit" render={(routerProps) => {
+  								let id = routerProps.match.params.id
+  								let foundEvent = this.props.current_user_events.find((r) => r.id === parseInt(id, 10))
+  								return <EventForm {...routerProps} foundEvent={foundEvent} />
+  							}}/>
+              <Route path="/score/:id" render={(routerProps) => {
+    								let id = routerProps.match.params.id
+    								let foundScore = this.props.current_user_scores.find((r) => r.id === parseInt(id, 10))
+    								return <MusicScore {...routerProps} foundScore={foundScore} />
+    							}}/>
           </Fragment>
       </div>
     );

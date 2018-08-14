@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { handleTitleChange, handleComposerChange, handleInstrumentationChange, handleMusicScoreUpload, updateCurrentUserScores } from './actions.js';
+import { handleTitleChange, handleComposerChange, handleInstrumentationChange, handleMusicScoreUpload, displayEventForm
+} from './actions.js';
 
 class MusicUploadForm extends Component {
 
   handleSubmit = (event) => {
-
+    event.preventDefault();
+    // event.persist()
     let formData = new FormData();
     formData.append('title', `${this.props.title}`)
     formData.append('composer', `${this.props.composer}`)
@@ -18,6 +20,7 @@ class MusicUploadForm extends Component {
       method: 'POST',
       body: formData
     })
+    .then(res => {if (res.ok) { return res.json()}})
   }
 
   render () {
@@ -69,7 +72,8 @@ function mapDispatchToProps(dispatch) {
     handleComposerChange: (event) => dispatch(handleComposerChange(event.target.value)),
     handleInstrumentationChange: (event) => dispatch(handleInstrumentationChange(event.target.value)),
     handleFileUpload: (event) => dispatch(handleMusicScoreUpload(event.target.files[0])),
-    getCurrentUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
+    // getCurrentUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
+    displayEventForm: () => dispatch(displayEventForm())
   }
 }
 

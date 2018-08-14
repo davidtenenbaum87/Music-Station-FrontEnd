@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import './App.css';
 import { removeScoreFromUserScores, toggleScoreDisplay, selectedClickedScore } from './actions.js';
 
@@ -23,7 +23,9 @@ class MyMusicScoresListItem extends Component {
     return (
       <ul className="music-score-item">
         <li key={this.props.score.id} id={this.props.score.id}>
-          {this.props.score.title} | {this.props.score.composer} | <button id={this.props.score.id} value="view" onClick={this.handleViewClick}>view</button> | <button id={this.props.score.id} value="delete" onClick={this.removeScoreFromUserScores}>delete</button>
+          {this.props.score.title} | {this.props.score.composer} |
+          <NavLink to={`/score/${this.props.score.id}`} onClick={this.handleViewClick}>view</NavLink> |
+          <button id={this.props.score.id} value="delete" onClick={this.removeScoreFromUserScores}>delete</button>
         </li>
       </ul>
     );

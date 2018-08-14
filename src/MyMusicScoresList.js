@@ -3,13 +3,22 @@ import { connect } from 'react-redux';
 import './App.css';
 import { updateCurrentUserScores } from './actions.js';
 import MyMusicScoresListItem from './MyMusicScoresListItem.js';
-
+import MusicUploadForm from './MusicUploadForm.js';
 
 class MyMusicScoresList extends Component {
+  state = {
+    viewUploadForm: false,
+  }
 
   renderScores = () => {
     return this.props.current_user_scores.map(score => {
       return <MyMusicScoresListItem key={score.id} score={score}/>
+    })
+  }
+
+  handleClick = () => {
+    this.setState({
+      viewUploadForm: !this.state.viewUploadForm,
     })
   }
 
@@ -19,7 +28,14 @@ class MyMusicScoresList extends Component {
     return (
       <div className="my-music-scores-list">
         <h1>My Music</h1>
+        <button onClick={this.handleClick}>Add music</button>
         {this.renderScores()}
+        {
+          this.state.viewUploadForm ?
+            <MusicUploadForm />
+          :
+            null
+        }
       </div>
     );
   }

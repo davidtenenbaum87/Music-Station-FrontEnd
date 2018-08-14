@@ -16,6 +16,7 @@ import {HANDLE_EVENT_DATE_CHANGE} from './types.js';
 import {HANDLE_EVENT_START_TIME_CHANGE} from './types.js';
 import {HANDLE_EVENT_END_TIME_CHANGE} from './types.js';
 import {GET_CURRENT_USER_EVENTS} from './types.js';
+import {REMOVE_EVENT_FROM_USER_EVENTS} from './types.js';
 
 
 
@@ -89,4 +90,8 @@ export function handleEventEndTimeChange(text) {
 
 export function getCurrentUserEvents(events) {
   return { type: GET_CURRENT_USER_EVENTS, payload: events }
+}
+
+export function removeEventFromUserEvents(eventId) {
+  return { type: REMOVE_EVENT_FROM_USER_EVENTS, payload: eventId }
 }

@@ -3,7 +3,6 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutCurrentUser } from './actions.js';
 
-
 class Navbar extends Component {
   handleLogout = () => {
     localStorage.removeItem('token');
@@ -24,7 +23,6 @@ class Navbar extends Component {
           <Fragment>
             <NavLink to="/login" onClick={this.handleLogout}>Logout</NavLink>
             <NavLink to="/myschedule">schedule</NavLink>
-            <NavLink to="/uploadmusic">Upload music</NavLink>
             <NavLink to="/mymusic">mymusic</NavLink>
           </Fragment>
 

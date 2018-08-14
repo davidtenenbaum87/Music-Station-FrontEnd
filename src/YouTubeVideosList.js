@@ -10,12 +10,12 @@ class YouTubeVideosList extends Component {
 
   componentDidMount() {
     console.log('YT', this.props);
-    fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScore.id}`)
-      .then(res => res.json())
-      .then(data => this.setState({
-        clickedTitle: data.score.title,
-        clickedComposer: data.score.composer,
-      }))
+    // fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScore.id}`)
+    //   .then(res => res.json())
+    //   .then(data => this.setState({
+    //     clickedTitle: data.score.title,
+    //     clickedComposer: data.score.composer,
+    //   }))
 
     // const API_KEY = 'AIzaSyC6LK03UaFIQ4YAn8pwt1tWTevHzQbo0Ak';
 
@@ -49,7 +49,7 @@ class YouTubeVideosList extends Component {
           key={video.id}
           videoId={video.id}
           opts={opts}
-          />
+        />
       )
     })
   }

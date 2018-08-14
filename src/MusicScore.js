@@ -69,7 +69,13 @@ class MusicScore extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+  if (props.foundScore) {
+    return {
+      viewOn: state.viewOn,
+      selectedScore: props.foundScore,
+    }
+  }
   return {
     viewOn: state.viewOn,
     selectedScore: state.selectedScore,
