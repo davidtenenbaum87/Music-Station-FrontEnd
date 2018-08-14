@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setCurrentUser, updateCurrentUserScores, getCurrentUserEvents } from './actions.js';
-import { BadTokenError } from './error';
+import { BadTokenError } from './error.js';
+import Adapter from './apis/Adapter.js';
 
 class Login extends Component {
   state = {
@@ -25,25 +26,24 @@ class Login extends Component {
       },
       body: JSON.stringify(this.state)
     })
-      .then(res =>
-        {
+      .then(res => {
           if (!res.ok) {
             throw new BadTokenError("Bad token")
           } else {
             return res;
           }
-    })
-      .then('login', console.log)
-      .then(res => res.json())
-      .then(json => {
-        console.log(json);
-        localStorage.setItem('token', json.token);
-        this.props.setUserIdandName(json.id, json.username);
-        this.props.setUserScores(json.scores);
-        this.props.getCurrentUserEvents(json.events);
-        this.props.history.push('/mymusic')
       })
+      .then(res => res.json())
+      .then(json => this.handleLoginState(json))
       .catch(error => console.log("Error at login attempt", error))
+  }
+
+  handleLoginState = (json) => {
+    localStorage.setItem('token', json.token);
+    this.props.setUserIdandName(json.id, json.username);
+    this.props.setUserScores(json.scores);
+    this.props.getCurrentUserEvents(json.events);
+    this.props.history.push('/mymusic')
   }
 
   render() {

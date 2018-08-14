@@ -2,16 +2,13 @@ import React, { Component, Fragment } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
-// import MusicUploadForm from './MusicUploadForm.js';
 import MyMusicScoresList from './MyMusicScoresList.js';
 import MusicScore from './MusicScore.js';
-// import YouTubeVideosList from './YouTubeVideosList.js';
 import NavBar from './NavBar.js';
 import Login from './Login.js';
 import SignUp from './SignUp.js';
 import MyCalendar from './MyCalendar.js';
 import EventForm from './EventForm.js';
-
 
 import { setCurrentUser, updateCurrentUserScores, getCurrentUserEvents } from './actions.js';
 
@@ -34,7 +31,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('app', this.props);
     return (
       <div className="App">
         <NavBar />
@@ -44,16 +40,11 @@ class App extends Component {
             <Route exact path='/mymusic' render={() => <MyMusicScoresList />} />
             <Route exact path='/myschedule' render={() => <MyCalendar />} />
             <Route exact path='/score' render={() => <MusicScore />} />
-              <Route path="/events/:id/edit" render={(routerProps) => {
-  								let id = routerProps.match.params.id
-  								let foundEvent = this.props.current_user_events.find((r) => r.id === parseInt(id, 10))
-  								return <EventForm {...routerProps} foundEvent={foundEvent} />
-  							}}/>
-              <Route path="/score/:id" render={(routerProps) => {
-    								let id = routerProps.match.params.id
-    								let foundScore = this.props.current_user_scores.find((r) => r.id === parseInt(id, 10))
-    								return <MusicScore {...routerProps} foundScore={foundScore} />
-    							}}/>
+            <Route path="/score/:id" render={(routerProps) => {
+							let id = routerProps.match.params.id
+							let foundScore = this.props.current_user_scores.find((r) => r.id === parseInt(id, 10))
+							return <MusicScore {...routerProps} foundScore={foundScore} />
+						}}/>
           </Fragment>
       </div>
     );
@@ -62,12 +53,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    userId: state.userId,
-    username: state.username,
-    viewOn: state.viewOn,
-    selectedScore: state.selectedScore,
     current_user_scores: state.current_user_scores,
-    current_user_events: state.current_user_events,
   }
 }
 
@@ -80,4 +66,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
