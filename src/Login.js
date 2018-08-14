@@ -19,21 +19,7 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3000/sessions", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(res => {
-          if (!res.ok) {
-            throw new BadTokenError("Bad token")
-          } else {
-            return res;
-          }
-      })
-      .then(res => res.json())
+    Adapter.postLoginUser(this.state.username, this.state.password)
       .then(json => this.handleLoginState(json))
       .catch(error => console.log("Error at login attempt", error))
   }

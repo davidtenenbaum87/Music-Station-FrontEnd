@@ -2,14 +2,16 @@ import React, { Component, Fragment } from 'react'
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutCurrentUser } from './actions.js';
+import Adapter from './apis/Adapter.js';
 
 class Navbar extends Component {
   handleLogout = () => {
-    localStorage.removeItem('token');
+    Adapter.deleteToken();
     this.props.logoutUser();
   }
 
   render(){
+    console.log('navbar', this.props);
     return (
       <div className="navbar">
         {

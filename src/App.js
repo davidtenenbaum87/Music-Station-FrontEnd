@@ -9,21 +9,16 @@ import Login from './Login.js';
 import SignUp from './SignUp.js';
 import MyCalendar from './MyCalendar.js';
 import EventForm from './EventForm.js';
+import Adapter from './apis/Adapter.js';
 
 import { setCurrentUser, updateCurrentUserScores, getCurrentUserEvents } from './actions.js';
 
 class App extends Component {
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/current_user", {
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
-      }
-    })
-      .then(res => res.json())
+    Adapter.getCurrentUser()
       .then(json => {
+        console.log('current user', json)
         this.props.setUserIdandName(json.id, json.username)
         this.props.getCurrentUserScores(json.scores)
         this.props.getCurrentUserEvents(json.events)
@@ -31,6 +26,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('app post login', this.props);
     return (
       <div className="App">
         <NavBar />
@@ -53,6 +49,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
+    username: state.username,
+    userId: state.userId,
     current_user_scores: state.current_user_scores,
   }
 }

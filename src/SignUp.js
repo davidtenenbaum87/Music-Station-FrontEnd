@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import Adapter from './apis/Adapter.js';
 
 class SignUp extends Component {
   state = {
@@ -15,13 +16,7 @@ class SignUp extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3000/api/v1/users", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    })
+    Adapter.postSignUpUser(this.state.username, this.state.password)
       .then(this.props.history.push('/login'))
   }
 

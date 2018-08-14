@@ -11,30 +11,8 @@ export default class Adapter {
     localStorage.removeItem('token');
   }
 
-  // static getUserScores(id) {
-  //   return fetch(`${API}/users/${id}/scores`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': this.getToken(),
-  //     }
-  //   })
- 	//     .then(r => r.json())
-  // }
-  //
-  // static getUserEvents(id) {
-  //   return fetch(`${API}/users/${id}/events`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': this.getToken(),
-  //     }
-  //   })
- 	//     .then(r => r.json())
-  // }
-
   static getCurrentUser() {
-    fetch("http://localhost:3000/api/v1/current_user", {
+    return fetch("http://localhost:3000/api/v1/current_user", {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -46,20 +24,35 @@ export default class Adapter {
         return res.json()
       } else if (res.status === 401) {
         throw new BadTokenError("Bad token")
-      } else {
-        throw new Error("Unhandled error")
       }
     })
   }
 
-  // static postLoginUser(username, password) {
-  //   return fetch('http://localhost:3000/sessions', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ username, password })
-  //     })
-  //       .then(res => res.json())
-  // }
+  static postSignUpUser(username, password) {
+    return fetch("http://localhost:3000/api/v1/users", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    })
+  }
+
+  static postLoginUser(username, password) {
+    return fetch("http://localhost:3000/sessions", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password })
+    })
+      .then(res => {
+          if (!res.ok) {
+            throw new BadTokenError("Bad token")
+          } else {
+            return res;
+          }
+      })
+      .then(res => res.json())
+  }
 }
