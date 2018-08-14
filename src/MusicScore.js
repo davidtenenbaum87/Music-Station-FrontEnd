@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './App.css';
 import YouTubeVideosList from './YouTubeVideosList.js';
 
 class MusicScore extends Component {
@@ -20,7 +19,6 @@ class MusicScore extends Component {
   }
 
   displayScore = () => {
-    console.log(this.props.selectedScore.id);
     let url = this.state.scoreURL
     if (url) {
       let arr = url.split(".")
@@ -53,6 +51,7 @@ class MusicScore extends Component {
   }
 
   render() {
+    console.log('musisSCORE');
     return (
       <div className="music-score-display">
         <div className="music-score">
@@ -66,16 +65,11 @@ class MusicScore extends Component {
         }
       </div>
     );
+
   }
 }
 
-function mapStateToProps(state, props) {
-  if (props.foundScore) {
-    return {
-      viewOn: state.viewOn,
-      selectedScore: props.foundScore,
-    }
-  }
+function mapStateToProps(state) {
   return {
     viewOn: state.viewOn,
     selectedScore: state.selectedScore,

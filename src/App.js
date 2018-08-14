@@ -17,16 +17,20 @@ class App extends Component {
 
   componentDidMount() {
     Adapter.getCurrentUser()
-      .then(json => {
-        console.log('current user', json)
-        this.props.setUserIdandName(json.id, json.username)
-        this.props.getCurrentUserScores(json.scores)
-        this.props.getCurrentUserEvents(json.events)
-      })
+     .then(json => {
+       console.log('current user', json)
+       this.props.setUserIdandName(json.id, json.username)
+       this.props.getCurrentUserScores(json.scores)
+       this.props.getCurrentUserEvents(json.events)
+     })
+     .catch(err => {
+			// console.warn(err);
+			Adapter.deleteToken();
+			this.props.history.push('/login');
+		})
   }
 
   render() {
-    console.log('app post login', this.props);
     return (
       <div className="App">
         <NavBar />
@@ -35,13 +39,12 @@ class App extends Component {
             <Route exact path='/signup' render={() => <SignUp />} />
             <Route exact path='/mymusic' render={() => <MyMusicScoresList />} />
             <Route exact path='/myschedule' render={() => <MyCalendar />} />
-            <Route exact path='/score' render={() => <MusicScore />} />
-            <Route path="/score/:id" render={(routerProps) => {
-							let id = routerProps.match.params.id
-							let foundScore = this.props.current_user_scores.find((r) => r.id === parseInt(id, 10))
-							return <MusicScore {...routerProps} foundScore={foundScore} />
-						}}/>
           </Fragment>
+          { this.props.viewOn ?
+            <MusicScore />
+          :
+            null
+          }
       </div>
     );
   }

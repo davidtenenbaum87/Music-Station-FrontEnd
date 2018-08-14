@@ -34,7 +34,7 @@ class EventForm extends Component {
 
 
   render() {
-    
+
     return (
       <div className="event-form">
         <form onSubmit={this.handleSubmit}>

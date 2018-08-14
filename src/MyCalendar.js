@@ -14,6 +14,7 @@ class MyCalendar extends Component {
 
     return (
       <div className="calendar">
+        <h1>My Events</h1>
         <DayPicker
           onDayClick={(day) => this.props.selectedClickedDate(day)}
         />

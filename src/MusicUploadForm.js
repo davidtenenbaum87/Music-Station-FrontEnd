@@ -7,7 +7,7 @@ import { handleTitleChange, handleComposerChange, handleInstrumentationChange, h
 class MusicUploadForm extends Component {
 
   handleSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     // event.persist()
     let formData = new FormData();
     formData.append('title', `${this.props.title}`)
@@ -21,6 +21,13 @@ class MusicUploadForm extends Component {
       body: formData
     })
     .then(res => {if (res.ok) { return res.json()}})
+    .then(res => this.handlePush())
+  }
+
+  handlePush = () => {
+    this.forceUpdate();
+    this.props.history.push('/mymusic')
+
   }
 
   render () {

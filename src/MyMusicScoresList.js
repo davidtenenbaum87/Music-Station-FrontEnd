@@ -24,7 +24,6 @@ class MyMusicScoresList extends Component {
 
 
   render() {
-    console.log('mymusicscoreslist', this.props);
     return (
       <div className="my-music-scores-list">
         <h1>My Music</h1>

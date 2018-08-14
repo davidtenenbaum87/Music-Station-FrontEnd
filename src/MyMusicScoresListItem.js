@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
-import './App.css';
+import MusicScore from './MusicScore.js';
 import { removeScoreFromUserScores, toggleScoreDisplay, selectedClickedScore } from './actions.js';
 
 class MyMusicScoresListItem extends Component {
+  state = {
+    viewMusicScore: false,
+  }
 
   handleViewClick = (event) => {
     this.props.viewScoreToggle()
     this.props.currentScore(this.props.score)
-    this.props.history.push('/score');
+    this.setState({
+      viewMusicScore: !this.state.viewMusicScore,
+    })
   }
 
   removeScoreFromUserScores = (event) => {
@@ -21,13 +26,21 @@ class MyMusicScoresListItem extends Component {
 
   render() {
     return (
+      <div>
       <ul className="music-score-item">
         <li key={this.props.score.id} id={this.props.score.id}>
           {this.props.score.title} | {this.props.score.composer} |
-          <NavLink to={`/score/${this.props.score.id}`} onClick={this.handleViewClick}>view</NavLink> |
+          <button onClick={this.handleViewClick}>view</button> |
           <button id={this.props.score.id} value="delete" onClick={this.removeScoreFromUserScores}>delete</button>
         </li>
       </ul>
+      {
+        this.state.viewMusicScore ?
+        <MusicScore />
+        :
+        null
+      }
+    </div>
     );
   }
 }
