@@ -17,7 +17,8 @@ import {HANDLE_EVENT_START_TIME_CHANGE} from './types.js';
 import {HANDLE_EVENT_END_TIME_CHANGE} from './types.js';
 import {GET_CURRENT_USER_EVENTS} from './types.js';
 import {REMOVE_EVENT_FROM_USER_EVENTS} from './types.js';
-
+import {CHANGE_COMMENT_MEASURE_FIELD} from './types.js';
+import {CHANGE_COMMENT_DESCRIPTION_FIELD} from './types.js';
 
 
 export function handleTitleChange(text) {
@@ -94,4 +95,13 @@ export function getCurrentUserEvents(events) {
 
 export function removeEventFromUserEvents(eventId) {
   return { type: REMOVE_EVENT_FROM_USER_EVENTS, payload: eventId }
+}
+
+
+export function handleCommentMeasureChange(text) {
+  return { type: CHANGE_COMMENT_MEASURE_FIELD, payload: text }
+}
+
+export function handleCommentDescriptionChange(text) {
+  return { type: CHANGE_COMMENT_DESCRIPTION_FIELD, payload: text }
 }

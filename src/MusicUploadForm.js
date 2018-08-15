@@ -7,7 +7,7 @@ import { handleTitleChange, handleComposerChange, handleInstrumentationChange, h
 class MusicUploadForm extends Component {
 
   handleSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     // event.persist()
     let formData = new FormData();
     formData.append('title', `${this.props.title}`)
@@ -27,7 +27,6 @@ class MusicUploadForm extends Component {
   handlePush = () => {
     this.forceUpdate();
     this.props.history.push('/mymusic')
-
   }
 
   render () {
@@ -79,8 +78,6 @@ function mapDispatchToProps(dispatch) {
     handleComposerChange: (event) => dispatch(handleComposerChange(event.target.value)),
     handleInstrumentationChange: (event) => dispatch(handleInstrumentationChange(event.target.value)),
     handleFileUpload: (event) => dispatch(handleMusicScoreUpload(event.target.files[0])),
-    // getCurrentUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
-    displayEventForm: () => dispatch(displayEventForm())
   }
 }
 

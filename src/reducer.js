@@ -17,6 +17,8 @@ import { HANDLE_EVENT_START_TIME_CHANGE } from './types.js';
 import { HANDLE_EVENT_END_TIME_CHANGE } from './types.js';
 import { GET_CURRENT_USER_EVENTS } from './types.js';
 import { REMOVE_EVENT_FROM_USER_EVENTS } from './types.js';
+import { CHANGE_COMMENT_MEASURE_FIELD } from './types.js';
+import { CHANGE_COMMENT_DESCRIPTION_FIELD } from './types.js';
 
 
 const initialState = {
@@ -37,6 +39,8 @@ const initialState = {
   event_start_time: "",
   event_end_time: "",
   current_user_events: [],
+  comment_measure: "",
+  comment_description: "",
 }
 
 export default function reducer(state = initialState, action) {
@@ -104,6 +108,10 @@ export default function reducer(state = initialState, action) {
         return user_event.id !== action.payload
       })
       return { ...state, current_user_events: updated_events };
+    case CHANGE_COMMENT_MEASURE_FIELD:
+      return { ...state, comment_measure: action.payload };
+    case CHANGE_COMMENT_DESCRIPTION_FIELD:
+      return { ...state, comment_description: action.payload };
     default:
       return state;
   }

@@ -55,4 +55,15 @@ export default class Adapter {
       })
       .then(res => res.json())
   }
+
+  static postScoreComment(comment_measure, comment_description, score_id) {
+    return fetch("http://localhost:3000/api/v1/comments", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ measure: comment_measure, description: comment_description, score_id })
+    })
+      .then(res => res.json())
+  }
 }

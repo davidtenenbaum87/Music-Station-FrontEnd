@@ -24,17 +24,18 @@ class MyMusicScoresList extends Component {
 
 
   render() {
+    console.log('mymusic', this.props);
     return (
       <div className="my-music-scores-list">
         <h1>My Music</h1>
         <button onClick={this.handleClick}>Add music</button>
-        {this.renderScores()}
         {
           this.state.viewUploadForm ?
             <MusicUploadForm />
           :
             null
         }
+        {this.renderScores()}
       </div>
     );
   }

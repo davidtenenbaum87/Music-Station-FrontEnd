@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import YouTubeVideosList from './YouTubeVideosList.js';
+import CommentForm from './CommentForm.js';
 
 class MusicScore extends Component {
   state = {
@@ -28,7 +29,8 @@ class MusicScore extends Component {
             src={this.state.scoreURL}
             title={this.props.selectedScore.title}
             width="700"
-            height="700">
+            height="700"
+            >
           </iframe>
         )
       } else {
@@ -50,14 +52,19 @@ class MusicScore extends Component {
     })
   }
 
+  handleCommentsInput = () => {
+    const comment = prompt(`add a comment to: ${this.props.selectedScore.title}`)
+    console.log(comment)
+  }
+
   render() {
-    console.log('musisSCORE');
     return (
       <div className="music-score-display">
         <div className="music-score">
           {this.displayScore()}
         </div>
         <a onClick={this.displayYouTubeVids}><i className="material-icons">music_video</i>watch videos</a>
+        <CommentForm />
         { this.state.displayVideos ?
           <YouTubeVideosList />
           :
