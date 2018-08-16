@@ -27,6 +27,8 @@ import {CLEAR_COMMENT_FORM_FIELDS} from './types.js';
 import {REMOVE_COMMENT_FROM_USER_COMMENTS} from './types.js';
 import {ADD_NEW_COMMENT_TO_SCORE} from './types.js';
 
+import {ADD_NEW_MUSIC_SCORE} from './types.js';
+
 export function handleTitleChange(text) {
   return { type: CHANGE_TITLE_FIELD, payload: text }
 }
@@ -172,5 +174,29 @@ export function fetchPostScoreComments(comment_measure, comment_description, sco
         })
         .then(res => res.json())
         .then(json => dispatch(addNewCommentToScore(json.comment)))
+  }
+}
+
+export function addNewMusicScore(score) {
+  return { type: ADD_NEW_MUSIC_SCORE, payload: score }
+}
+
+export function fetchGetMusicScores(userId) {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/users/${userId}`)
+    .then(res => res.json())
+    .then(user => dispatch(updateCurrentUserScores(user.scores)))
+  }
+}
+
+export function fetchPostMusicScore(score) {
+    return (dispatch) => {
+      return fetch("http://localhost:3000/api/v1/scores", {
+        method: 'POST',
+        body: score
+      })
+      .then(res => {if (res.ok) { return res.json()}})
+      .then(json => dispatch(addNewMusicScore(json.score)))
+      // .then(score => dispatch(addNewMusicScore(score.score)))
   }
 }

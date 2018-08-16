@@ -49,11 +49,9 @@ class MusicScore extends Component {
 
   handleCommentsInput = () => {
     const comment = prompt(`add a comment to: ${this.props.selectedScore.title}`)
-    console.log(comment)
   }
 
   render() {
-    console.log('musicscore', this.props);
       return (
         <div className="music-score-display">
           <div className="music-score">

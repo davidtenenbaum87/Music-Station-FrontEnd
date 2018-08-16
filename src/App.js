@@ -11,7 +11,7 @@ import MyCalendar from './MyCalendar.js';
 import EventForm from './EventForm.js';
 import Adapter from './apis/Adapter.js';
 
-import { setCurrentUser, updateCurrentUserScores, getCurrentUserEvents } from './actions.js';
+import { setCurrentUser, updateCurrentUserScores, getCurrentUserEvents, fetchGetMusicScores } from './actions.js';
 
 class App extends Component {
 
@@ -19,7 +19,8 @@ class App extends Component {
     Adapter.getCurrentUser()
      .then(json => {
        this.props.setUserIdandName(json.id, json.username)
-       this.props.getCurrentUserScores(json.scores)
+       // this.props.getCurrentUserScores(json.scores)
+       this.props.fetchGetMusicScores(json.id)
        this.props.getCurrentUserEvents(json.events)
      })
      .catch(err => {
@@ -56,6 +57,7 @@ function mapDispatchToProps(dispatch) {
     setUserIdandName: (userId, username) => dispatch(setCurrentUser(userId, username)),
     getCurrentUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
     getCurrentUserEvents: (events) => dispatch(getCurrentUserEvents(events)),
+    fetchGetMusicScores: (userId) => dispatch(fetchGetMusicScores(userId))
   }
 }
 

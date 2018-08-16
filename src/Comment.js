@@ -14,7 +14,6 @@ class CommentsList extends React.Component {
   }
 
   render() {
-    console.log(this.props.score_comments);
     return (
       <div className="comment">
         @: {this.props.current_comment.measure} |

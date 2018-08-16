@@ -25,7 +25,6 @@ class EventForm extends Component {
 
   handleChange = () => {
     this.props.handleEventDateChange(this.props.selectedDate)
-    console.log('DATE',this.props.event_date);
   }
 
   renderDate = () => {

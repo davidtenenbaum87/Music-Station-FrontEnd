@@ -9,8 +9,6 @@ class YouTubeVideosList extends Component {
   }
 
   componentDidMount() {
-    console.log('YT', this.props);
-
     var opts: youtubeSearch.YouTubeSearchOptions = {
       maxResults: 10,
       key: "AIzaSyC6LK03UaFIQ4YAn8pwt1tWTevHzQbo0Ak"

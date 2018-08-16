@@ -47,7 +47,6 @@ class CommentForm extends React.Component {
   }
 
   render() {
-    console.log('form', this.props);
     return (
       <div>
         <button onClick={this.openModal}>Add Comment</button>

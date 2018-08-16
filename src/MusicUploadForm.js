@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { handleTitleChange, handleComposerChange, handleInstrumentationChange, handleMusicScoreUpload, displayEventForm
-} from './actions.js';
+import { handleTitleChange, handleComposerChange, handleInstrumentationChange, handleMusicScoreUpload, displayEventForm, fetchGetMusicScores, fetchPostMusicScore } from './actions.js';
 
 class MusicUploadForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // event.persist()
+
     let formData = new FormData();
     formData.append('title', `${this.props.title}`)
     formData.append('composer', `${this.props.composer}`)
@@ -16,17 +15,13 @@ class MusicUploadForm extends Component {
     formData.append('user_id', `${this.props.userId}`)
     formData.append('music_score', this.props.music_score);
 
-    fetch("http://localhost:3000/api/v1/scores", {
-      method: 'POST',
-      body: formData
-    })
-    .then(res => {if (res.ok) { return res.json()}})
-    .then(res => this.handlePush())
-  }
-
-  handlePush = () => {
-    this.forceUpdate();
-    this.props.history.push('/mymusic')
+    this.props.fetchPostMusicScore(formData)
+    // fetch("http://localhost:3000/api/v1/scores", {
+    //   method: 'POST',
+    //   body: formData
+    // })
+    // .then(res => {if (res.ok) { return res.json()}})
+    // .then(res => this.handlePush())
   }
 
   render () {
@@ -78,6 +73,7 @@ function mapDispatchToProps(dispatch) {
     handleComposerChange: (event) => dispatch(handleComposerChange(event.target.value)),
     handleInstrumentationChange: (event) => dispatch(handleInstrumentationChange(event.target.value)),
     handleFileUpload: (event) => dispatch(handleMusicScoreUpload(event.target.files[0])),
+    fetchPostMusicScore: (score) => dispatch(fetchPostMusicScore(score))
   }
 }
 

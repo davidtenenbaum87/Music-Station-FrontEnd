@@ -4,10 +4,7 @@ import Adapter from './apis/Adapter.js';
 import Comment from './Comment.js';
 import { getCurrentScoreComments, fetchGetScoreComments } from './actions.js';
 
-
 class CommentsList extends React.Component {
-
-
 
   componentDidMount() {
 
@@ -23,7 +20,6 @@ class CommentsList extends React.Component {
   }
 
   render() {
-    console.log('score comments list', this.props.score_comments);
     return (
       <div className="comments-list">
         {this.renderComments()}
