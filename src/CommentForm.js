@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
-import { handleCommentMeasureChange, handleCommentDescriptionChange } from './actions.js';
+import { handleCommentMeasureChange, handleCommentDescriptionChange, clearCommentsFormFields, addNewCommentToScore, fetchPostScoreComments } from './actions.js';
 import Adapter from './apis/Adapter.js';
+import CommentsList from './CommentsList.js';
 
 const customStyles = {
   content : {
@@ -14,7 +15,6 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
-
 
 class CommentForm extends React.Component {
   constructor() {
@@ -34,18 +34,20 @@ class CommentForm extends React.Component {
   }
 
   afterOpenModal() {
-    // references are now sync'd and can be accessed.
     this.subtitle.style.color = '#f00';
   }
 
   closeModal() {
     this.setState({modalIsOpen: false});
-    Adapter.postScoreComment(this.props.comment_measure, this.props.comment_description, this.props.selectedScore.id)
-      .then(console.log)
+    // Adapter.postScoreComment(this.props.comment_measure, this.props.comment_description, this.props.selectedScore.id)
+    //   .then(comment => this.props.addNewCommentToScore(comment))
+    this.props.fetchPostScoreComments(this.props.comment_measure, this.props.comment_description, this.props.selectedScore.id)
+    this.props.clearCommentsFormFields()
+    // this.props.addNewCommentToScore()
   }
 
   render() {
-    console.log('comment', this.props.selectedScore.id);
+    console.log('form', this.props);
     return (
       <div>
         <button onClick={this.openModal}>Add Comment</button>
@@ -86,13 +88,17 @@ function mapStateToProps(state) {
     selectedScore: state.selectedScore,
     comment_measure: state.comment_measure,
     comment_description: state.comment_description,
+    score_comments: state.score_comments,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     handleCommentMeasureChange: (event) => dispatch(handleCommentMeasureChange(event.target.value)),
-    handleCommentDescriptionChange: (event) => dispatch(handleCommentDescriptionChange(event.target.value))
+    handleCommentDescriptionChange: (event) => dispatch(handleCommentDescriptionChange(event.target.value)),
+    clearCommentsFormFields: () => dispatch(clearCommentsFormFields()),
+    addNewCommentToScore: (comment) => dispatch(addNewCommentToScore(comment)),
+    fetchPostScoreComments: (comment_measure, comment_description, score_id) => dispatch(fetchPostScoreComments(comment_measure, comment_description, score_id))
   }
 }
 

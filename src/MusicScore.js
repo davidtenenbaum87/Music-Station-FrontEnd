@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import YouTubeVideosList from './YouTubeVideosList.js';
+import CommentsList from './CommentsList.js';
 import CommentForm from './CommentForm.js';
+import { toggleVideosDisplay, toggleCommentsDisplay } from './actions.js';
 
 class MusicScore extends Component {
   state = {
     scoreURL: null,
-    displayVideos: false,
   }
 
   componentDidMount() {
@@ -46,40 +47,51 @@ class MusicScore extends Component {
     }
   }
 
-  displayYouTubeVids = () => {
-    this.setState({
-      displayVideos: !this.state.displayVideos,
-    })
-  }
-
   handleCommentsInput = () => {
     const comment = prompt(`add a comment to: ${this.props.selectedScore.title}`)
     console.log(comment)
   }
 
   render() {
-    return (
-      <div className="music-score-display">
-        <div className="music-score">
-          {this.displayScore()}
+    console.log('musicscore', this.props);
+      return (
+        <div className="music-score-display">
+          <div className="music-score">
+            {this.displayScore()}
+          </div>
+          <a onClick={this.props.toggleCommentsDisplay}><i className="material-icons">comments</i>comments</a>
+          <a onClick={this.props.toggleVideosDisplay}><i className="material-icons">music_video</i>watch videos</a>
+          { this.props.commentsDisplay ?
+            <Fragment>
+              <CommentForm />
+              <CommentsList />
+            </Fragment>
+            :
+            null
+          }
+          { this.props.videosDisplay ?
+            <YouTubeVideosList />
+            :
+            null
+          }
         </div>
-        <a onClick={this.displayYouTubeVids}><i className="material-icons">music_video</i>watch videos</a>
-        <CommentForm />
-        { this.state.displayVideos ?
-          <YouTubeVideosList />
-          :
-          null
-        }
-      </div>
-    );
-
-  }
+      );
+    }
 }
 
 function mapStateToProps(state) {
   return {
-    viewOn: state.viewOn,
     selectedScore: state.selectedScore,
+    videosDisplay: state.videosDisplay,
+    commentsDisplay: state.commentsDisplay,
   }
 }
-export default connect(mapStateToProps)(MusicScore);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    toggleVideosDisplay: () => dispatch(toggleVideosDisplay()),
+    toggleCommentsDisplay: () => dispatch(toggleCommentsDisplay()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MusicScore);

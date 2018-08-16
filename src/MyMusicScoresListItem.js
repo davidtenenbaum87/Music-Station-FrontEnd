@@ -48,7 +48,7 @@ class MyMusicScoresListItem extends Component {
 function mapStateToProps(state) {
   return {
     current_user_scores: state.current_user_scores,
-    viewOn: state.viewOn,
+    musicScoreDisplay: state.musicScoreDisplay,
     selectedScore: state.selectedScore,
   }
 }

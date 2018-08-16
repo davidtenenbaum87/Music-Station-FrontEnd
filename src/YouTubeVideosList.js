@@ -10,14 +10,6 @@ class YouTubeVideosList extends Component {
 
   componentDidMount() {
     console.log('YT', this.props);
-    // fetch(`http://localhost:3000/api/v1/scores/${this.props.selectedScore.id}`)
-    //   .then(res => res.json())
-    //   .then(data => this.setState({
-    //     clickedTitle: data.score.title,
-    //     clickedComposer: data.score.composer,
-    //   }))
-
-    // const API_KEY = 'AIzaSyC6LK03UaFIQ4YAn8pwt1tWTevHzQbo0Ak';
 
     var opts: youtubeSearch.YouTubeSearchOptions = {
       maxResults: 10,
@@ -55,16 +47,9 @@ class YouTubeVideosList extends Component {
   }
 
   render() {
-    console.log('vids', this.props);
     return (
       <div className="youtube-videos-list">
-        {
-          this.props.viewOn ?
-            this.displayVideos()
-          :
-            null
-        }
-
+        {this.displayVideos()}
       </div>
     );
   }
@@ -75,8 +60,9 @@ function mapStateToProps(state) {
     title: state.title,
     composer: state.composer,
     instrumentation: state.instrumentation,
-    viewOn: state.viewOn,
+    musicScoreDisplay: state.musicScoreDisplay,
     selectedScore: state.selectedScore,
+    displayVideos: state.displayVideos,
   }
 }
 

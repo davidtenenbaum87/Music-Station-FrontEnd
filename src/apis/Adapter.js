@@ -62,8 +62,16 @@ export default class Adapter {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ measure: comment_measure, description: comment_description, score_id })
+      body: JSON.stringify({ measure: comment_measure, description: comment_description, score_id: score_id })
     })
+      .then(res => {
+          if (!res.ok) {
+            throw new Error("Bad Post")
+          } else {
+            return res;
+          }
+      })
       .then(res => res.json())
   }
+
 }

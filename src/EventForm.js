@@ -32,9 +32,7 @@ class EventForm extends Component {
     return <h4>{moment(this.props.selectedDate).format("MMMM, Do, YYYY")}</h4>
   }
 
-
   render() {
-
     return (
       <div className="event-form">
         <form onSubmit={this.handleSubmit}>
@@ -89,17 +87,6 @@ class EventForm extends Component {
 }
 
 function mapStateToProps(state, props) {
-  // if (props.foundEvent) {
-  //   return {
-  //     selectedDate: state.selectedDate,
-  //     event_title: props.foundEvent.event_title,
-  //     event_description: props.foundEvent.description,
-  //     event_date: props.foundEvent.event_date,
-  //     event_start_time: props.foundEvent.start_time,
-  //     event_end_time: props.foundEvent.end_time,
-  //     userId: state.userId,
-  //   }
-  // } else {
     return {
       current_user_events: state.current_user_events,
       selectedDate: state.selectedDate,
@@ -110,7 +97,6 @@ function mapStateToProps(state, props) {
       event_end_time: state.event_end_time,
       userId: state.userId,
     }
-
 }
 
 function mapDispatchToProps(dispatch) {

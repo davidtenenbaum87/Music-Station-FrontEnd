@@ -19,7 +19,13 @@ import {GET_CURRENT_USER_EVENTS} from './types.js';
 import {REMOVE_EVENT_FROM_USER_EVENTS} from './types.js';
 import {CHANGE_COMMENT_MEASURE_FIELD} from './types.js';
 import {CHANGE_COMMENT_DESCRIPTION_FIELD} from './types.js';
-
+import {GET_SCORE_COMMENTS} from './types.js';
+import {VIEW_VIDEOS_TOGGLE} from './types.js';
+import {VIEW_COMMENTS_TOGGLE} from './types.js';
+import {MUSIC_UPLOAD_FORM_TOGGLE} from './types.js';
+import {CLEAR_COMMENT_FORM_FIELDS} from './types.js';
+import {REMOVE_COMMENT_FROM_USER_COMMENTS} from './types.js';
+import {ADD_NEW_COMMENT_TO_SCORE} from './types.js';
 
 export function handleTitleChange(text) {
   return { type: CHANGE_TITLE_FIELD, payload: text }
@@ -45,8 +51,24 @@ export function removeScoreFromUserScores(scoreId) {
   return { type: REMOVE_SCORE_FROM_USER_SCORES, payload: scoreId }
 }
 
+export function removeCommentFromUserComments(commentId) {
+  return { type: REMOVE_COMMENT_FROM_USER_COMMENTS, payload: commentId }
+}
+
+export function toggleMusicFormDisplay() {
+  return { type: MUSIC_UPLOAD_FORM_TOGGLE }
+}
+
 export function toggleScoreDisplay() {
   return { type: VIEW_SCORE_TOGGLE }
+}
+
+export function toggleVideosDisplay() {
+  return { type: VIEW_VIDEOS_TOGGLE }
+}
+
+export function toggleCommentsDisplay() {
+  return { type: VIEW_COMMENTS_TOGGLE }
 }
 
 export function selectedClickedScore(score) {
@@ -97,11 +119,58 @@ export function removeEventFromUserEvents(eventId) {
   return { type: REMOVE_EVENT_FROM_USER_EVENTS, payload: eventId }
 }
 
-
 export function handleCommentMeasureChange(text) {
   return { type: CHANGE_COMMENT_MEASURE_FIELD, payload: text }
 }
 
 export function handleCommentDescriptionChange(text) {
   return { type: CHANGE_COMMENT_DESCRIPTION_FIELD, payload: text }
+}
+
+export function getCurrentScoreComments(comments) {
+  return { type: GET_SCORE_COMMENTS, payload: comments }
+}
+
+export function clearCommentsFormFields() {
+  return { type: CLEAR_COMMENT_FORM_FIELDS }
+}
+
+export function addNewCommentToScore(comment) {
+  return { type: ADD_NEW_COMMENT_TO_SCORE, payload: comment }
+}
+
+
+export function fetchGetScoreComments(score_id) {
+  return (dispatch) => {
+
+    return fetch("http://localhost:3000/api/v1/comments")
+    .then(res => res.json())
+    .then(comments => {
+      return comments.filter(comment => {
+        return comment.score_id === score_id
+      })
+    })
+    .then(comments => dispatch(getCurrentScoreComments(comments)))
+  }
+}
+
+export function fetchPostScoreComments(comment_measure, comment_description, score_id) {
+    return (dispatch) => {
+      return fetch("http://localhost:3000/api/v1/comments", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ measure: comment_measure, description: comment_description, score_id: score_id })
+      })
+        .then(res => {
+            if (!res.ok) {
+              throw new Error("Bad Post")
+            } else {
+              return res;
+            }
+        })
+        .then(res => res.json())
+        .then(json => dispatch(addNewCommentToScore(json.comment)))
+  }
 }

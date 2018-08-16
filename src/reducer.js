@@ -19,6 +19,16 @@ import { GET_CURRENT_USER_EVENTS } from './types.js';
 import { REMOVE_EVENT_FROM_USER_EVENTS } from './types.js';
 import { CHANGE_COMMENT_MEASURE_FIELD } from './types.js';
 import { CHANGE_COMMENT_DESCRIPTION_FIELD } from './types.js';
+import { GET_SCORE_COMMENTS } from './types.js';
+import { VIEW_VIDEOS_TOGGLE } from './types.js';
+import { MUSIC_UPLOAD_FORM_TOGGLE } from './types.js';
+import { VIEW_COMMENTS_TOGGLE } from './types.js';
+import { CLEAR_COMMENT_FORM_FIELDS } from './types.js';
+import { REMOVE_COMMENT_FROM_USER_COMMENTS } from './types.js';
+import { ADD_NEW_COMMENT_TO_SCORE } from './types.js';
+
+
+
 
 
 const initialState = {
@@ -29,7 +39,11 @@ const initialState = {
   userId: "",
   username: "",
   current_user_scores: [],
-  viewOn: false,
+  musicUploadFormDisplay: false,
+  musicScoreDisplay: false,
+  videosDisplay: false,
+  commentsDisplay: false,
+
   selectedScore: null,
   selectedDate: new Date(),
   eventFormOn: false,
@@ -41,6 +55,7 @@ const initialState = {
   current_user_events: [],
   comment_measure: "",
   comment_description: "",
+  score_comments: [],
 }
 
 export default function reducer(state = initialState, action) {
@@ -61,7 +76,11 @@ export default function reducer(state = initialState, action) {
       })
       return { ...state, current_user_scores: updated_scores }
     case VIEW_SCORE_TOGGLE:
-      return { ...state, viewOn: !state.viewOn }
+      return { ...state, musicScoreDisplay: !state.musicScoreDisplay }
+    case VIEW_VIDEOS_TOGGLE:
+      return { ...state, videosDisplay: !state.videosDisplay }
+    case VIEW_COMMENTS_TOGGLE:
+      return { ...state, commentsDisplay: !state.commentsDisplay }
     case CLICKED_SCORE:
       return { ...state, selectedScore: action.payload };
     case SET_CURRENT_USER:
@@ -76,7 +95,7 @@ export default function reducer(state = initialState, action) {
         userId: "",
         username: "",
         current_user_scores: [],
-        viewOn: false,
+        musicScoreDisplay: false,
         selectedScore: null,
         selectedDate: null,
         eventFormOn: false,
@@ -112,6 +131,21 @@ export default function reducer(state = initialState, action) {
       return { ...state, comment_measure: action.payload };
     case CHANGE_COMMENT_DESCRIPTION_FIELD:
       return { ...state, comment_description: action.payload };
+    case GET_SCORE_COMMENTS:
+      return { ...state, score_comments: action.payload };
+    case MUSIC_UPLOAD_FORM_TOGGLE:
+      return { ...state, musicUploadFormDisplay: !state.musicUploadFormDisplay };
+    case CLEAR_COMMENT_FORM_FIELDS:
+      return { ...state, comment_measure: "", comment_description: "" };
+    case REMOVE_COMMENT_FROM_USER_COMMENTS:
+      const updated_comments = state.score_comments.filter(score_comment => {
+        return score_comment.id !== action.payload
+      })
+      return { ...state, score_comments: updated_comments }
+
+    case ADD_NEW_COMMENT_TO_SCORE:
+      return { ...state, score_comments: [ ...state.score_comments, action.payload ] };
+
     default:
       return state;
   }

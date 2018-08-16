@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import store from './store.js';
 
 ReactDOM.render(

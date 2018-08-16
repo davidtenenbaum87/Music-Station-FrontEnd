@@ -18,13 +18,11 @@ class App extends Component {
   componentDidMount() {
     Adapter.getCurrentUser()
      .then(json => {
-       console.log('current user', json)
        this.props.setUserIdandName(json.id, json.username)
        this.props.getCurrentUserScores(json.scores)
        this.props.getCurrentUserEvents(json.events)
      })
      .catch(err => {
-			// console.warn(err);
 			Adapter.deleteToken();
 			this.props.history.push('/login');
 		})
@@ -40,11 +38,6 @@ class App extends Component {
             <Route exact path='/mymusic' render={() => <MyMusicScoresList />} />
             <Route exact path='/myschedule' render={() => <MyCalendar />} />
           </Fragment>
-          { this.props.viewOn ?
-            <MusicScore />
-          :
-            null
-          }
       </div>
     );
   }
