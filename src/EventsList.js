@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Event from './Event.js';
+import { fetchGetEvents } from './actions.js';
+
 
 class EventsList extends Component {
+  componentDidMount() {
+    this.props.fetchGetEvents(this.props.userId)
+  }
 
   displayEvents = () => {
     if (this.props.current_user_events) {
@@ -23,9 +28,16 @@ class EventsList extends Component {
 
 function mapStateToProps(state) {
   return {
+    userId: state.userId,
     current_user_events: state.current_user_events,
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchGetEvents: (userId) => dispatch(fetchGetEvents(userId)),
+  }
+}
 
-export default connect(mapStateToProps)(EventsList);
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventsList);

@@ -1,43 +1,82 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleEventTitleChange, handleEventDescriptionChange, handleEventDateChange, handleEventStartTimeChange, handleEventEndTimeChange, fetchPostEvent } from './actions.js';
 import moment from 'moment';
+import TimeField from 'react-simple-timefield';
+import { fetchPostEvent, fetchPatchEvent } from './actions.js';
 
 class EventForm extends Component {
 
-  handleSubmit = (event) => {
-    event.preventDefault()
-
-    let new_event = {
-      event_title: this.props.event_title,
-      description: this.props.event_description,
-      event_date: this.props.selectedDate,
-      start_time: this.props.event_start_time,
-      end_time: this.props.event_end_time,
-      user_id: this.props.userId,
-    }
-    this.props.fetchPostEvent(new_event)
+  state = {
+    event_id: "",
+    event_title: "",
+    description: "",
+    event_date: "",
+    start_time: "",
+    end_time: "",
+    user_id: "",
   }
 
-  handleChange = () => {
-    this.props.handleEventDateChange(this.props.selectedDate)
+  componentDidMount() {
+    if (this.props.foundEvent) {
+      this.setState({
+        event_id: this.props.foundEvent.id,
+        event_title: this.props.foundEvent.event_title,
+        description: this.props.foundEvent.description,
+        event_date: this.props.foundEvent.event_date,
+        start_time: this.props.foundEvent.start_time,
+        end_time: this.props.foundEvent.end_time,
+        user_id: this.props.userId,
+      })
+    }
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (!this.state.event_id) {
+      this.props.fetchPostEvent(this.state);
+    } else {
+      this.props.fetchPatchEvent(this.state);
+      this.props.history.push('/myschedule')
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+      event_date: this.props.selectedDate,
+      user_id: this.props.userId,
+    })
   }
 
   renderDate = () => {
-    return <h4>{moment(this.props.selectedDate).format("MMMM, Do, YYYY")}</h4>
+    return <h4>when?: {moment(this.props.selectedDate).format("MMMM, Do, YYYY")}</h4>
   }
 
+  handleStartTimeChange = (start_time) => {
+    this.setState({
+      start_time
+    })
+  }
+
+  handleEndTimeChange = (end_time) => {
+    this.setState({
+      end_time
+    })
+  }
+
+
   render() {
+    console.log(this.state);
     return (
       <div className="event-form">
         <form onSubmit={this.handleSubmit}>
             {this.renderDate()}
-            <label htmlFor="type">type:</label>
+            <label htmlFor="event_title">type:</label>
             <select
-              id="type"
-              name="type"
-              value={this.props.event_title}
-              onChange={this.props.handleEventTitleChange}
+              id="event_title"
+              name="event_title"
+              value={this.state.event_title}
+              onChange={this.handleChange}
             >
               <option></option>
               <option>Performance</option>
@@ -45,24 +84,14 @@ class EventForm extends Component {
               <option>Rehearsal</option>
               <option>Practice</option>
             </select><br/>
-            <label htmlFor="start-time">start:</label>
-            <input
-              type="time"
-              id="start-time"
-              name="start-time"
-              required
-              value={this.props.event_start_time}
-              onChange={this.props.handleEventStartTimeChange}
-            /><br/>
-            <label htmlFor="end-time">end:</label>
-            <input
-              type="time"
-              id="end-time"
-              name="end-time"
-              required
-              value={this.props.event_end_time}
-              onChange={this.props.handleEventEndTimeChange}
-            /><br/>
+          <label htmlFor="start-time">From:</label>
+          <TimeField
+            value={this.state.start_time}
+            onChange={this.handleStartTimeChange} />
+          <label htmlFor="end-time">From:</label>
+          <TimeField
+            value={this.state.end_time}
+            onChange={this.handleEndTimeChange} />
           <label htmlFor="description">description:</label><br/>
           <textarea
             type="text"
@@ -71,8 +100,8 @@ class EventForm extends Component {
             placeholder="description"
             rows="4"
             cols="50"
-            value={this.props.event_description}
-            onChange={this.props.handleEventDescriptionChange}
+            value={this.state.description}
+            onChange={this.handleChange}
             /><br/>
           <input type="submit" value="submit"/>
           </form>
@@ -82,26 +111,16 @@ class EventForm extends Component {
 }
 
 function mapStateToProps(state, props) {
-    return {
-      current_user_events: state.current_user_events,
-      selectedDate: state.selectedDate,
-      event_title: state.event_title,
-      event_description: state.event_description,
-      event_date: state.event_date,
-      event_start_time: state.event_start_time,
-      event_end_time: state.event_end_time,
-      userId: state.userId,
-    }
+  return {
+    userId: state.userId,
+    selectedDate: state.selectedDate,
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleEventTitleChange: (event) => dispatch(handleEventTitleChange(event.target.value)),
-    handleEventDescriptionChange: (event) => dispatch(handleEventDescriptionChange(event.target.value)),
-    handleEventDateChange: (event) => dispatch(handleEventDateChange(event)),
-    handleEventStartTimeChange: (event) => dispatch(handleEventStartTimeChange(event.target.value)),
-    handleEventEndTimeChange: (event) => dispatch(handleEventEndTimeChange(event.target.value)),
     fetchPostEvent: (new_event) => dispatch(fetchPostEvent(new_event)),
+    fetchPatchEvent: (current_event) => dispatch(fetchPatchEvent(current_event)),
   }
 }
 

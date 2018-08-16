@@ -7,10 +7,7 @@ import { getCurrentScoreComments, fetchGetScoreComments } from './actions.js';
 class CommentsList extends React.Component {
 
   componentDidMount() {
-
     this.props.fetchGetScoreComments(this.props.selectedScore.id)
-    // Adapter.getScoreComments(this.props.selectedScore.id)
-    // .then(comments => this.props.getCurrentScoreComments(comments))
   }
 
   renderComments = () => {

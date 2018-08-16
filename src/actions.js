@@ -205,6 +205,19 @@ export function addNewEvent(new_event) {
   return { type: ADD_NEW_EVENT, payload: new_event }
 }
 
+export function fetchGetEvents(userId) {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/api/v1/events`)
+    .then(res => {if (res.ok) { return res.json()}})
+    .then(events => {
+      return events.filter(user_event => {
+        return user_event.user.id === userId
+      })
+    })
+    .then(events => dispatch(getCurrentUserEvents(events)))
+  }
+}
+
 export function fetchPostEvent(new_event) {
   return (dispatch) => {
     fetch("http://localhost:3000/api/v1/events", {
@@ -216,6 +229,19 @@ export function fetchPostEvent(new_event) {
     })
     .then(res => {if (res.ok) { return res.json()}})
     .then(new_event => dispatch(addNewEvent(new_event)))
+  }
+}
 
+export function fetchPatchEvent(current_event, userId) {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/api/v1/events/${current_event.event_id}`, {
+      method: "PATCH",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(current_event)
+    })
+    .then(res => {if (res.ok) { return res.json()}})
   }
 }
