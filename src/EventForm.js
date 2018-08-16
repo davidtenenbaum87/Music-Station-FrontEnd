@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleEventTitleChange, handleEventDescriptionChange, handleEventDateChange, handleEventStartTimeChange, handleEventEndTimeChange } from './actions.js';
+import { handleEventTitleChange, handleEventDescriptionChange, handleEventDateChange, handleEventStartTimeChange, handleEventEndTimeChange, fetchPostEvent } from './actions.js';
 import moment from 'moment';
 
 class EventForm extends Component {
 
   handleSubmit = (event) => {
-    // event.preventDefault()
-    fetch("http://localhost:3000/api/v1/events", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        event_title: this.props.event_title,
-        description: this.props.event_description,
-        event_date: this.props.selectedDate,
-        start_time: this.props.event_start_time,
-        end_time: this.props.event_end_time,
-        user_id: this.props.userId,
-      })
-    })
+    event.preventDefault()
+
+    let new_event = {
+      event_title: this.props.event_title,
+      description: this.props.event_description,
+      event_date: this.props.selectedDate,
+      start_time: this.props.event_start_time,
+      end_time: this.props.event_end_time,
+      user_id: this.props.userId,
+    }
+    this.props.fetchPostEvent(new_event)
   }
 
   handleChange = () => {
@@ -105,6 +101,7 @@ function mapDispatchToProps(dispatch) {
     handleEventDateChange: (event) => dispatch(handleEventDateChange(event)),
     handleEventStartTimeChange: (event) => dispatch(handleEventStartTimeChange(event.target.value)),
     handleEventEndTimeChange: (event) => dispatch(handleEventEndTimeChange(event.target.value)),
+    fetchPostEvent: (new_event) => dispatch(fetchPostEvent(new_event)),
   }
 }
 

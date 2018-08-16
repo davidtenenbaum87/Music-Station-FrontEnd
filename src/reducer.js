@@ -28,6 +28,8 @@ import { REMOVE_COMMENT_FROM_USER_COMMENTS } from './types.js';
 import { ADD_NEW_COMMENT_TO_SCORE } from './types.js';
 
 import { ADD_NEW_MUSIC_SCORE } from './types.js';
+import { ADD_NEW_EVENT } from './types.js';
+
 
 
 
@@ -150,6 +152,9 @@ export default function reducer(state = initialState, action) {
 
       case ADD_NEW_MUSIC_SCORE:
         return { ...state, current_user_scores: [ ...state.current_user_scores, action.payload ] };
+
+        case ADD_NEW_EVENT:
+          return { ...state, current_user_events: [ ...state.current_user_events, action.payload ] };
 
     default:
       return state;

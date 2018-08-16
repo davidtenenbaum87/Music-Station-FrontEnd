@@ -26,8 +26,9 @@ import {MUSIC_UPLOAD_FORM_TOGGLE} from './types.js';
 import {CLEAR_COMMENT_FORM_FIELDS} from './types.js';
 import {REMOVE_COMMENT_FROM_USER_COMMENTS} from './types.js';
 import {ADD_NEW_COMMENT_TO_SCORE} from './types.js';
-
 import {ADD_NEW_MUSIC_SCORE} from './types.js';
+import {ADD_NEW_EVENT} from './types.js';
+
 
 export function handleTitleChange(text) {
   return { type: CHANGE_TITLE_FIELD, payload: text }
@@ -197,6 +198,24 @@ export function fetchPostMusicScore(score) {
       })
       .then(res => {if (res.ok) { return res.json()}})
       .then(json => dispatch(addNewMusicScore(json.score)))
-      // .then(score => dispatch(addNewMusicScore(score.score)))
+  }
+}
+
+export function addNewEvent(new_event) {
+  return { type: ADD_NEW_EVENT, payload: new_event }
+}
+
+export function fetchPostEvent(new_event) {
+  return (dispatch) => {
+    fetch("http://localhost:3000/api/v1/events", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(new_event)
+    })
+    .then(res => {if (res.ok) { return res.json()}})
+    .then(new_event => dispatch(addNewEvent(new_event)))
+
   }
 }
