@@ -8,6 +8,7 @@ import NavBar from './NavBar.js';
 import Login from './Login.js';
 import SignUp from './SignUp.js';
 import MyCalendar from './MyCalendar.js';
+import UserProfile from './UserProfile.js';
 import EventForm from './EventForm.js';
 import Adapter from './apis/Adapter.js';
 
@@ -38,6 +39,7 @@ class App extends Component {
             <Route exact path='/signup' render={() => <SignUp />} />
             <Route exact path='/mymusic' render={() => <MyMusicScoresList />} />
             <Route exact path='/myschedule' render={() => <MyCalendar />} />
+            <Route exact path='/myprofile' render={() => <UserProfile />} />
           </Fragment>
       </div>
     );

@@ -39,11 +39,9 @@ class CommentForm extends React.Component {
 
   closeModal() {
     this.setState({modalIsOpen: false});
-    // Adapter.postScoreComment(this.props.comment_measure, this.props.comment_description, this.props.selectedScore.id)
-    //   .then(comment => this.props.addNewCommentToScore(comment))
+
     this.props.fetchPostScoreComments(this.props.comment_measure, this.props.comment_description, this.props.selectedScore.id)
     this.props.clearCommentsFormFields()
-    // this.props.addNewCommentToScore()
   }
 
   render() {
