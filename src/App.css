@@ -96,6 +96,10 @@ a {
   justify-content: center;
 }
 
+#map {
+  border-radius: 25px;
+}
+
 a:hover
 {
  cursor: pointer;

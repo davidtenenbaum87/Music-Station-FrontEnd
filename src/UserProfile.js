@@ -1,33 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import GoogleMaps from "simple-react-google-maps"
+import UserProfileForm from './UserProfileForm.js';
+
 
 class UserProfile extends Component {
+  state = {
+    displayUserProfileForm: false,
+  }
+
+  displayUserProfileForm = () => {
+    this.setState({
+      displayUserProfileForm: !this.state.displayUserProfileForm,
+    })
+  }
+
+
+  handleClick = (event) => {
+    event.preventDefault()
+    this.setState({
+      displayMusicians: !this.state.displayMusicians,
+    }, () => console.log(this.state))
+  }
 
   render() {
     return (
       <div className="user-profile">
-        <form>
-          <label htmlFor="instrument">Instrument:</label>
-          <select>
-            <option>choose your instrument</option>
-            <option>piano</option>
-            <option>violin</option>
-            <option>viola</option>
-            <option>cello</option>
-            <option>bass</option>
-            <option>flute</option>
-            <option>oboe</option>
-            <option>bassoon</option>
-            <option>clarinet</option>
-            <option>french Horn</option>
-            <option>trumpet</option>
-            <option>trombone</option>
-            <option>tuba</option>
-            <option>percussion</option>
-          </select><br/>
-          <input type="checkbox" id="interest" name="interest" value="interest" />
-          <label htmlFor="interest">Looking to find local musicians? </label>
-        </form>
+        <button onClick={this.displayUserProfileForm}>View profile</button>
+        {
+          this.state.displayUserProfileForm ?
+            <UserProfileForm />
+          :
+            null
+        }
       </div>
 
     )

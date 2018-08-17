@@ -65,8 +65,9 @@ class EventForm extends Component {
   }
 
 
+
   render() {
-    console.log(this.state);
+    console.log(this.props.selectedDate);
     return (
       <div className="event-form">
         <form onSubmit={this.handleSubmit}>

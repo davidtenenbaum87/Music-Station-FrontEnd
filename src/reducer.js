@@ -26,14 +26,8 @@ import { VIEW_COMMENTS_TOGGLE } from './types.js';
 import { CLEAR_COMMENT_FORM_FIELDS } from './types.js';
 import { REMOVE_COMMENT_FROM_USER_COMMENTS } from './types.js';
 import { ADD_NEW_COMMENT_TO_SCORE } from './types.js';
-
 import { ADD_NEW_MUSIC_SCORE } from './types.js';
 import { ADD_NEW_EVENT } from './types.js';
-
-
-
-
-
 
 const initialState = {
   title: "",
