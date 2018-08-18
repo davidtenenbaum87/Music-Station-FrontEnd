@@ -17,8 +17,6 @@ import {HANDLE_EVENT_START_TIME_CHANGE} from './types.js';
 import {HANDLE_EVENT_END_TIME_CHANGE} from './types.js';
 import {GET_CURRENT_USER_EVENTS} from './types.js';
 import {REMOVE_EVENT_FROM_USER_EVENTS} from './types.js';
-import {CHANGE_COMMENT_MEASURE_FIELD} from './types.js';
-import {CHANGE_COMMENT_DESCRIPTION_FIELD} from './types.js';
 import {GET_SCORE_COMMENTS} from './types.js';
 import {VIEW_VIDEOS_TOGGLE} from './types.js';
 import {VIEW_COMMENTS_TOGGLE} from './types.js';
@@ -46,7 +44,7 @@ export function handleMusicScoreUpload(file) {
   return { type: UPLOAD_MUSIC_SCORE, payload: file }
 }
 
-export function updateCurrentUserScores(scores) {
+export function getCurrentUserScores(scores) {
   return { type: UPDATE_CURRENT_USER_SCORES, payload: scores }
 }
 
@@ -122,14 +120,6 @@ export function removeEventFromUserEvents(eventId) {
   return { type: REMOVE_EVENT_FROM_USER_EVENTS, payload: eventId }
 }
 
-export function handleCommentMeasureChange(text) {
-  return { type: CHANGE_COMMENT_MEASURE_FIELD, payload: text }
-}
-
-export function handleCommentDescriptionChange(text) {
-  return { type: CHANGE_COMMENT_DESCRIPTION_FIELD, payload: text }
-}
-
 export function getCurrentScoreComments(comments) {
   return { type: GET_SCORE_COMMENTS, payload: comments }
 }
@@ -186,7 +176,7 @@ export function fetchGetMusicScores(userId) {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/users/${userId}`)
     .then(res => res.json())
-    .then(user => dispatch(updateCurrentUserScores(user.scores)))
+    .then(user => dispatch(getCurrentUserScores(user.scores)))
   }
 }
 
@@ -201,9 +191,12 @@ export function fetchPostMusicScore(score) {
   }
 }
 
+
+// Event GET/POST/PATCH Actions
 export function addNewEvent(new_event) {
   return { type: ADD_NEW_EVENT, payload: new_event }
 }
+
 
 export function fetchGetEvents(userId) {
   return (dispatch) => {
@@ -243,5 +236,6 @@ export function fetchPatchEvent(current_event, userId) {
       body: JSON.stringify(current_event)
     })
     .then(res => {if (res.ok) { return res.json()}})
+    
   }
 }

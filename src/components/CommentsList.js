@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Adapter from './apis/Adapter.js';
 import Comment from './Comment.js';
-import { getCurrentScoreComments, fetchGetScoreComments } from './actions.js';
+import { fetchGetScoreComments } from '../actions.js';
 
-class CommentsList extends React.Component {
+class CommentsList extends Component {
 
   componentDidMount() {
     this.props.fetchGetScoreComments(this.props.selectedScore.id)
@@ -12,7 +11,7 @@ class CommentsList extends React.Component {
 
   renderComments = () => {
     return this.props.score_comments.map(comment => {
-      return <Comment current_comment={comment}/>
+      return <Comment key={comment.id} current_comment={comment}/>
     })
   }
 
@@ -34,7 +33,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getCurrentScoreComments: (scores) => dispatch(getCurrentScoreComments(scores)),
     fetchGetScoreComments: (score_id) => dispatch(fetchGetScoreComments(score_id))
   }
 }

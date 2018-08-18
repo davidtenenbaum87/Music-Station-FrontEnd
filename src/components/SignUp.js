@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import Adapter from './apis/Adapter.js';
+import Adapter from '../apis/Adapter.js';
 
 class SignUp extends Component {
   state = {
@@ -22,25 +22,31 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="registration">
+      <div className="signup-form">
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="username">Username</label>
           <input
+            className="browser-default"
             type="text"
             name="username"
             placeholder="Username"
             onChange={this.handleChange}
             value={this.state.username}
-          />
+          /><br/>
           <label htmlFor="password">Password</label>
           <input
+            className="browser-default"
             type="password"
             name="password"
             placeholder="Password"
             onChange={this.handleChange}
             value={this.state.password}
+          /><br/>
+          <input
+            className="login-signup-button browser-default"
+            type="submit"
+            value="Sign-Up"
           />
-          <input type="submit" value="Register" />
         </form>
       </div>
     )

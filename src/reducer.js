@@ -51,8 +51,6 @@ const initialState = {
   event_start_time: "",
   event_end_time: "",
   current_user_events: [],
-  comment_measure: "",
-  comment_description: "",
   score_comments: [],
 }
 

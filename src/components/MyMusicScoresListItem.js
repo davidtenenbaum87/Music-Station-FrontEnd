@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import MusicScore from './MusicScore.js';
-import { removeScoreFromUserScores, toggleScoreDisplay, selectedClickedScore } from './actions.js';
+import { removeScoreFromUserScores, toggleScoreDisplay, selectedClickedScore } from '../actions.js';
 
 class MyMusicScoresListItem extends Component {
   state = {
@@ -26,14 +26,15 @@ class MyMusicScoresListItem extends Component {
 
   render() {
     return (
+      <div className="music-score-item">
+        <ul className="music-score-details">
+          <li key={this.props.score.id} id={this.props.score.id}>
+            {this.props.score.title} | {this.props.score.composer} |
+            <button onClick={this.handleViewClick}>view</button> |
+            <button id={this.props.score.id} value="delete" onClick={this.removeScoreFromUserScores}>delete</button>
+          </li>
+        </ul>
       <div>
-      <ul className="music-score-item">
-        <li key={this.props.score.id} id={this.props.score.id}>
-          {this.props.score.title} | {this.props.score.composer} |
-          <button onClick={this.handleViewClick}>view</button> |
-          <button id={this.props.score.id} value="delete" onClick={this.removeScoreFromUserScores}>delete</button>
-        </li>
-      </ul>
       {
         this.state.viewMusicScore ?
         <MusicScore />
@@ -41,6 +42,7 @@ class MyMusicScoresListItem extends Component {
         null
       }
     </div>
+  </div>
     );
   }
 }

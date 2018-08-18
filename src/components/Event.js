@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import moment from 'moment';
-import { removeEventFromUserEvents } from './actions.js';
+import { removeEventFromUserEvents } from '../actions.js';
 
 class Event extends Component {
 

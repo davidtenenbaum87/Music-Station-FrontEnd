@@ -33,7 +33,7 @@ class Tuner extends Component {
     render() {
       // Pass the same instance of AudioContext that played an empty buffer to <Tone />
       return (
-        <div>
+        <div className="tuner">
           <select onChange={this.handleFrequencyChange}>
             <option>pitch</option>
             <option value="440">A 440</option>
@@ -57,7 +57,7 @@ class Tuner extends Component {
             <button onClick={this.handleClick}> Stop </button>
             <Tone
               audioContext={this.audioContext}
-              play='true'
+              play={true}
               frequency={this.state.frequency}
               volume={0.9}
               length={50}

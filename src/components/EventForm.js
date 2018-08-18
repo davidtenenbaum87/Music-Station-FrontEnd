@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import TimeField from 'react-simple-timefield';
-import { fetchPostEvent, fetchPatchEvent } from './actions.js';
+import { fetchPostEvent, fetchPatchEvent } from '../actions.js';
 
 class EventForm extends Component {
 

@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import YouTubeVideosList from './YouTubeVideosList.js';
 import CommentsList from './CommentsList.js';
 import CommentForm from './CommentForm.js';
-import { toggleVideosDisplay, toggleCommentsDisplay } from './actions.js';
-import Metronome from './Metronome.js';
-import Tuner from './Tuner.js';
+import { toggleVideosDisplay, toggleCommentsDisplay } from '../actions.js';
+
 
 class MusicScore extends Component {
   state = {
@@ -49,20 +48,15 @@ class MusicScore extends Component {
     }
   }
 
-  handleCommentsInput = () => {
-    const comment = prompt(`add a comment to: ${this.props.selectedScore.title}`)
-  }
-
   render() {
       return (
-        <div className="music-score-display">
+        <div className="music-score-pdf">
           <div className="music-score">
             {this.displayScore()}
           </div>
           <a onClick={this.props.toggleCommentsDisplay}><i className="material-icons">comments</i>comments</a>
           <a onClick={this.props.toggleVideosDisplay}><i className="material-icons">music_video</i>watch videos</a>
-          <Metronome />
-          <Tuner />
+
           { this.props.commentsDisplay ?
             <Fragment>
               <CommentForm />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import GoogleMaps from "simple-react-google-maps"
+// import GoogleMaps from "simple-react-google-maps"
 import UserProfileForm from './UserProfileForm.js';
 
 

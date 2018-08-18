@@ -1,7 +1,5 @@
 import { BadTokenError } from '../error.js';
 
-const API = 'http://localhost:3000';
-
 export default class Adapter {
   static getToken() {
     return localStorage.getItem('token');
@@ -55,5 +53,4 @@ export default class Adapter {
       })
       .then(res => res.json())
   }
-
 }

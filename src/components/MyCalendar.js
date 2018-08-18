@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DayPicker from 'react-day-picker';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
+// import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import { selectedClickedDate } from './actions.js';
-import EventForm from './EventForm.js';
-import EventsList from './EventsList.js';
-import moment from 'moment';
+import { selectedClickedDate } from '../actions.js';
+import EventForm from '../components/EventForm.js';
+import EventsList from '../components/EventsList.js';
 
 class MyCalendar extends Component {
 

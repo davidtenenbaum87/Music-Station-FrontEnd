@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Adapter from './apis/Adapter.js';
-import { removeCommentFromUserComments, toggleCommentsDisplay } from './actions.js';
+import { removeCommentFromUserComments } from '../actions.js';
 
-
-class CommentsList extends React.Component {
+class CommentsList extends Component {
 
   handleClick = () => {
     fetch(`http://localhost:3000/api/v1/comments/${this.props.current_comment.id}`, {
@@ -16,8 +14,8 @@ class CommentsList extends React.Component {
   render() {
     return (
       <div className="comment">
-        @: {this.props.current_comment.measure} |
-        Description: {this.props.current_comment.description} |
+        Measure #: {this.props.current_comment.measure} |
+        Description: {this.props.current_comment.description}
         <button onClick={this.handleClick}>Delete</button>
       </div>
     )

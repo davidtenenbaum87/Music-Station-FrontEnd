@@ -2,14 +2,13 @@ import React, { Component, Fragment } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
-import MyMusicScoresList from './MyMusicScoresList.js';
-import MusicScore from './MusicScore.js';
-import NavBar from './NavBar.js';
-import Login from './Login.js';
-import SignUp from './SignUp.js';
-import MyCalendar from './MyCalendar.js';
-import UserProfile from './UserProfile.js';
-import EventForm from './EventForm.js';
+import MyMusicScoresList from './components//MyMusicScoresList.js';
+import NavBar from './components/NavBar.js';
+import Login from './components/Login.js';
+import SignUp from './components/SignUp.js';
+import MyCalendar from './components/MyCalendar.js';
+import Welcome from './components/Welcome.js';
+import EventForm from './components/EventForm.js';
 import Adapter from './apis/Adapter.js';
 
 import { setCurrentUser, fetchGetMusicScores, fetchGetEvents } from './actions.js';
@@ -25,13 +24,13 @@ class App extends Component {
      })
      .catch(err => {
 			Adapter.deleteToken();
-			this.props.history.push('/login');
+			this.props.history.push('/welcome');
 		})
   }
 
   render() {
-    console.log('app', this.props.current_user_events);
     return (
+
       <div className="App">
         <NavBar />
           <Fragment>
@@ -40,7 +39,6 @@ class App extends Component {
                 <Switch>
                   <Route exact path='/mymusic' render={() => <MyMusicScoresList />} />
                   <Route exact path='/myschedule' render={() => <MyCalendar />} />
-                  <Route exact path='/myprofile' render={() => <UserProfile />} />
                   <Route path="/events/:id/edit" render={(routerProps) => {
   								let id = routerProps.match.params.id
   								let foundEvent = this.props.current_user_events.find((r) => r.id === parseInt(id, 10))
@@ -49,8 +47,9 @@ class App extends Component {
                 </Switch>
               :
                 <Switch>
-                  <Route exact path='/login' render={() => <Login />} />
-                  <Route exact path='/signup' render={() => <SignUp />} />
+                  <Route exact path='/welcome' render={() => <Welcome />} />
+                  <Route exact path='/login' render={() => <Welcome/>} />
+                  <Route exact path='/signup' render={() => <Welcome />} />
                 </Switch>
             }
           </Fragment>
@@ -61,9 +60,6 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    username: state.username,
-    userId: state.userId,
-    current_user_scores: state.current_user_scores,
     current_user_events: state.current_user_events,
   }
 }

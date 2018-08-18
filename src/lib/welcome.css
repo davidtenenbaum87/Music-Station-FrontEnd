@@ -1,0 +1,26 @@
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-login-signup-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-login-signup-buttons a {
+  margin: 25px 25px 15px 15px;
+  text-decoration-line: none;
+  font-size: 20px;
+}
+
+.login-signup {
+  display: flex;
+  justify-content: center;
+  text-align: right;
+}
+
+.login-signup-button {
+  display: flex;
+  justify-content: center;
+}

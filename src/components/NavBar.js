@@ -1,13 +1,18 @@
 import React, { Component, Fragment } from 'react'
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutCurrentUser } from './actions.js';
-import Adapter from './apis/Adapter.js';
+import { logoutCurrentUser } from '../actions.js';
+import Adapter from '../apis/Adapter.js';
+import '../lib/navbar.css';
 
 class Navbar extends Component {
   handleLogout = () => {
     Adapter.deleteToken();
     this.props.logoutUser();
+  }
+
+  capitalizeUsername = () => {
+    return (this.props.username.charAt(0).toUpperCase() + this.props.username.slice(1))
   }
 
   render(){
@@ -16,16 +21,16 @@ class Navbar extends Component {
         {
           this.props.userId ?
           <Fragment>
-            <h4>Welcome {this.props.username}</h4>
-            <NavLink to="/login" onClick={this.handleLogout}>Logout</NavLink>
-            <NavLink to="/myschedule">schedule</NavLink>
-            <NavLink to="/mymusic">mymusic</NavLink>
-            <NavLink to="/myprofile">myprofile</NavLink>
+            <h4 className="navbar-header-welcome-name">Welcome, {this.capitalizeUsername()}</h4>
+            <div className="navbar-links">
+              <NavLink to="/mymusic">MyMusic</NavLink>
+              <NavLink to="/myschedule">Schedule</NavLink>
+              <NavLink to="/welcome" onClick={this.handleLogout}>Logout</NavLink>
+            </div>
           </Fragment>
           :
           <Fragment>
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/signup">SignUp</NavLink>
+            <h3 className="navbar-header">Music Station</h3>
           </Fragment>
         }
       </div>

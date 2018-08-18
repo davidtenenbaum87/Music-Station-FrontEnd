@@ -1,121 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-image: linear-gradient(to left, #e6c9f6, #ffffff);
+}
+
 .App {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  border: 1px solid black;
 }
-
-.form-and-list {
-  display: flex;
-}
-
-.my-music-scores-list {
-  border: 1px solid black;
-  margin: 5px;
-}
-
-.music-upload-form {
-  /* text-align: center; */
-  border: 1px solid black;
-  margin: 5px;
-}
-
-.music-score-item {
-  border: 1px solid black;
-  margin: 5px;
-}
-
-.music-score-display {
-  border: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-}
-
-.navbar {
-  border: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.music-score {
-  border: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-}
-
-.youtube-videos-list {
-  border: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.react-calendar {
-  background-color: pink;
-  border: 1px solid black;
-}
-
-.calendar {
-  border: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-}
-
-.events-list {
-  border: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-}
-
-.event-item {
-  border: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-}
-
-.event-form {
-  border: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-}
-
-a {
-  border: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-}
-
-#map {
-  border-radius: 25px;
-}
-
-a:hover
-{
- cursor: pointer;
-}
-
-ul {
-  list-style: none;
-}
-
-
-/* input {
-  float: right;
-  clear: both;
-}
-
-label {
-  float: left;
-  clear: both;
-} */

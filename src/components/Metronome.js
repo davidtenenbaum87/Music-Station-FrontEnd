@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-// import './Metronome.css';
-
 import metro1 from './metro1.wav';
 import metro2 from './metro2.wav';
 
 class Metronome extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       playing: false,
       count: 0,
@@ -20,12 +17,12 @@ class Metronome extends Component {
   }
 
 
-  handleBpmChange = event => {
+  handleBpmChange = (event) => {
     const bpm = event.target.value;
     this.setState({ bpm });
   }
 
-  handleBPMeasureChange = event => {
+  handleBPMeasureChange = (event) => {
     const beatsPerMeasure = event.target.value;
     this.setState({ beatsPerMeasure })
   }
@@ -40,68 +37,61 @@ class Metronome extends Component {
     } else {
       // Start a timer with the current BPM
       this.timer = setInterval(this.playClick, (60 / this.state.bpm) * 1000);
-
       this.setState({
         count: 0,
         playing: true,
-
         // Play a click "immediately" (after setState finishes)
       }, this.playClick);
     }
   }
 
-playClick = () => {
-  const { count, beatsPerMeasure } = this.state;
+  playClick = () => {
+    const { count, beatsPerMeasure } = this.state;
 
-  // The first beat will have a different sound than the others
-  if(count % beatsPerMeasure === 0) {
-    this.click2.play();
-  } else {
-    this.click1.play();
+    // The first beat will have a different sound than the others
+    if(count % beatsPerMeasure === 0) {
+      this.click2.play();
+    } else {
+      this.click1.play();
   }
 
   // Keep track of which beat we're on
   this.setState(state => ({
     count: (state.count + 1) % state.beatsPerMeasure
   }));
-}
+  }
 
 
-   render() {
-     const { playing, bpm, beatsPerMeasure, displayBeat } = this.state;
+  render() {
+    const { playing, bpm, beatsPerMeasure } = this.state;
+    return (
+      <div className="metronome">
+        <div className="bpm-slider">
+        <div>Beats Per Measure</div>
+          <input
+            type="number"
+            min="0"
+            max="8"
+            value={beatsPerMeasure}
+            onChange={this.handleBPMeasureChange}
+          />
+          <div>{bpm} BPM</div>
+          <input
+            type="range"
+            min="40"
+            max="218"
+            value={bpm}
+            onChange={this.handleBpmChange}
+          />
+        </div>
 
-     return (
-       <div className="metronome">
-         <div className="bpm-slider">
-           <div>Beats Per Measure</div>
-           <input
-             type="number"
-             min="0"
-             max="8"
-             value={beatsPerMeasure}
-             onChange={this.handleBPMeasureChange}/>
-           <div>{bpm} BPM</div>
-
-           <input
-             type="range"
-             min="40"
-             max="218"
-             value={bpm}
-             onChange={this.handleBpmChange} />
-         </div>
-
-         {/* Add the onClick handler: */}
-         <button onClick={this.startStop}>
-           { playing ?
-             'Off'
-             :
-             'On'
-
-           }
-         </button>
-       </div>
-     );
-   }
+        {/* Add the onClick handler: */}
+        <button onClick={this.startStop}>
+        { playing ? 'Off' : 'On' }
+        </button>
+      </div>
+    );
+  }
 }
 
 export default Metronome;

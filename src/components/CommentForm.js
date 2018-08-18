@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
-import { handleCommentMeasureChange, handleCommentDescriptionChange, clearCommentsFormFields, addNewCommentToScore, fetchPostScoreComments } from './actions.js';
-import Adapter from './apis/Adapter.js';
-import CommentsList from './CommentsList.js';
+import { fetchPostScoreComments } from '../actions.js';
 
 const customStyles = {
   content : {
@@ -16,12 +14,14 @@ const customStyles = {
   }
 };
 
-class CommentForm extends React.Component {
+class CommentForm extends Component {
   constructor() {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      measure: "",
+      description: "",
     };
 
     this.openModal = this.openModal.bind(this);
@@ -37,11 +37,21 @@ class CommentForm extends React.Component {
     this.subtitle.style.color = '#f00';
   }
 
-  closeModal() {
-    this.setState({modalIsOpen: false});
+  closeModal(event) {
+    event.preventDefault()
 
-    this.props.fetchPostScoreComments(this.props.comment_measure, this.props.comment_description, this.props.selectedScore.id)
-    this.props.clearCommentsFormFields()
+    this.props.fetchPostScoreComments(this.state.measure, this.state.description, this.props.selectedScore.id)
+    this.setState({
+      modalIsOpen: false,
+      measure: "",
+      description: "",
+    })
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
   }
 
   render() {
@@ -56,21 +66,23 @@ class CommentForm extends React.Component {
           contentLabel="Example Modal"
         >
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Piece: {this.props.selectedScore.title}</h2>
-          <form>
-            <label htmlFor="measure">measure no:</label><br/>
-            <input
-              type="text"
-              value={this.props.comment_measure}
-              onChange={this.props.handleCommentMeasureChange}
-            /><br/>
+        <h2 ref={subtitle => this.subtitle = subtitle}>Piece: {this.props.selectedScore.title}</h2>
+        <form>
+          <label htmlFor="measure">measure no:</label><br/>
+          <input
+            type="text"
+            name="measure"
+            value={this.state.measure}
+            onChange={this.handleChange}
+          /><br/>
             <label htmlFor="description">description:</label><br/>
             <textarea
               name="message"
               rows="10"
               cols="30"
-              value={this.props.comment_description}
-              onChange={this.props.handleCommentDescriptionChange}
+              name="description"
+              value={this.state.description}
+              onChange={this.handleChange}
               ></textarea><br/>
           </form>
           <button onClick={this.closeModal}>Add Comment</button>
@@ -83,18 +95,11 @@ class CommentForm extends React.Component {
 function mapStateToProps(state) {
   return {
     selectedScore: state.selectedScore,
-    comment_measure: state.comment_measure,
-    comment_description: state.comment_description,
-    score_comments: state.score_comments,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleCommentMeasureChange: (event) => dispatch(handleCommentMeasureChange(event.target.value)),
-    handleCommentDescriptionChange: (event) => dispatch(handleCommentDescriptionChange(event.target.value)),
-    clearCommentsFormFields: () => dispatch(clearCommentsFormFields()),
-    addNewCommentToScore: (comment) => dispatch(addNewCommentToScore(comment)),
     fetchPostScoreComments: (comment_measure, comment_description, score_id) => dispatch(fetchPostScoreComments(comment_measure, comment_description, score_id))
   }
 }

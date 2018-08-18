@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setCurrentUser, updateCurrentUserScores, getCurrentUserEvents } from './actions.js';
-import { BadTokenError } from './error.js';
-import Adapter from './apis/Adapter.js';
+import { setCurrentUser, fetchGetMusicScores, fetchGetEvents } from '../actions.js';
+import Adapter from '../apis/Adapter.js';
 
 class Login extends Component {
   state = {
@@ -26,33 +25,39 @@ class Login extends Component {
 
   handleLoginState = (json) => {
     localStorage.setItem('token', json.token);
-    this.props.setUserIdandName(json.id, json.username);
-    this.props.setUserScores(json.scores);
-    this.props.getCurrentUserEvents(json.events);
+    this.props.setCurrentUser(json.id, json.username);
+    this.props.fetchGetMusicScores(json.id);
+    this.props.fetchGetEvents(json.id);
     this.props.history.push('/mymusic')
   }
 
   render() {
     return (
-      <div className="login">
+      <div className="login-form">
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="username">Username</label>
           <input
+            className="browser-default"
             type="text"
             name="username"
             placeholder="Username"
             onChange={this.handleChange}
             value={this.state.username}
-          />
+          /><br/>
           <label htmlFor="password">Password</label>
           <input
+            className="browser-default"
             type="password"
             name="password"
             placeholder="Password"
             onChange={this.handleChange}
             value={this.state.password}
+          /><br/>
+          <input
+            className="login-signup-button browser-default"
+            type="submit"
+            value="Login"
           />
-          <input type="submit" value="Login" />
         </form>
       </div>
     )
@@ -63,15 +68,14 @@ function mapStateToProps(state) {
   return {
     userId: state.userId,
     username: state.username,
-    current_user_scores: state.current_user_scores,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setUserIdandName: (userId, username) => dispatch(setCurrentUser(userId, username)),
-    setUserScores: (scores) => dispatch(updateCurrentUserScores(scores)),
-    getCurrentUserEvents: (events) => dispatch(getCurrentUserEvents(events)),
+    setCurrentUser: (userId, username) => dispatch(setCurrentUser(userId, username)),
+    fetchGetMusicScores: (userId) => dispatch(fetchGetMusicScores(userId)),
+    fetchGetEvents: (userId) => dispatch(fetchGetEvents(userId)),
   }
 }
 

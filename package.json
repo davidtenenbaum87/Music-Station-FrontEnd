@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animate.css": "^3.7.0",
+    "hover.css": "^2.3.2",
     "moment": "^2.22.2",
     "react": "^16.4.2",
     "react-calendar": "^2.16.1",

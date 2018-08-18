@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { handleTitleChange, handleComposerChange, handleInstrumentationChange, handleMusicScoreUpload, displayEventForm, fetchGetMusicScores, fetchPostMusicScore } from './actions.js';
+import { handleTitleChange, handleComposerChange, handleInstrumentationChange, handleMusicScoreUpload, fetchPostMusicScore } from '../actions.js';
 
 class MusicUploadForm extends Component {
 
@@ -16,12 +16,6 @@ class MusicUploadForm extends Component {
     formData.append('music_score', this.props.music_score);
 
     this.props.fetchPostMusicScore(formData)
-    // fetch("http://localhost:3000/api/v1/scores", {
-    //   method: 'POST',
-    //   body: formData
-    // })
-    // .then(res => {if (res.ok) { return res.json()}})
-    // .then(res => this.handlePush())
   }
 
   render () {
