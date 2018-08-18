@@ -27,3 +27,33 @@
   display: flex;
   flex-direction: column;
 }
+
+.music-scores-list-and-file {
+  display: flex;
+  flex-direction: row;
+}
+
+.music-scores-list {
+  margin: 5px;
+}
+
+.music-score-file {
+  margin: 5px;
+}
+
+.music-score iframe {
+  border-radius: 25px;
+  border: 1px solid #d100d2;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 800px;
+  height: 800px;
+}
+
+.youtube-videos-list {
+  max-width:980px; overflow-x: scroll; white-space: nowrap;
+}
+
+.youtube-videos-list iframe {
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

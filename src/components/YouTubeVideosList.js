@@ -10,7 +10,7 @@ class YouTubeVideosList extends Component {
 
   componentDidMount() {
     var opts: youtubeSearch.YouTubeSearchOptions = {
-      maxResults: 10,
+      maxResults: 20,
       key: "AIzaSyC6LK03UaFIQ4YAn8pwt1tWTevHzQbo0Ak"
     };
 

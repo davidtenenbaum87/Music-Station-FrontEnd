@@ -14,8 +14,9 @@ class CommentsList extends Component {
   render() {
     return (
       <div className="comment">
-        Measure #: {this.props.current_comment.measure} |
-        Description: {this.props.current_comment.description}
+        <p>Page #: {this.props.current_comment.page}</p>
+        <p>Measure #: {this.props.current_comment.measure}</p>
+        <p>Description: {this.props.current_comment.description}</p>
         <button onClick={this.handleClick}>Delete</button>
       </div>
     )

@@ -35,7 +35,7 @@ class Login extends Component {
     return (
       <div className="login-form">
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Username: </label>
           <input
             className="browser-default"
             type="text"
@@ -43,8 +43,9 @@ class Login extends Component {
             placeholder="Username"
             onChange={this.handleChange}
             value={this.state.username}
+            required
           /><br/>
-          <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password: </label>
           <input
             className="browser-default"
             type="password"
@@ -52,6 +53,7 @@ class Login extends Component {
             placeholder="Password"
             onChange={this.handleChange}
             value={this.state.password}
+            required
           /><br/>
           <input
             className="login-signup-button browser-default"

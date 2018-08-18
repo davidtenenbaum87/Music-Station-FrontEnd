@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import MusicScore from './MusicScore.js';
-import { removeScoreFromUserScores, toggleScoreDisplay, selectedClickedScore } from '../actions.js';
+import { removeScoreFromUserScores, displayMusicScore, selectedClickedScore } from '../actions.js';
 
 class MyMusicScoresListItem extends Component {
-  state = {
-    viewMusicScore: false,
-  }
+  // state = {
+  //   viewMusicScore: false,
+  // }
 
   handleViewClick = (event) => {
-    this.props.viewScoreToggle()
+    this.props.displayMusicScore()
     this.props.currentScore(this.props.score)
-    this.setState({
-      viewMusicScore: !this.state.viewMusicScore,
-    })
+    // this.setState({
+    //   viewMusicScore: !this.state.viewMusicScore,
+    // })
   }
 
   removeScoreFromUserScores = (event) => {
@@ -34,23 +34,21 @@ class MyMusicScoresListItem extends Component {
             <button id={this.props.score.id} value="delete" onClick={this.removeScoreFromUserScores}>delete</button>
           </li>
         </ul>
-      <div>
-      {
-        this.state.viewMusicScore ?
-        <MusicScore />
-        :
-        null
-      }
-    </div>
-  </div>
+      </div>
     );
   }
 }
+// {
+//   this.props.viewMusicScore ?
+//   <MusicScore />
+//   :
+//   null
+// }
 
 function mapStateToProps(state) {
   return {
     current_user_scores: state.current_user_scores,
-    musicScoreDisplay: state.musicScoreDisplay,
+    viewMusicScore: state.viewMusicScore,
     selectedScore: state.selectedScore,
   }
 }
@@ -58,7 +56,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     removeScoreFromScores: (scoreId) => dispatch(removeScoreFromUserScores(scoreId)),
-    viewScoreToggle: () => dispatch(toggleScoreDisplay()),
+    displayMusicScore: () => dispatch(displayMusicScore()),
     currentScore: (score) => dispatch(selectedClickedScore(score)),
   }
 }

@@ -20,6 +20,7 @@ class CommentForm extends Component {
 
     this.state = {
       modalIsOpen: false,
+      page: "",
       measure: "",
       description: "",
     };
@@ -39,10 +40,17 @@ class CommentForm extends Component {
 
   closeModal(event) {
     event.preventDefault()
+    let comment = {
+      page: this.state.page,
+      measure: this.state.measure,
+      description: this.state.description,
+      score_id: this.props.selectedScore.id
+    }
 
-    this.props.fetchPostScoreComments(this.state.measure, this.state.description, this.props.selectedScore.id)
+    this.props.fetchPostScoreComments(comment)
     this.setState({
       modalIsOpen: false,
+      page: "",
       measure: "",
       description: "",
     })
@@ -51,10 +59,11 @@ class CommentForm extends Component {
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
-    })
+    }, () => console.log(this.state))
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <button onClick={this.openModal}>Add Comment</button>
@@ -68,7 +77,15 @@ class CommentForm extends Component {
 
         <h2 ref={subtitle => this.subtitle = subtitle}>Piece: {this.props.selectedScore.title}</h2>
         <form>
-          <label htmlFor="measure">measure no:</label><br/>
+          <label htmlFor="page">Page #:</label><br/>
+          <input
+            type="number"
+            name="page"
+            min="0"
+            value={this.state.page}
+            onChange={this.handleChange}
+          /><br/>
+        <label htmlFor="measure">measure #:</label><br/>
           <input
             type="text"
             name="measure"

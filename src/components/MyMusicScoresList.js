@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getCurrentUserScores, toggleMusicFormDisplay, fetchGetMusicScores } from '../actions.js';
 import MyMusicScoresListItem from './MyMusicScoresListItem.js';
 import MusicUploadForm from './MusicUploadForm.js';
+import MusicScore from './MusicScore';
 import Metronome from './Metronome.js';
 import Tuner from './Tuner.js';
 import '../lib/music.css'
@@ -40,11 +41,13 @@ class MyMusicScoresList extends Component {
   render() {
     return (
       <div className="music-scores-container">
-        <h1>My Music</h1>
-        <div className="upload-metronome-tuner-buttons">
-          <button onClick={this.props.toggleMusicFormDisplay}>Add music</button>
-          <button onClick={this.displayMetronome}>Metronome</button>
-          <button onClick={this.displayTuner}>Tuner</button>
+        <div className="music-scores-container-header-form-metronome-tuner">
+          <h1>My Music</h1>
+          <div className="upload-metronome-tuner-buttons">
+            <button onClick={this.props.toggleMusicFormDisplay}>Add music</button>
+            <button onClick={this.displayMetronome}>Metronome</button>
+            <button onClick={this.displayTuner}>Tuner</button>
+          </div>
         </div>
         { this.state.displayMetronome ? <Metronome /> : null }
         { this.state.displayTuner ? <Tuner /> : null }
@@ -55,8 +58,18 @@ class MyMusicScoresList extends Component {
           :
             null
         }
-        <div className="music-scores-list">
-          {this.renderScores()}
+        <div className="music-scores-list-and-file">
+          <div className="music-scores-list">
+            {this.renderScores()}
+          </div>
+          <div className="music-score-file">
+            {
+              this.props.viewMusicScore ?
+              <MusicScore />
+              :
+              null
+            }
+          </div>
         </div>
       </div>
     );
@@ -67,7 +80,8 @@ function mapStateToProps(state) {
   return {
     userId: state.userId,
     current_user_scores: state.current_user_scores,
-    musicUploadFormDisplay: state.musicUploadFormDisplay
+    musicUploadFormDisplay: state.musicUploadFormDisplay,
+    viewMusicScore: state.viewMusicScore,
   }
 }
 

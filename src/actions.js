@@ -4,17 +4,17 @@ import {CHANGE_INSTRUMENTATION_FIELD} from './types.js';
 import {UPLOAD_MUSIC_SCORE} from './types.js';
 import {UPDATE_CURRENT_USER_SCORES} from './types.js';
 import {REMOVE_SCORE_FROM_USER_SCORES} from './types.js';
-import {VIEW_SCORE_TOGGLE} from './types.js';
+import {DISPLAY_MUSIC_SCORE} from './types.js';
 import {CLICKED_SCORE} from './types.js';
 import {SET_CURRENT_USER} from './types.js';
 import {LOGOUT_CURRENT_USER} from './types.js';
 import {SELECTED_DATE} from './types.js';
 import {DISPLAY_EVENT_FORM} from './types.js';
-import {HANDLE_EVENT_TITLE_CHANGE} from './types.js';
-import {HANDLE_EVENT_DESCRIPTION_CHANGE} from './types.js';
-import {HANDLE_EVENT_DATE_CHANGE} from './types.js';
-import {HANDLE_EVENT_START_TIME_CHANGE} from './types.js';
-import {HANDLE_EVENT_END_TIME_CHANGE} from './types.js';
+// import {HANDLE_EVENT_TITLE_CHANGE} from './types.js';
+// import {HANDLE_EVENT_DESCRIPTION_CHANGE} from './types.js';
+// import {HANDLE_EVENT_DATE_CHANGE} from './types.js';
+// import {HANDLE_EVENT_START_TIME_CHANGE} from './types.js';
+// import {HANDLE_EVENT_END_TIME_CHANGE} from './types.js';
 import {GET_CURRENT_USER_EVENTS} from './types.js';
 import {REMOVE_EVENT_FROM_USER_EVENTS} from './types.js';
 import {GET_SCORE_COMMENTS} from './types.js';
@@ -60,8 +60,8 @@ export function toggleMusicFormDisplay() {
   return { type: MUSIC_UPLOAD_FORM_TOGGLE }
 }
 
-export function toggleScoreDisplay() {
-  return { type: VIEW_SCORE_TOGGLE }
+export function displayMusicScore() {
+  return { type: DISPLAY_MUSIC_SCORE }
 }
 
 export function toggleVideosDisplay() {
@@ -92,25 +92,25 @@ export function displayEventForm() {
   return { type: DISPLAY_EVENT_FORM }
 }
 
-export function handleEventTitleChange(text) {
-  return { type: HANDLE_EVENT_TITLE_CHANGE, payload: text }
-}
-
-export function handleEventDescriptionChange(text) {
-  return { type: HANDLE_EVENT_DESCRIPTION_CHANGE, payload: text }
-}
-
-export function handleEventDateChange(date) {
-  return { type: HANDLE_EVENT_DATE_CHANGE, payload: date }
-}
-
-export function handleEventStartTimeChange(text) {
-  return { type: HANDLE_EVENT_START_TIME_CHANGE, payload: text }
-}
-
-export function handleEventEndTimeChange(text) {
-  return { type: HANDLE_EVENT_END_TIME_CHANGE, payload: text }
-}
+// export function handleEventTitleChange(text) {
+//   return { type: HANDLE_EVENT_TITLE_CHANGE, payload: text }
+// }
+//
+// export function handleEventDescriptionChange(text) {
+//   return { type: HANDLE_EVENT_DESCRIPTION_CHANGE, payload: text }
+// }
+//
+// export function handleEventDateChange(date) {
+//   return { type: HANDLE_EVENT_DATE_CHANGE, payload: date }
+// }
+//
+// export function handleEventStartTimeChange(text) {
+//   return { type: HANDLE_EVENT_START_TIME_CHANGE, payload: text }
+// }
+//
+// export function handleEventEndTimeChange(text) {
+//   return { type: HANDLE_EVENT_END_TIME_CHANGE, payload: text }
+// }
 
 export function getCurrentUserEvents(events) {
   return { type: GET_CURRENT_USER_EVENTS, payload: events }
@@ -147,14 +147,15 @@ export function fetchGetScoreComments(score_id) {
   }
 }
 
-export function fetchPostScoreComments(comment_measure, comment_description, score_id) {
+export function fetchPostScoreComments(comment) {
+  debugger;
     return (dispatch) => {
       return fetch("http://localhost:3000/api/v1/comments", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ measure: comment_measure, description: comment_description, score_id: score_id })
+        body: JSON.stringify(comment)
       })
         .then(res => {
             if (!res.ok) {
@@ -236,6 +237,6 @@ export function fetchPatchEvent(current_event, userId) {
       body: JSON.stringify(current_event)
     })
     .then(res => {if (res.ok) { return res.json()}})
-    
+
   }
 }

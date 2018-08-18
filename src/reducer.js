@@ -4,17 +4,17 @@ import { CHANGE_INSTRUMENTATION_FIELD } from './types.js';
 import { UPLOAD_MUSIC_SCORE } from './types.js';
 import { UPDATE_CURRENT_USER_SCORES } from './types.js';
 import { REMOVE_SCORE_FROM_USER_SCORES } from './types.js';
-import { VIEW_SCORE_TOGGLE } from './types.js';
+import { DISPLAY_MUSIC_SCORE } from './types.js';
 import { CLICKED_SCORE } from './types.js';
 import { SET_CURRENT_USER } from './types.js';
 import { LOGOUT_CURRENT_USER } from './types.js';
 import { SELECTED_DATE } from './types.js';
 import { DISPLAY_EVENT_FORM } from './types.js';
-import { HANDLE_EVENT_TITLE_CHANGE } from './types.js';
-import { HANDLE_EVENT_DESCRIPTION_CHANGE } from './types.js';
-import { HANDLE_EVENT_DATE_CHANGE } from './types.js';
-import { HANDLE_EVENT_START_TIME_CHANGE } from './types.js';
-import { HANDLE_EVENT_END_TIME_CHANGE } from './types.js';
+// import { HANDLE_EVENT_TITLE_CHANGE } from './types.js';
+// import { HANDLE_EVENT_DESCRIPTION_CHANGE } from './types.js';
+// import { HANDLE_EVENT_DATE_CHANGE } from './types.js';
+// import { HANDLE_EVENT_START_TIME_CHANGE } from './types.js';
+// import { HANDLE_EVENT_END_TIME_CHANGE } from './types.js';
 import { GET_CURRENT_USER_EVENTS } from './types.js';
 import { REMOVE_EVENT_FROM_USER_EVENTS } from './types.js';
 import { CHANGE_COMMENT_MEASURE_FIELD } from './types.js';
@@ -38,18 +38,18 @@ const initialState = {
   username: "",
   current_user_scores: [],
   musicUploadFormDisplay: false,
-  musicScoreDisplay: false,
+  viewMusicScore: false,
   videosDisplay: false,
   commentsDisplay: false,
 
   selectedScore: null,
   selectedDate: new Date(),
   eventFormOn: false,
-  event_title: "",
-  event_description: "",
-  event_date: null,
-  event_start_time: "",
-  event_end_time: "",
+  // event_title: "",
+  // event_description: "",
+  // event_date: null,
+  // event_start_time: "",
+  // event_end_time: "",
   current_user_events: [],
   score_comments: [],
 }
@@ -71,8 +71,8 @@ export default function reducer(state = initialState, action) {
         return score.id !== action.payload
       })
       return { ...state, current_user_scores: updated_scores }
-    case VIEW_SCORE_TOGGLE:
-      return { ...state, musicScoreDisplay: !state.musicScoreDisplay }
+    case DISPLAY_MUSIC_SCORE:
+      return { ...state, viewMusicScore: !state.viewMusicScore }
     case VIEW_VIDEOS_TOGGLE:
       return { ...state, videosDisplay: !state.videosDisplay }
     case VIEW_COMMENTS_TOGGLE:
@@ -95,27 +95,27 @@ export default function reducer(state = initialState, action) {
         selectedScore: null,
         selectedDate: null,
         eventFormOn: false,
-        event_title: "",
-        event_description: "",
-        event_date: "",
-        event_start_time: "",
-        event_end_time: "",
+        // event_title: "",
+        // event_description: "",
+        // event_date: "",
+        // event_start_time: "",
+        // event_end_time: "",
         current_user_events: null,
       };
     case SELECTED_DATE:
       return { ...state, selectedDate: action.payload };
     case DISPLAY_EVENT_FORM:
       return { ...state, eventFormOn: !state.eventFormOn };
-    case HANDLE_EVENT_TITLE_CHANGE:
-      return { ...state, event_title: action.payload };
-    case HANDLE_EVENT_DESCRIPTION_CHANGE:
-      return { ...state, event_description: action.payload };
-    case HANDLE_EVENT_DATE_CHANGE:
-      return { ...state, event_date: action.payload };
-    case HANDLE_EVENT_START_TIME_CHANGE:
-      return { ...state, event_start_time: action.payload };
-    case HANDLE_EVENT_END_TIME_CHANGE:
-      return { ...state, event_end_time: action.payload };
+    // case HANDLE_EVENT_TITLE_CHANGE:
+    //   return { ...state, event_title: action.payload };
+    // case HANDLE_EVENT_DESCRIPTION_CHANGE:
+    //   return { ...state, event_description: action.payload };
+    // case HANDLE_EVENT_DATE_CHANGE:
+    //   return { ...state, event_date: action.payload };
+    // case HANDLE_EVENT_START_TIME_CHANGE:
+    //   return { ...state, event_start_time: action.payload };
+    // case HANDLE_EVENT_END_TIME_CHANGE:
+    //   return { ...state, event_end_time: action.payload };
     case GET_CURRENT_USER_EVENTS:
       return { ...state, current_user_events: action.payload };
     case REMOVE_EVENT_FROM_USER_EVENTS:

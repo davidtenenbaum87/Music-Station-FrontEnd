@@ -30,8 +30,6 @@ class MusicScore extends Component {
           <iframe
             src={this.state.scoreURL}
             title={this.props.selectedScore.title}
-            width="700"
-            height="700"
             >
           </iframe>
         )
