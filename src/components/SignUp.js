@@ -17,14 +17,15 @@ class SignUp extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     Adapter.postSignUpUser(this.state.username, this.state.password)
-      .then(this.props.history.push('/login'))
+      .then(this.props.history.push('/welcome'))
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="signup-form">
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Username: </label>
           <input
             className="browser-default"
             type="text"
@@ -33,7 +34,7 @@ class SignUp extends Component {
             onChange={this.handleChange}
             value={this.state.username}
           /><br/>
-          <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password: </label>
           <input
             className="browser-default"
             type="password"

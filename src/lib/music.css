@@ -2,10 +2,12 @@
   display: flex;
   flex-direction: column;
   margin-left: 50px;
+  font-family: 'Poiret One', cursive;
+
 }
 
 .music-scores-container h1 {
-  font-family: 'Poiret One', cursive;
+  /* font-family: 'Poiret One', cursive; */
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
 
   font-size: 50px;
@@ -41,9 +43,11 @@
   margin: 5px;
 }
 
+.music-upload-form input {
+  margin: 5px;
+}
+
 .music-score iframe {
-  border-radius: 25px;
-  border: 1px solid #d100d2;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 1000px;
   height: 1000px;

@@ -21,28 +21,31 @@ class MusicUploadForm extends Component {
   render () {
     return (
       <form className="music-upload-form" onSubmit={this.handleSubmit}>
-        <label htmlFor="title">Title:</label>
+        <label htmlFor="title">Name of Piece: </label>
         <input
           type="text"
           name="title"
+          placeholder="..e.g. Sonata, Concerto"
           value={this.props.title}
           onChange={this.props.handleTitleChange}
         /><br/>
-        <label htmlFor="composer">Composer:</label>
+      <label htmlFor="composer">Name of Composer: </label>
           <input
             type="text"
             name="composer"
+            placeholder="..e.g. Mozart, Beethoven"
             value={this.props.composer}
             onChange={this.props.handleComposerChange}
           /><br/>
-        <label htmlFor="title">instrumentation:</label>
+        <label htmlFor="title">Instrumentation: </label>
           <input
             type="text"
             name="title"
+            placeholder="..e.g. Violin & Piano"
             value={this.props.instrumentation}
             onChange={this.props.handleInstrumentationChange}
           /><br/>
-        <label htmlFor="file">File:</label>
+        <label htmlFor="file">Music Score: </label>
         <input type="file" name="music_score" onChange={this.props.handleFileUpload}/><br/>
         <input type="submit" value="upload"/>
       </form>

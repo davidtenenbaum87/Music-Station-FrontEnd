@@ -13,15 +13,15 @@ class Welcome extends Component {
 
   displayLogin = () => {
     this.setState({
-      displayLogin: !this.state.displayLogin,
-      displaySignUp: !this.state.displaySignUp,
+      displayLogin: true,
+      displaySignUp: false,
     })
   }
 
   displaySignUp = () => {
     this.setState({
-      displaySignUp: !this.state.displaySignUp,
-      displayLogin: !this.state.displayLogin,
+      displaySignUp: true,
+      displayLogin: false,
     })
   }
 

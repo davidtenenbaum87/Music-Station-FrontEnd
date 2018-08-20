@@ -6,13 +6,14 @@ import 'react-day-picker/lib/style.css';
 import { selectedClickedDate } from '../actions.js';
 import EventForm from '../components/EventForm.js';
 import EventsList from '../components/EventsList.js';
+import '../lib/calendar.css'
 
 class MyCalendar extends Component {
 
   render() {
 
     return (
-      <div className="calendar">
+      <div className="calendar-container">
         <h1>My Events</h1>
         <DayPicker
           onDayClick={(day) => this.props.selectedClickedDate(day)}
