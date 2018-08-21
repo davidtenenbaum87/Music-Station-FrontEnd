@@ -15,11 +15,11 @@ class MyCalendar extends Component {
     return (
       <div className="calendar-container">
         <h1>My Events</h1>
+        <EventForm />
         <DayPicker
           onDayClick={(day) => this.props.selectedClickedDate(day)}
           className="day-picker"
         />
-        <EventForm />
         <EventsList />
       </div>
     );

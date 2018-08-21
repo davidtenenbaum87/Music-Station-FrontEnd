@@ -3,19 +3,43 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import TimeField from 'react-simple-timefield';
 import { fetchPostEvent, fetchPatchEvent } from '../actions.js';
+import Modal from 'react-modal';
 import '../lib/events.css';
 
-class EventForm extends Component {
-
-  state = {
-    event_id: "",
-    event_title: "",
-    description: "",
-    event_date: "",
-    start_time: "",
-    end_time: "",
-    user_id: "",
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
   }
+};
+
+class EventForm extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      odalIsOpen: false,
+      event_id: "",
+      event_title: "",
+      description: "",
+      event_date: "",
+      start_time: "",
+      end_time: "",
+      user_id: "",
+    }
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
 
   componentDidMount() {
     if (this.props.foundEvent) {
@@ -31,14 +55,24 @@ class EventForm extends Component {
     }
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  closeModal(event) {
+    event.preventDefault()
     if (!this.state.event_id) {
       this.props.fetchPostEvent(this.state);
     } else {
       this.props.fetchPatchEvent(this.state);
       this.props.history.push('/myschedule')
     }
+    this.setState({
+      modalIsOpen: false,
+      event_id: "",
+      event_title: "",
+      description: "",
+      event_date: "",
+      start_time: "",
+      end_time: "",
+      user_id: "",
+    })
   }
 
   handleChange = (event) => {
@@ -69,8 +103,17 @@ class EventForm extends Component {
 
   render() {
     return (
-      <div className="event-form">
-        <form onSubmit={this.handleSubmit}>
+      <div className="event-form-div">
+        <button id="new-event-button" onClick={this.openModal}><i class="material-icons">event</i>New Event</button>
+
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+        <form className="event-form" onSubmit={this.handleSubmit}>
             {this.renderDate()}
             <label htmlFor="event_title"></label>
             <select
@@ -86,14 +129,20 @@ class EventForm extends Component {
               <option>Practice</option>
               <option>Other</option>
             </select><br/>
+          <div className="input-times">
           <label htmlFor="start-time">From:</label>
           <TimeField
+            className="input-time"
             value={this.state.start_time}
-            onChange={this.handleStartTimeChange} />
-          <label htmlFor="end-time">From:</label>
+            onChange={this.handleStartTimeChange}
+            />
+          <label htmlFor="end-time">To:</label>
           <TimeField
+            className="input-time"
             value={this.state.end_time}
-            onChange={this.handleEndTimeChange} />
+            onChange={this.handleEndTimeChange}
+            />
+        </div>
           <label htmlFor="description">description:</label><br/>
           <textarea
             type="text"
@@ -105,8 +154,9 @@ class EventForm extends Component {
             value={this.state.description}
             onChange={this.handleChange}
             /><br/>
-          <input type="submit" value="submit"/>
           </form>
+          <button id="add-comment-button" onClick={this.closeModal}>Add Event</button>
+        </Modal>
       </div>
     );
   }

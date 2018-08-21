@@ -53,22 +53,12 @@
 
 .music-score-details {
   align-items: center;
-
-}
-/* align-items: center;
-display: flex;
-justify-content: flex-start; */
-
-.metronome-tuner-buttons button {
-  display: flex;
-  justify-content: flex-end;
-
 }
 
 .music-scores-list-score-comments {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .music-scores-list {

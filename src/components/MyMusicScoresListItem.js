@@ -8,6 +8,8 @@ class MyMusicScoresListItem extends Component {
 
   handleViewClick = (event) => {
     this.props.displayMusicScore()
+    this.props.toggleCommentsDisplay()
+    // this.props.toggleVideosDisplay()
     this.props.currentScore(this.props.score)
 
   }
@@ -17,6 +19,15 @@ class MyMusicScoresListItem extends Component {
       method: "DELETE"
     })
     this.props.removeScoreFromScores(parseInt(event.target.id))
+    if (this.props.videosDisplay) {
+      this.props.toggleVideosDisplay()
+    }
+    if (this.props.viewMusicScore) {
+      this.props.displayMusicScore()
+    }
+    if (this.props.commentsDisplay) {
+      this.props.toggleCommentsDisplay()
+    }
   }
 
   render() {

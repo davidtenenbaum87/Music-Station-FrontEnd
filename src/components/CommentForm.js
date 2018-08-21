@@ -72,7 +72,7 @@ class CommentForm extends Component {
 
         <form className="comments-form">
           <h2>{this.props.selectedScore.title} / {this.props.selectedScore.composer}</h2>
-          <label htmlFor="page">Page #:</label><br/>
+          <label htmlFor="page">Page no.:</label><br/>
           <input
             type="number"
             name="page"
@@ -80,14 +80,14 @@ class CommentForm extends Component {
             value={this.state.page}
             onChange={this.handleChange}
           /><br/>
-        <label htmlFor="measure">measure #:</label><br/>
+        <label htmlFor="measure">Measure no.:</label><br/>
           <input
             type="text"
             name="measure"
             value={this.state.measure}
             onChange={this.handleChange}
           /><br/>
-            <label htmlFor="description">description:</label><br/>
+        <label htmlFor="description">Description: </label><br/>
             <textarea
               name="message"
               rows="5"

@@ -10,6 +10,8 @@ import CommentsList from './CommentsList';
 import YouTubeVideosList from './YouTubeVideosList';
 import Tuner from './Tuner.js';
 import '../lib/music.css'
+import '../lib/comments.css'
+
 
 class MyMusicScoresList extends Component {
   state = {
@@ -47,8 +49,8 @@ class MyMusicScoresList extends Component {
         <div className="music-scores-container-header-form-metronome-tuner">
           <h1>My Music</h1>
           <div className="metronome-tuner-buttons">
-            <button onClick={this.displayMetronome}>Metronome</button>
-            <button onClick={this.displayTuner}>Tuner</button>
+            <button id="metronome-button" onClick={this.displayMetronome}><img src="../metronome-img.png" height="50px"/>Metronome</button>
+            <button id="tuner-button" onClick={this.displayTuner}><img src="../tuner-img.png" height="50px" background-color='white'/>Tuner</button>
           </div>
         </div>
         { this.state.displayMetronome ? <Metronome /> : null }

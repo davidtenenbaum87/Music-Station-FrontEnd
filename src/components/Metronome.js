@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import metro1 from './metro1.wav';
 import metro2 from './metro2.wav';
-import '../lib/metronome.css';
+import '../lib/metronome-tuner.css';
 
 class Metronome extends Component {
   constructor(props) {
@@ -89,8 +89,13 @@ class Metronome extends Component {
         </div>
 
         {/* Add the onClick handler: */}
-        <button onClick={this.startStop}>
-        { playing ? 'Off' : 'On' }
+        <button className="metronome-play-pause-button" onClick={this.startStop}>
+
+        { playing ?
+          <i id="metronome-pause-button" className="large material-icons" height="50px">pause_circle_outline</i>
+          :
+          <i id="metronome-play-button" className="large material-icons" height="50px">play_circle_outline</i>
+        }
         </button>
       </div>
     );

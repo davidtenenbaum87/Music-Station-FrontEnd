@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Tone from "react-tone";
+import '../lib/metronome-tuner.css';
 
 class Tuner extends Component {
   constructor(props) {
@@ -54,7 +55,7 @@ class Tuner extends Component {
           {
             this.state.isTonePlaying ?
             <Fragment>
-            <button onClick={this.handleClick}> Stop </button>
+            <button className="tuner-play-pause-buttons" onClick={this.handleClick}><img src="../mute-img.svg" height="50px"/></button>
             <Tone
               audioContext={this.audioContext}
               play={true}
@@ -65,7 +66,7 @@ class Tuner extends Component {
               />
             </Fragment>
             :
-            <button onClick={this.handleClick}> Play </button>
+            <button className="tuner-play-pause-buttons" onClick={this.handleClick}><img src="../music-note.png" height="50px"/></button>
 
 
           }
