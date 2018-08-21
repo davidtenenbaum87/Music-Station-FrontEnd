@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { getCurrentUserScores, toggleMusicFormDisplay, fetchGetMusicScores } from '../actions.js';
+import { getCurrentUserScores, toggleMusicFormDisplay, fetchGetMusicScores, toggleVideosDisplay, toggleCommentsDisplay } from '../actions.js';
 import MyMusicScoresListItem from './MyMusicScoresListItem.js';
 import MusicUploadForm from './MusicUploadForm.js';
 import MusicScore from './MusicScore';
 import Metronome from './Metronome.js';
+import CommentForm from './CommentForm';
+import CommentsList from './CommentsList';
+import YouTubeVideosList from './YouTubeVideosList';
 import Tuner from './Tuner.js';
 import '../lib/music.css'
 
@@ -43,8 +46,7 @@ class MyMusicScoresList extends Component {
       <div className="music-scores-container">
         <div className="music-scores-container-header-form-metronome-tuner">
           <h1>My Music</h1>
-          <div className="upload-metronome-tuner-buttons">
-            <button onClick={this.props.toggleMusicFormDisplay}>Add music</button>
+          <div className="metronome-tuner-buttons">
             <button onClick={this.displayMetronome}>Metronome</button>
             <button onClick={this.displayTuner}>Tuner</button>
           </div>
@@ -58,18 +60,35 @@ class MyMusicScoresList extends Component {
           :
             null
         }
-        <div className="music-scores-list-and-file">
+        <div className="music-scores-list-score-comments">
           <div className="music-scores-list">
+            <MusicUploadForm  />
             {this.renderScores()}
           </div>
           <div className="music-score-file">
             {
               this.props.viewMusicScore ?
-              <MusicScore />
+              <Fragment>
+                <MusicScore />
+              </Fragment>
               :
               null
             }
           </div>
+          { this.props.commentsDisplay ?
+            <Fragment>
+              <CommentsList />
+            </Fragment>
+            :
+            null
+          }
+        </div>
+        <div className="youtube-videos-div">
+          { this.props.videosDisplay ?
+            <YouTubeVideosList />
+            :
+            null
+          }
         </div>
       </div>
     );
@@ -82,6 +101,9 @@ function mapStateToProps(state) {
     current_user_scores: state.current_user_scores,
     musicUploadFormDisplay: state.musicUploadFormDisplay,
     viewMusicScore: state.viewMusicScore,
+    selectedScore: state.selectedScore,
+    videosDisplay: state.videosDisplay,
+    commentsDisplay: state.commentsDisplay,
   }
 }
 
@@ -89,7 +111,9 @@ function mapDispatchToProps(dispatch) {
   return {
     getCurrentUserScores: (scores) => dispatch(getCurrentUserScores(scores)),
     toggleMusicFormDisplay: () => dispatch(toggleMusicFormDisplay()),
-    fetchGetMusicScores: (userId) => dispatch(fetchGetMusicScores(userId))
+    fetchGetMusicScores: (userId) => dispatch(fetchGetMusicScores(userId)),
+    toggleVideosDisplay: () => dispatch(toggleVideosDisplay()),
+    toggleCommentsDisplay: () => dispatch(toggleCommentsDisplay()),
   }
 }
 

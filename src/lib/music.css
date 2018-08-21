@@ -1,63 +1,195 @@
 .music-scores-container {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  margin-left: 50px;
   font-family: 'Poiret One', cursive;
-
+  background-size: 400% 400%;
+  width: 100%;
+  position: absolute;
 }
 
-.music-scores-container h1 {
-  /* font-family: 'Poiret One', cursive; */
-  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
-
-  font-size: 50px;
+.music-scores-container-header-form-metronome-tuner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 55px;
+  margin-right: 55px;
 }
 
 .music-score-item {
+  background: linear-gradient(270deg, #edaeff, #e17aff, #c500ff);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: white;
+  border: 1px solid white;
+  margin-top: 10px;
 }
 
-.music-score-details {
+.music-scores-container h1 {
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+  font-size: 50px;
+}
+
+.music-score-view-delete-comments-videos-buttons {
   display: flex;
-  flex-direction: row;
+  align-content: center;
+}
+
+.music-score-view-delete-comments-videos-buttons button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin: 5px;
+  color: white;
+}
+
+.music-score-view-delete-comments-videos-buttons button:hover {
+  cursor: pointer;
 }
 
 .music-score-details li {
   list-style: none;
 }
 
-.upload-metronome-tuner-buttons button {
+.music-score-details {
+  align-items: center;
+
+}
+/* align-items: center;
+display: flex;
+justify-content: flex-start; */
+
+.metronome-tuner-buttons button {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
+
 }
 
-.music-scores-list-and-file {
+.music-scores-list-score-comments {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .music-scores-list {
-  margin: 5px;
+  flex: 1;
+  margin-left: 55px;
 }
 
 .music-score-file {
-  margin: 5px;
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0px 5px;
+}
+
+.music-score-file h3 {
+  text-align: center;
+  font-size: 18px;
+}
+
+
+
+
+.music-upload-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 18px;
+  font-family: 'Poiret One', cursive;
 }
 
 .music-upload-form input {
+  text-align: center;
+  border-radius: 10px;
   margin: 5px;
+  font-size: 20px;
+  font-family: 'Poiret One', cursive;
 }
 
-.music-score iframe {
+.music-score-pdf iframe {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 1000px;
   height: 1000px;
+  border: 1px solid black;
+}
+
+.youtube-videos-div {
+  margin: 20px;
+  white-space:nowrap;
+  overflow-x:auto;
+  white-space:nowrap;
+  overflow-x:auto;
+  overflow-x:scroll;
 }
 
 .youtube-videos-list {
-  max-width:980px; overflow-x: scroll; white-space: nowrap;
+  margin: 20px;
 }
 
 .youtube-videos-list iframe {
-  margin: 10px;
+  min-width: 200px;
+  margin: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid black;
+}
+
+#add-music-button {
+  border: none;
+  outline: none;
+  /* margin: 15px; */
+  padding: 10px;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.5s;
+  background-size: 200% auto;
+  border-radius: 10px;
+  background-image: linear-gradient(90deg, rgba(46,154,255,1) 0%, rgba(59,61,255,1) 0%, rgba(0,204,255,1) 100%);
+  color: white;
+  font-family: 'Poiret One', cursive;
+  font-size: 16px;
+}
+
+#add-music-button:hover {
+  background-position: right center;
+}
+
+#upload-music-button {
+  border: none;
+  outline: none;
+  box-shadow: 0 0 20px #eee;
+  margin: 15px 5px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.5s;
+  background-size: 200% auto;
+  border-radius: 10px;
+  padding: 10px;
+  background-image: linear-gradient(90deg, rgba(46,154,255,1) 0%, rgba(59,61,255,1) 0%, rgba(0,204,255,1) 100%);
+  color: white;
+  font-family: 'Poiret One', cursive;
+  font-size: 16px;
+}
+
+#upload-music-button:hover {
+  background-position: right center;
+}
+
+#choose-file {
+
+  border: 1px solid blue;
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+
 }

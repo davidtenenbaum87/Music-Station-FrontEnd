@@ -14,10 +14,10 @@ class CommentsList extends Component {
   render() {
     return (
       <div className="comment">
-        <p>Page #: {this.props.current_comment.page}</p>
-        <p>Measure #: {this.props.current_comment.measure}</p>
+        <p>Page no.: {this.props.current_comment.page}</p>
+        <p>Measure no.: {this.props.current_comment.measure}</p>
         <p>Description: {this.props.current_comment.description}</p>
-        <button onClick={this.handleClick}>Delete</button>
+        <button id="delete-comment-button" onClick={this.handleClick}><i className="material-icons" value="delete">delete</i></button>
       </div>
     )
   }

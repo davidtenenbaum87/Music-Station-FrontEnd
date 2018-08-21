@@ -148,7 +148,6 @@ export function fetchGetScoreComments(score_id) {
 }
 
 export function fetchPostScoreComments(comment) {
-  debugger;
     return (dispatch) => {
       return fetch("http://localhost:3000/api/v1/comments", {
         method: "POST",

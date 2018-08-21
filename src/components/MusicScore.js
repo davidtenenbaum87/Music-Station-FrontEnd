@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import YouTubeVideosList from './YouTubeVideosList.js';
 import CommentsList from './CommentsList.js';
 import CommentForm from './CommentForm.js';
-import { toggleVideosDisplay, toggleCommentsDisplay } from '../actions.js';
-
 
 class MusicScore extends Component {
   state = {
@@ -47,27 +45,11 @@ class MusicScore extends Component {
   }
 
   render() {
+    console.log(this.props.selectedScore);
       return (
         <div className="music-score-pdf">
-          <div className="music-score">
-            {this.displayScore()}
-          </div>
-          <a onClick={this.props.toggleCommentsDisplay}><i className="material-icons">comments</i>comments</a>
-          <a onClick={this.props.toggleVideosDisplay}><i className="material-icons">music_video</i>watch videos</a>
-
-          { this.props.commentsDisplay ?
-            <Fragment>
-              <CommentForm />
-              <CommentsList />
-            </Fragment>
-            :
-            null
-          }
-          { this.props.videosDisplay ?
-            <YouTubeVideosList />
-            :
-            null
-          }
+          <h3>{this.props.selectedScore.title} by {this.props.selectedScore.composer}</h3>
+          {this.displayScore()}
         </div>
       );
     }
@@ -81,11 +63,4 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    toggleVideosDisplay: () => dispatch(toggleVideosDisplay()),
-    toggleCommentsDisplay: () => dispatch(toggleCommentsDisplay()),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MusicScore);
+export default connect(mapStateToProps)(MusicScore);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setCurrentUser, fetchGetMusicScores, fetchGetEvents } from '../actions.js';
 import Adapter from '../apis/Adapter.js';
+import '../lib/welcome.css'
 
 class Login extends Component {
   state = {
@@ -33,9 +34,9 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="login-form">
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username: </label>
+      <div className="login-form-div">
+        <form className="login-form" onSubmit={this.handleSubmit}>
+          <label htmlFor=" username"></label>
           <input
             className="browser-default"
             type="text"
@@ -44,8 +45,8 @@ class Login extends Component {
             onChange={this.handleChange}
             value={this.state.username}
             required
-          /><br/>
-        <label htmlFor="password">Password: </label>
+          />
+        <label htmlFor="password"></label>
           <input
             className="browser-default"
             type="password"
@@ -54,7 +55,7 @@ class Login extends Component {
             onChange={this.handleChange}
             value={this.state.password}
             required
-          /><br/>
+          />
           <input
             className="login-signup-button browser-default"
             type="submit"

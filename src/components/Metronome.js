@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import metro1 from './metro1.wav';
 import metro2 from './metro2.wav';
+import '../lib/metronome.css';
 
 class Metronome extends Component {
   constructor(props) {
@@ -67,19 +68,21 @@ class Metronome extends Component {
     return (
       <div className="metronome">
         <div className="bpm-slider">
-        <div>Beats Per Measure</div>
+          <label htmlFor="beats-per-measure">Beats Per Measure: </label>
           <input
             type="number"
             min="0"
             max="8"
+            name="beats-per-measure"
             value={beatsPerMeasure}
             onChange={this.handleBPMeasureChange}
           />
-          <div>{bpm} BPM</div>
+        <label htmlFor="beats-per-minute">{bpm} BPM</label>
           <input
             type="range"
             min="40"
             max="218"
+            name="beats-per-minute"
             value={bpm}
             onChange={this.handleBpmChange}
           />

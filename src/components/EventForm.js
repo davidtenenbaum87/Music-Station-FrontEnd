@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import TimeField from 'react-simple-timefield';
 import { fetchPostEvent, fetchPatchEvent } from '../actions.js';
+import '../lib/events.css';
 
 class EventForm extends Component {
 
@@ -49,7 +50,7 @@ class EventForm extends Component {
   }
 
   renderDate = () => {
-    return <h4>when?: {moment(this.props.selectedDate).format("MMMM, Do, YYYY")}</h4>
+    return <h4>{moment(this.props.selectedDate).format("MMMM, Do, YYYY")}</h4>
   }
 
   handleStartTimeChange = (start_time) => {
@@ -71,18 +72,19 @@ class EventForm extends Component {
       <div className="event-form">
         <form onSubmit={this.handleSubmit}>
             {this.renderDate()}
-            <label htmlFor="event_title">type:</label>
+            <label htmlFor="event_title"></label>
             <select
               id="event_title"
               name="event_title"
               value={this.state.event_title}
               onChange={this.handleChange}
             >
-              <option></option>
+              <option>choose</option>
               <option>Performance</option>
               <option>Audition</option>
               <option>Rehearsal</option>
               <option>Practice</option>
+              <option>Other</option>
             </select><br/>
           <label htmlFor="start-time">From:</label>
           <TimeField

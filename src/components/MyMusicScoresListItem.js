@@ -2,19 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import MusicScore from './MusicScore.js';
-import { removeScoreFromUserScores, displayMusicScore, selectedClickedScore } from '../actions.js';
+import { removeScoreFromUserScores, displayMusicScore, selectedClickedScore, toggleVideosDisplay, toggleCommentsDisplay } from '../actions.js';
 
 class MyMusicScoresListItem extends Component {
-  // state = {
-  //   viewMusicScore: false,
-  // }
 
   handleViewClick = (event) => {
     this.props.displayMusicScore()
     this.props.currentScore(this.props.score)
-    // this.setState({
-    //   viewMusicScore: !this.state.viewMusicScore,
-    // })
+
   }
 
   removeScoreFromUserScores = (event) => {
@@ -29,27 +24,27 @@ class MyMusicScoresListItem extends Component {
       <div className="music-score-item">
         <ul className="music-score-details">
           <li key={this.props.score.id} id={this.props.score.id}>
-            {this.props.score.title} | {this.props.score.composer} |
-            <button onClick={this.handleViewClick}>view</button> |
-            <button id={this.props.score.id} value="delete" onClick={this.removeScoreFromUserScores}>delete</button>
+            {this.props.score.title} / {this.props.score.composer}
           </li>
+          <div className="music-score-view-delete-comments-videos-buttons">
+            <button onClick={this.handleViewClick}><i className="material-icons">pageview</i></button>
+            <button onClick={this.props.toggleCommentsDisplay}><i className="material-icons">insert_comment</i></button>
+            <button onClick={this.props.toggleVideosDisplay}><i className="material-icons">video_library</i></button>
+            <button onClick={this.removeScoreFromUserScores}><i className="material-icons" id={this.props.score.id} value="delete">delete</i></button>
+          </div>
         </ul>
       </div>
     );
   }
 }
-// {
-//   this.props.viewMusicScore ?
-//   <MusicScore />
-//   :
-//   null
-// }
 
 function mapStateToProps(state) {
   return {
     current_user_scores: state.current_user_scores,
     viewMusicScore: state.viewMusicScore,
     selectedScore: state.selectedScore,
+    videosDisplay: state.videosDisplay,
+    commentsDisplay: state.commentsDisplay,
   }
 }
 
@@ -58,6 +53,8 @@ function mapDispatchToProps(dispatch) {
     removeScoreFromScores: (scoreId) => dispatch(removeScoreFromUserScores(scoreId)),
     displayMusicScore: () => dispatch(displayMusicScore()),
     currentScore: (score) => dispatch(selectedClickedScore(score)),
+    toggleVideosDisplay: () => dispatch(toggleVideosDisplay()),
+    toggleCommentsDisplay: () => dispatch(toggleCommentsDisplay()),
   }
 }
 

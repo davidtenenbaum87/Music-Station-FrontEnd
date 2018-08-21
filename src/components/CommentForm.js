@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { fetchPostScoreComments } from '../actions.js';
+import '../lib/comments.css'
 
 const customStyles = {
   content : {
@@ -10,7 +11,7 @@ const customStyles = {
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
   }
 };
 
@@ -26,16 +27,11 @@ class CommentForm extends Component {
     };
 
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
   openModal() {
     this.setState({modalIsOpen: true});
-  }
-
-  afterOpenModal() {
-    this.subtitle.style.color = '#f00';
   }
 
   closeModal(event) {
@@ -63,10 +59,9 @@ class CommentForm extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
-      <div>
-        <button onClick={this.openModal}>Add Comment</button>
+      <div className="comments-form-div">
+        <button id="new-comment-button" onClick={this.openModal}><i class="material-icons">note_add</i>New Comment</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -75,8 +70,8 @@ class CommentForm extends Component {
           contentLabel="Example Modal"
         >
 
-        <h2 ref={subtitle => this.subtitle = subtitle}>Piece: {this.props.selectedScore.title}</h2>
-        <form>
+        <form className="comments-form">
+          <h2>{this.props.selectedScore.title} / {this.props.selectedScore.composer}</h2>
           <label htmlFor="page">Page #:</label><br/>
           <input
             type="number"
@@ -95,14 +90,14 @@ class CommentForm extends Component {
             <label htmlFor="description">description:</label><br/>
             <textarea
               name="message"
-              rows="10"
+              rows="5"
               cols="30"
               name="description"
               value={this.state.description}
               onChange={this.handleChange}
               ></textarea><br/>
           </form>
-          <button onClick={this.closeModal}>Add Comment</button>
+          <button id="add-comment-button" onClick={this.closeModal}>Add Comment</button>
         </Modal>
       </div>
     );

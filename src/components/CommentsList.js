@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import CommentForm from './CommentForm';
 import Comment from './Comment.js';
 import { fetchGetScoreComments } from '../actions.js';
 
@@ -18,6 +19,7 @@ class CommentsList extends Component {
   render() {
     return (
       <div className="comments-list">
+        <CommentForm />
         {this.renderComments()}
       </div>
     )

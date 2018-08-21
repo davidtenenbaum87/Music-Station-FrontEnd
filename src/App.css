@@ -2,11 +2,4 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  background-image: linear-gradient(to left, #e6c9f6, #ffffff);
-}
-
-.App {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 }

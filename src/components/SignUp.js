@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Adapter from '../apis/Adapter.js';
+import '../lib/welcome.css'
 
 class SignUp extends Component {
   state = {
@@ -23,9 +24,9 @@ class SignUp extends Component {
   render() {
     console.log(this.props);
     return (
-      <div className="signup-form">
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username: </label>
+      <div className="signup-form-div">
+        <form className="signup-form" onSubmit={this.handleSubmit}>
+          <label htmlFor="username"></label>
           <input
             className="browser-default"
             type="text"
@@ -33,8 +34,8 @@ class SignUp extends Component {
             placeholder="Username"
             onChange={this.handleChange}
             value={this.state.username}
-          /><br/>
-        <label htmlFor="password">Password: </label>
+          />
+        <label htmlFor="password"></label>
           <input
             className="browser-default"
             type="password"
@@ -42,7 +43,7 @@ class SignUp extends Component {
             placeholder="Password"
             onChange={this.handleChange}
             value={this.state.password}
-          /><br/>
+          />
           <input
             className="login-signup-button browser-default"
             type="submit"
