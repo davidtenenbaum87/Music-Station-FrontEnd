@@ -25,6 +25,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   font-size: 18px;
   font-family: 'Poiret One', cursive;
 
@@ -41,6 +42,29 @@
   /* font-family: 'Poiret One', cursive; */
 }
 
+.events-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.event-form select {
+  text-align: center;
+  width: 200px;
+  /* border-radius: 10px; */
+  /* margin: 5px; */
+  /* font-size: 20px; */
+  font-family: 'Poiret One', cursive;
+}
+
+.event-form input {
+  text-align: center;
+  width: 150px;
+  /* border-radius: 10px; */
+  /* margin: 5px; */
+  /* font-size: 20px; */
+  font-family: 'Poiret One', cursive;
+}
+
 
 .event-form textarea {
   text-align: center;
@@ -48,4 +72,69 @@
   margin: 5px;
   font-size: 20px;
   font-family: 'Poiret One', cursive;
+}
+
+.event-item {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* border: 1px solid white; */
+  margin-top: 10px;
+  font-family: 'Josefin Slab', cursive;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #333333;
+  margin: 10px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 20px;
+
+}
+
+.audition {
+  border: 3px solid #ff1aff;
+}
+
+.performance {
+  border: 3px solid #0000ff;
+}
+
+.practice {
+  border: 3px solid #ff9900;
+}
+
+.rehearsal {
+  border: 3px solid #00ff00
+}
+
+.other {
+  border: 3px solid #737373;
+}
+
+.event-edit-delete-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#delete-button {
+  border-radius: 10px;
+  text-shadow: 0 0 20px #ff0000;
+  margin: 10px;
+  padding: 10px;
+}
+
+#edit-button {
+  text-decoration-line: none;
+  border-radius: 10px;
+  text-shadow: 0 0 20px #33ff77;
+  margin: 10px;
+  padding: 10px;
+  color: black;
 }

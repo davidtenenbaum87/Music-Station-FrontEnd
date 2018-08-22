@@ -11,22 +11,23 @@
   margin: 15px;
 }
 
+.metronome-div {
+  display: flex;
+  justify-content: center;
+}
+
 .metronome {
   display: flex;
   justify-content: center;
-  flex-direction: row;
+  /* flex-direction: column; */
   align-items: center;
-  border: none;
-  outline: none;
   margin: 15px 0px;
-  padding: 10px;
-  /* box-shadow: 0 0 20px #cc00cc; */
+  padding: 10px 70px;
+  box-shadow: 0 0 20px #004080;
   border-radius: 10px;
-  display: flex;
-  align-items: center;
+  /* margin-left: 800px;
+  margin-right: 800px; */
   font-size: 20px;
-  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
-
 }
 
 #metronome-button {
@@ -48,7 +49,7 @@
   outline: none;
   margin: 15px;
   padding: 5px;
-  box-shadow: 0 0 20px #333333;
+  box-shadow: 0 0 20px #d24dff;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -70,6 +71,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   font-size: 50px;
 }
 
@@ -100,7 +102,7 @@
   outline: none;
   margin: 15px;
   padding: 5px;
-  box-shadow: 0 0 20px #333333;
+  box-shadow: 0 0 20px #d24dff;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -113,7 +115,7 @@ select {
   font-size: 30px;
   font-family: 'Poiret One', cursive;
   text-align: center;
-  box-shadow: 0 0 20px #cc00cc;
+  box-shadow: 0 0 20px #004080;
 }
 
 option {
@@ -122,12 +124,21 @@ option {
 
 input[type=number] {
   -webkit-appearance: none;
-  margin: 18px 0;
+  margin: 18px;
   width: 95%;
   /* display: flex;
   justify-content: center; */
   text-align: center;
   font-size: 50px;
+  width: 100px;
+  /* border-radius: 10px; */
+  /* margin: 5px; */
+  /* font-size: 20px; */
+  font-family: 'Poiret One', cursive;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #004080;
+  border: 0;
+  margin: 5px;
 }
 
 input[type=range] {
@@ -154,7 +165,7 @@ input[type=range]::-webkit-slider-thumb {
   height: 36px;
   width: 16px;
   border-radius: 3px;
-  background: purple;
+  background: #d24dff;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -14px;

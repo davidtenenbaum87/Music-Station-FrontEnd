@@ -214,7 +214,6 @@ export function fetchPatchEvent(current_event, userId) {
       body: JSON.stringify(current_event)
     })
     .then(res => {if (res.ok) { return res.json()}})
-
   }
 }
 

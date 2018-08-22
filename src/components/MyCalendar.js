@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import DayPicker from 'react-day-picker';
-// import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import { selectedClickedDate } from '../actions.js';
+import { selectedClickedDate, fetchGetEvents } from '../actions.js';
 import EventForm from '../components/EventForm.js';
 import EventsList from '../components/EventsList.js';
 import '../lib/calendar.css'
 
 class MyCalendar extends Component {
 
-  render() {
+  componentDidMount() {
+    this.props.fetchGetEvents(this.props.userId)
+  }
 
+  render() {
     return (
       <div className="calendar-container">
         <h1>My Events</h1>
         <EventForm />
-        <DayPicker
-          onDayClick={(day) => this.props.selectedClickedDate(day)}
-          className="day-picker"
-        />
         <EventsList />
       </div>
     );
@@ -28,16 +25,18 @@ class MyCalendar extends Component {
 
 function mapStateToProps(state) {
   return {
+    userId: state.userId,
     current_user_events: state.current_user_events,
-    selectedDate: state.selectedDate,
-    eventFormOn: state.eventFormOn,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    selectedClickedDate: (date) => dispatch(selectedClickedDate(date)),
+    fetchGetEvents: (userId) => dispatch(fetchGetEvents(userId)),
   }
 }
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(MyCalendar);
+
+// export default connect()(MyCalendar);

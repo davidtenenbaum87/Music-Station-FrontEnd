@@ -19,6 +19,7 @@ class SignUp extends Component {
     event.preventDefault();
     Adapter.postSignUpUser(this.state.username, this.state.password)
       .then(this.props.history.push('/welcome'))
+      .catch(error => console.log("Error at login attempt", error))
     this.setState({
       username: "",
       password: "",

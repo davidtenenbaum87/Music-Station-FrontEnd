@@ -14,16 +14,87 @@ class Event extends Component {
   }
 
   render() {
-    return (
-      <div className="event-item">
-        <h5>{moment(this.props.user_event.event_date).format("MMMM, Do, YYYY")}</h5>
-        <p>{this.props.user_event.event_title}</p>
-        <p>{this.props.user_event.description}</p>
-        <p>{this.props.user_event.start_time} - {this.props.user_event.end_time}</p>
-        <NavLink to={`/events/${this.props.user_event.id}/edit`}>Edit</NavLink>
-        <a onClick={this.handleClick} value="edit">Delete</a>
-      </div>
-    )
+    if (this.props.user_event.event_title === 'Audition') {
+      return (
+        <div className="event-item audition">
+
+          <h2>{moment(this.props.user_event.event_date).format("MMMM, Do, YYYY")}</h2>
+          <h1>{this.props.user_event.event_title}</h1>
+          <p>{this.props.user_event.description}</p>
+          <h2>{this.props.user_event.start_time} - {this.props.user_event.end_time}</h2>
+          <div className="event-edit-delete-buttons">
+            <NavLink to={`/events/${this.props.user_event.id}/edit`} id="edit-button"> <i class="material-icons">edit</i></NavLink>
+            <a onClick={this.handleClick} value="edit" id="delete-button">  <i class="material-icons">delete_forever</i>
+
+            </a>
+          </div>
+        </div>
+      )
+    } else if (this.props.user_event.event_title === 'Performance') {
+      return (
+        <div className="event-item performance">
+
+          <h2>{moment(this.props.user_event.event_date).format("MMMM, Do, YYYY")}</h2>
+          <h1>{this.props.user_event.event_title}</h1>
+          <p>{this.props.user_event.description}</p>
+          <h2>{this.props.user_event.start_time} - {this.props.user_event.end_time}</h2>
+          <div className="event-edit-delete-buttons">
+            <NavLink to={`/events/${this.props.user_event.id}/edit`} id="edit-button"> <i class="material-icons">edit</i></NavLink>
+            <a onClick={this.handleClick} value="edit" id="delete-button">  <i class="material-icons">delete_forever</i>
+
+            </a>
+          </div>
+        </div>
+      )
+    } else if (this.props.user_event.event_title === 'Practice') {
+      return (
+        <div className="event-item practice">
+
+          <h2>{moment(this.props.user_event.event_date).format("MMMM, Do, YYYY")}</h2>
+          <h1>{this.props.user_event.event_title}</h1>
+          <p>{this.props.user_event.description}</p>
+          <h2>{this.props.user_event.start_time} - {this.props.user_event.end_time}</h2>
+          <div className="event-edit-delete-buttons">
+            <NavLink to={`/events/${this.props.user_event.id}/edit`} id="edit-button"> <i class="material-icons">edit</i></NavLink>
+            <a onClick={this.handleClick} value="edit" id="delete-button">  <i class="material-icons">delete_forever</i>
+
+            </a>
+          </div>
+        </div>
+      )
+    } else if (this.props.user_event.event_title === 'Rehearsal') {
+      return (
+        <div className="event-item rehearsal">
+
+          <h2>{moment(this.props.user_event.event_date).format("MMMM, Do, YYYY")}</h2>
+          <h1>{this.props.user_event.event_title}</h1>
+          <p>{this.props.user_event.description}</p>
+          <h2>{this.props.user_event.start_time} - {this.props.user_event.end_time}</h2>
+          <div className="event-edit-delete-buttons">
+            <NavLink to={`/events/${this.props.user_event.id}/edit`} id="edit-button"> <i class="material-icons">edit</i></NavLink>
+            <a onClick={this.handleClick} value="edit" id="delete-button">  <i class="material-icons">delete_forever</i>
+
+            </a>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="event-item other">
+
+          <h2>{moment(this.props.user_event.event_date).format("MMMM, Do, YYYY")}</h2>
+          <h1>{this.props.user_event.event_title}</h1>
+          <p>{this.props.user_event.description}</p>
+          <h2>{this.props.user_event.start_time} - {this.props.user_event.end_time}</h2>
+          <div className="event-edit-delete-buttons">
+            <NavLink to={`/events/${this.props.user_event.id}/edit`} id="edit-button"> <i class="material-icons">edit</i></NavLink>
+            <a onClick={this.handleClick} value="edit" id="delete-button">  <i class="material-icons">delete_forever</i>
+
+            </a>
+          </div>
+        </div>
+      )
+    }
   }
 }
 

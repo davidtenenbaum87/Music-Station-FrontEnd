@@ -21,7 +21,11 @@ class Login extends Component {
     event.preventDefault();
     Adapter.postLoginUser(this.state.username, this.state.password)
       .then(json => this.handleLoginState(json))
-      .catch(error => console.log("Error at login attempt", error))
+      .catch(error => {
+        console.log("Error at login attempt", error);
+        this.props.history.push('/welcome');
+      })
+
   }
 
   handleLoginState = (json) => {

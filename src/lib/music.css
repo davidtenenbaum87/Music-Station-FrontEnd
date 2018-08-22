@@ -78,11 +78,10 @@
 
 .music-score-file h3 {
   text-align: center;
-  font-size: 18px;
+  font-size: 40px;
+  font-family: 'Julius Sans One', sans-serif;
+  /* text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1); */
 }
-
-
-
 
 .music-upload-form {
   display: flex;
@@ -101,14 +100,17 @@
 }
 
 .music-score-pdf iframe {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  box-shadow: 0 0 20px #d24dff;
+
   width: 1000px;
   height: 1000px;
   border: 5px solid black;
 }
 
 .youtube-videos-div {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  box-shadow: 0 0 20px #004080;
 
   margin: 20px;
   white-space:nowrap;
@@ -177,12 +179,10 @@
 }
 
 #choose-file {
-
   border: 1px solid blue;
   display: inline-block;
   padding: 5px;
   cursor: pointer;
   display: flex;
   justify-content: flex-end;
-
 }

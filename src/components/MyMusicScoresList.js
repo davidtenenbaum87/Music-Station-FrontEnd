@@ -21,6 +21,10 @@ class MyMusicScoresList extends Component {
 
   componentDidMount() {
     this.props.fetchGetMusicScores(this.props.userId)
+    .catch(error => {
+      console.log("Error at login attempt", error);
+      this.props.history.push('/login');
+    })
   }
 
   renderScores = () => {

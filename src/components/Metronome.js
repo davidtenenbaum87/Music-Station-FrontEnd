@@ -66,37 +66,39 @@ class Metronome extends Component {
   render() {
     const { playing, bpm, beatsPerMeasure } = this.state;
     return (
-      <div className="metronome">
-        <div className="bpm-slider">
-          <label htmlFor="beats-per-measure">Beats Per Measure: </label>
-          <input
-            type="number"
-            min="0"
-            max="8"
-            name="beats-per-measure"
-            value={beatsPerMeasure}
-            onChange={this.handleBPMeasureChange}
-          />
-        <label htmlFor="beats-per-minute">{bpm} BPM</label>
-          <input
-            type="range"
-            min="40"
-            max="218"
-            name="beats-per-minute"
-            value={bpm}
-            onChange={this.handleBpmChange}
-          />
+      <div className="metronome-div">
+        <div className="metronome">
+          <div className="bpm-slider">
+            <label htmlFor="beats-per-measure">Beats Per Measure: </label>
+            <input
+              type="number"
+              min="0"
+              max="8"
+              name="beats-per-measure"
+              value={beatsPerMeasure}
+              onChange={this.handleBPMeasureChange}
+            />
+          <label htmlFor="beats-per-minute">{bpm} BPM</label>
+            <input
+              type="range"
+              min="40"
+              max="218"
+              name="beats-per-minute"
+              value={bpm}
+              onChange={this.handleBpmChange}
+            />
+          </div>
+
+          {/* Add the onClick handler: */}
+          <button className="metronome-play-pause-button" onClick={this.startStop}>
+
+          { playing ?
+            <i id="metronome-pause-button" className="large material-icons">pause_circle_outline</i>
+            :
+            <i id="metronome-play-button" className="large material-icons">play_circle_outline</i>
+          }
+          </button>
         </div>
-
-        {/* Add the onClick handler: */}
-        <button className="metronome-play-pause-button" onClick={this.startStop}>
-
-        { playing ?
-          <i id="metronome-pause-button" className="large material-icons">pause_circle_outline</i>
-          :
-          <i id="metronome-play-button" className="large material-icons">play_circle_outline</i>
-        }
-        </button>
       </div>
     );
   }

@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import TimeField from 'react-simple-timefield';
-import { fetchPostEvent, fetchPatchEvent } from '../actions.js';
+import { fetchPostEvent, fetchPatchEvent, selectedClickedDate } from '../actions.js';
 import Modal from 'react-modal';
 import '../lib/events.css';
+
+import DayPicker from 'react-day-picker';
+
 
 const customStyles = {
   content : {
@@ -102,9 +105,15 @@ class EventForm extends Component {
 
 
   render() {
+    console.log('event form', this.props);
     return (
       <div className="event-form-div">
-        <button id="new-event-button" onClick={this.openModal}><i class="material-icons">event</i>New Event</button>
+        {
+          this.props.foundEvent ?
+          <button id="new-event-button" onClick={this.openModal}><i class="material-icons">event</i>Edit Event</button>
+          :
+          <button id="new-event-button" onClick={this.openModal}><i class="material-icons">event</i>New Event</button>
+        }
 
         <Modal
           isOpen={this.state.modalIsOpen}
@@ -113,7 +122,12 @@ class EventForm extends Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
+
         <form className="event-form" onSubmit={this.handleSubmit}>
+          <DayPicker
+            onDayClick={(day) => this.props.selectedClickedDate(day)}
+            className="day-picker"
+            />
             {this.renderDate()}
             <label htmlFor="event_title"></label>
             <select
@@ -143,7 +157,6 @@ class EventForm extends Component {
             onChange={this.handleEndTimeChange}
             />
         </div>
-          <label htmlFor="description">description:</label><br/>
           <textarea
             type="text"
             id="description"
@@ -166,6 +179,8 @@ function mapStateToProps(state, props) {
   return {
     userId: state.userId,
     selectedDate: state.selectedDate,
+    current_user_events: state.current_user_events,
+    eventFormOn: state.eventFormOn,
   }
 }
 
@@ -173,6 +188,8 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchPostEvent: (new_event) => dispatch(fetchPostEvent(new_event)),
     fetchPatchEvent: (current_event) => dispatch(fetchPatchEvent(current_event)),
+    selectedClickedDate: (date) => dispatch(selectedClickedDate(date)),
+
   }
 }
 
