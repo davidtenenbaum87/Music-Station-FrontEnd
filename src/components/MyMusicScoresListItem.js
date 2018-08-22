@@ -9,8 +9,10 @@ class MyMusicScoresListItem extends Component {
   handleViewClick = (event) => {
     this.props.displayMusicScore()
     this.props.toggleCommentsDisplay()
-    // this.props.toggleVideosDisplay()
     this.props.currentScore(this.props.score)
+    if (this.props.videosDisplay) {
+      this.props.toggleVideosDisplay()
+    }
 
   }
 

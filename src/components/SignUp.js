@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import Adapter from '../apis/Adapter.js';
+import { connect } from 'react-redux';
+// import Adapter from '../apis/Adapter.js';
+import { postSignUpUser } from '../actions.js';
 import '../lib/welcome.css'
 
 class SignUp extends Component {
@@ -17,8 +19,9 @@ class SignUp extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    Adapter.postSignUpUser(this.state.username, this.state.password)
-      .then(this.props.history.push('/welcome'))
+    // Adapter.postSignUpUser(this.state.username, this.state.password)
+    this.props.postSignUpUser(this.state)
+    this.props.history.push('/welcome')
   }
 
   render() {
@@ -55,4 +58,17 @@ class SignUp extends Component {
   }
 }
 
-export default withRouter(SignUp);
+function mapStateToProps(state) {
+  return {
+    videosDisplay: state.videosDisplay,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    postSignUpUser: (username, password) => dispatch(postSignUpUser(username, password)),
+
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp));

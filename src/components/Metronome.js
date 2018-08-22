@@ -92,9 +92,9 @@ class Metronome extends Component {
         <button className="metronome-play-pause-button" onClick={this.startStop}>
 
         { playing ?
-          <i id="metronome-pause-button" className="large material-icons" height="50px">pause_circle_outline</i>
+          <i id="metronome-pause-button" className="large material-icons">pause_circle_outline</i>
           :
-          <i id="metronome-play-button" className="large material-icons" height="50px">play_circle_outline</i>
+          <i id="metronome-play-button" className="large material-icons">play_circle_outline</i>
         }
         </button>
       </div>

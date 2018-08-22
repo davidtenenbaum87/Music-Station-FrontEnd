@@ -20,22 +20,24 @@
   outline: none;
   margin: 15px 0px;
   padding: 10px;
-  box-shadow: 0 0 20px #eee;
+  /* box-shadow: 0 0 20px #cc00cc; */
   border-radius: 10px;
   display: flex;
   align-items: center;
   font-size: 20px;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+
 }
 
 #metronome-button {
-  box-shadow: 0 0 20px #eee;
+  box-shadow: 0 0 20px #ccebff;
   border-radius: 10px;
   margin: 5px;
   padding: 5px;
 }
 
 #tuner-button {
-  box-shadow: 0 0 20px #eee;
+  box-shadow: 0 0 20px #ccebff;
   border-radius: 10px;
   margin: 5px;
   padding: 5px;
@@ -46,11 +48,18 @@
   outline: none;
   margin: 15px;
   padding: 5px;
-  box-shadow: 0 0 20px #eee;
+  box-shadow: 0 0 20px #4dff4d;
   border-radius: 10px;
   display: flex;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
+  height: 100px;
+  width: 100px;
+}
+
+.material-icons {
+  font-size: 70px;
 }
 
 .bpm-slider {
@@ -76,7 +85,7 @@
   outline: none;
   margin: 15px 0px;
   padding: 10px;
-  box-shadow: 0 0 20px #eee;
+  /* box-shadow: 0 0 20px #cc00cc; */
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -87,7 +96,7 @@
   outline: none;
   margin: 15px;
   padding: 5px;
-  box-shadow: 0 0 20px #eee;
+  box-shadow: 0 0 20px #1a75ff;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -100,6 +109,7 @@ select {
   font-size: 30px;
   font-family: 'Poiret One', cursive;
   text-align: center;
+  box-shadow: 0 0 20px #cc00cc;
 }
 
 option {

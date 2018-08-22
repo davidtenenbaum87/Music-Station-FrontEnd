@@ -18,7 +18,10 @@
   padding: 5px;
   color: white;
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+}
 
+.navbar-header-welcome-name:hover {
+  color: black;
 }
 
 .navbar-header {

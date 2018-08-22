@@ -26,15 +26,23 @@ export default class Adapter {
     })
   }
 
-  static postSignUpUser(username, password) {
-    return fetch("http://localhost:3000/api/v1/users", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username, password })
-    })
-  }
+  // static postSignUpUser(username, password) {
+  //   return fetch("http://localhost:3000/api/v1/users", {
+  //     method: "POST",
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ username, password })
+  //   })
+  //   // .then(res => {
+  //   //     if (!res.ok) {
+  //   //       throw new BadTokenError("Bad token")
+  //   //     } else {
+  //   //       return res;
+  //   //     }
+  //   // })
+  //   // .then(res => res.json())
+  // }
 
   static postLoginUser(username, password) {
     return fetch("http://localhost:3000/sessions", {

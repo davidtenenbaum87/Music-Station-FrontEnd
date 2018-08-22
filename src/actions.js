@@ -239,3 +239,27 @@ export function fetchPatchEvent(current_event, userId) {
 
   }
 }
+
+
+
+
+
+export function postSignUpUser(new_user) {
+  return (dispatch) => {
+    fetch("http://localhost:3000/api/v1/users", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(new_user)
+    })
+    // .then(res => {
+    //     if (!res.ok) {
+    //       throw new BadTokenError("Bad token")
+    //     } else {
+    //       return res;
+    //     }
+    // })
+    .then(res => res.json())
+  }
+}
