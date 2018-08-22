@@ -31,17 +31,21 @@
 }
 
 #metronome-button {
-  box-shadow: 0 0 20px #333333;
+  box-shadow: 0 0 20px #d24dff;
   border-radius: 10px;
   margin: 5px;
   padding: 5px;
+  background-color: #EAEAEA;
+
 }
 
 #tuner-button {
-  box-shadow: 0 0 20px #333333;
+  box-shadow: 0 0 20px #d24dff;
   border-radius: 10px;
   margin: 5px;
   padding: 5px;
+  background-color: #EAEAEA;
+
 }
 
 .metronome-play-pause-button {
