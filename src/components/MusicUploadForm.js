@@ -71,6 +71,7 @@ class MusicUploadForm extends Component {
           placeholder="..e.g. Sonata, Concerto"
           value={this.props.title}
           onChange={this.props.handleTitleChange}
+          required
         /><br/>
       <label htmlFor="composer">Name of Composer: </label>
           <input
@@ -79,6 +80,7 @@ class MusicUploadForm extends Component {
             placeholder="..e.g. Mozart, Beethoven"
             value={this.props.composer}
             onChange={this.props.handleComposerChange}
+            required
           /><br/>
         <label htmlFor="title">Instrumentation: </label>
           <input
@@ -87,6 +89,7 @@ class MusicUploadForm extends Component {
             placeholder="..e.g. Violin & Piano"
             value={this.props.instrumentation}
             onChange={this.props.handleInstrumentationChange}
+            required
           /><br/>
         <label htmlFor="file">Music Score: </label>
         <input

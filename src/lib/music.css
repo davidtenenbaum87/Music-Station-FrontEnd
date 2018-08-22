@@ -108,6 +108,8 @@
 }
 
 .youtube-videos-div {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
   margin: 20px;
   white-space:nowrap;
   overflow-x:auto;
@@ -158,6 +160,7 @@
   border-radius: 10px;
   display: flex;
   justify-content: center;
+  align-items: center;
   cursor: pointer;
   transition: 0.5s;
   background-size: 200% auto;

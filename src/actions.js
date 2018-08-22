@@ -10,11 +10,6 @@ import {SET_CURRENT_USER} from './types.js';
 import {LOGOUT_CURRENT_USER} from './types.js';
 import {SELECTED_DATE} from './types.js';
 import {DISPLAY_EVENT_FORM} from './types.js';
-// import {HANDLE_EVENT_TITLE_CHANGE} from './types.js';
-// import {HANDLE_EVENT_DESCRIPTION_CHANGE} from './types.js';
-// import {HANDLE_EVENT_DATE_CHANGE} from './types.js';
-// import {HANDLE_EVENT_START_TIME_CHANGE} from './types.js';
-// import {HANDLE_EVENT_END_TIME_CHANGE} from './types.js';
 import {GET_CURRENT_USER_EVENTS} from './types.js';
 import {REMOVE_EVENT_FROM_USER_EVENTS} from './types.js';
 import {GET_SCORE_COMMENTS} from './types.js';
@@ -26,6 +21,9 @@ import {REMOVE_COMMENT_FROM_USER_COMMENTS} from './types.js';
 import {ADD_NEW_COMMENT_TO_SCORE} from './types.js';
 import {ADD_NEW_MUSIC_SCORE} from './types.js';
 import {ADD_NEW_EVENT} from './types.js';
+
+
+import { BadTokenError } from './error.js';
 
 
 export function handleTitleChange(text) {
@@ -91,26 +89,6 @@ export function selectedClickedDate(date) {
 export function displayEventForm() {
   return { type: DISPLAY_EVENT_FORM }
 }
-
-// export function handleEventTitleChange(text) {
-//   return { type: HANDLE_EVENT_TITLE_CHANGE, payload: text }
-// }
-//
-// export function handleEventDescriptionChange(text) {
-//   return { type: HANDLE_EVENT_DESCRIPTION_CHANGE, payload: text }
-// }
-//
-// export function handleEventDateChange(date) {
-//   return { type: HANDLE_EVENT_DATE_CHANGE, payload: date }
-// }
-//
-// export function handleEventStartTimeChange(text) {
-//   return { type: HANDLE_EVENT_START_TIME_CHANGE, payload: text }
-// }
-//
-// export function handleEventEndTimeChange(text) {
-//   return { type: HANDLE_EVENT_END_TIME_CHANGE, payload: text }
-// }
 
 export function getCurrentUserEvents(events) {
   return { type: GET_CURRENT_USER_EVENTS, payload: events }
@@ -241,25 +219,42 @@ export function fetchPatchEvent(current_event, userId) {
 }
 
 
-
-
-
-export function postSignUpUser(new_user) {
-  return (dispatch) => {
-    fetch("http://localhost:3000/api/v1/users", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(new_user)
-    })
-    // .then(res => {
-    //     if (!res.ok) {
-    //       throw new BadTokenError("Bad token")
-    //     } else {
-    //       return res;
-    //     }
-    // })
-    .then(res => res.json())
-  }
-}
+// export function postSignUpUser(new_user) {
+//   return (dispatch) => {
+//     fetch("http://localhost:3000/api/v1/users", {
+//       method: "POST",
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(new_user)
+//     })
+//     .then(res => res.json())
+//   }
+// }
+//
+// export function postLoginUser(user) {
+//   console.log('action', user);
+//   return (dispatch) => {
+//     fetch("http://localhost:3000/sessions", {
+//       method: "POST",
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(user)
+//     })
+//     .then(res => {
+//         if (!res.ok) {
+//           throw new BadTokenError("Bad token")
+//         } else {
+//           return res;
+//         }
+//     })
+//     .then(res => res.json())
+//     .then(json => {
+//       localStorage.setItem('token', json.token);
+//       dispatch(setCurrentUser(json.id, json.username));
+//       dispatch(fetchGetMusicScores(json.id));
+//       dispatch(fetchGetEvents(json.id));
+//     })
+//   }
+// }
