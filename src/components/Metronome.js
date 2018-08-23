@@ -11,12 +11,10 @@ class Metronome extends Component {
       count: 0,
       bpm: 60,
       beatsPerMeasure: 0,
-
     };
     this.click1 = new Audio(metro1);
     this.click2 = new Audio(metro2);
   }
-
 
   handleBpmChange = (event) => {
     const bpm = event.target.value;

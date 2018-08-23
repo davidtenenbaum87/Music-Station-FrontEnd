@@ -74,12 +74,12 @@
 }
 
 .comment {
-  background: linear-gradient(347deg, rgba(255,255,255,1) 0%, rgba(0,212,255,1) 100%);
-  /* background: rgba(210,255,82,1); */
+  /* background: linear-gradient(347deg, rgba(255,255,255,1) 0%, rgba(0,212,255,1) 100%); */
+  background: #FFFFFF;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   color: white;
-  /* border: 1px solid white; */
+  border: 1px solid black;
   margin-top: 10px;
   display: flex;
   justify-content: center;
