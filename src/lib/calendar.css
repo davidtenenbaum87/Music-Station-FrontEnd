@@ -17,9 +17,28 @@
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   width: 360px;
   height: 300px;
+  font-size: 24px;
+
   /* border: 1px solid black; */
 }
 
 .DayPicker-Caption {
+  /* font-size: 30px; */
   font-family: 'Poiret One', cursive;
+  background-color: blue;
+  color: white;
+}
+
+.DayPicker-NavBar span {
+  color: white;
+}
+
+.DayPicker-Weekdays {
+  text-shadow: 0 0 20px #d24dff;
+
+}
+
+.DayPicker-wrapper {
+  border: 1px solid black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

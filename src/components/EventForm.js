@@ -144,18 +144,22 @@ class EventForm extends Component {
               <option>Other</option>
             </select><br/>
           <div className="input-times">
-          <label htmlFor="start-time">From:</label>
-          <TimeField
+          <label htmlFor="start_time">From:</label>
+          <input
             className="input-time"
+            type="time"
+            name="start_time"
             value={this.state.start_time}
-            onChange={this.handleStartTimeChange}
-            />
-          <label htmlFor="end-time">To:</label>
-          <TimeField
+            onChange={this.handleChange}
+          />
+          <label htmlFor="end_time">To:</label>
+          <input
             className="input-time"
+            type="time"
+            name="end_time"
             value={this.state.end_time}
-            onChange={this.handleEndTimeChange}
-            />
+            onChange={this.handleChange}
+          />
         </div>
           <textarea
             type="text"
