@@ -49,6 +49,7 @@
 
 .music-score-details li {
   list-style: none;
+  font-size: 20px;
 }
 
 .music-score-details {
@@ -80,7 +81,7 @@
   text-align: center;
   font-size: 40px;
   font-family: 'Julius Sans One', sans-serif;
-  /* text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1); */
+  text-shadow: 0 0 20px #1C82F0;
 }
 
 .music-upload-form {
@@ -109,7 +110,8 @@
 }
 
 .youtube-videos-div {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  box-shadow: 0 0 20px #1C82F0;
 
   margin: 20px;
   white-space:nowrap;

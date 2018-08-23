@@ -71,7 +71,7 @@ class CommentForm extends Component {
         >
 
         <form className="comments-form">
-          <h2>{this.props.selectedScore.title} / {this.props.selectedScore.composer}</h2>
+          <h4>{this.props.selectedScore.title} / {this.props.selectedScore.composer}</h4>
           <label htmlFor="page">Page no.:</label><br/>
           <input
             type="number"
