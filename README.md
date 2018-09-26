@@ -24,5 +24,5 @@ Check out this video clip of MusicStation: (https://vimeo.com/288988954)
 
 MusicStation's RESTful Rails API is available to view here: (https://github.com/davidtenenbaum87/Music-Station-BackEnd)
 
-## Authors
+### Author
 - David Tenenbaum (https://github.com/davidtenenbaum87)
